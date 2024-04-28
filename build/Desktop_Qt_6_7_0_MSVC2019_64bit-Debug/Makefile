@@ -261,11 +261,13 @@ Makefile: ..\..\TIC_TAC_TOE_CPP_QT_SQLITE.pro C:\Qt\6.7.0\msvc2019_64\mkspecs\wi
 		..\..\TIC_TAC_TOE_CPP_QT_SQLITE.pro \
 		C:\Qt\6.7.0\msvc2019_64\lib\Qt6Widgets.prl \
 		C:\Qt\6.7.0\msvc2019_64\lib\Qt6Gui.prl \
+		C:\Qt\6.7.0\msvc2019_64\lib\Qt6Sql.prl \
 		C:\Qt\6.7.0\msvc2019_64\lib\Qt6Core.prl \
 		C:\Qt\6.7.0\msvc2019_64\lib\Qt6EntryPoint.prl \
 		C:\Qt\6.7.0\msvc2019_64\mkspecs\features\build_pass.prf \
 		C:\Qt\6.7.0\msvc2019_64\lib\Qt6Widgetsd.prl \
 		C:\Qt\6.7.0\msvc2019_64\lib\Qt6Guid.prl \
+		C:\Qt\6.7.0\msvc2019_64\lib\Qt6Sqld.prl \
 		C:\Qt\6.7.0\msvc2019_64\lib\Qt6Cored.prl \
 		C:\Qt\6.7.0\msvc2019_64\lib\Qt6EntryPointd.prl
 	$(QMAKE) -o Makefile ..\..\TIC_TAC_TOE_CPP_QT_SQLITE.pro -spec win32-msvc "CONFIG+=debug" "CONFIG+=qml_debug"
@@ -446,11 +448,13 @@ C:\Qt\6.7.0\msvc2019_64\mkspecs\features\lex.prf:
 ..\..\TIC_TAC_TOE_CPP_QT_SQLITE.pro:
 C:\Qt\6.7.0\msvc2019_64\lib\Qt6Widgets.prl:
 C:\Qt\6.7.0\msvc2019_64\lib\Qt6Gui.prl:
+C:\Qt\6.7.0\msvc2019_64\lib\Qt6Sql.prl:
 C:\Qt\6.7.0\msvc2019_64\lib\Qt6Core.prl:
 C:\Qt\6.7.0\msvc2019_64\lib\Qt6EntryPoint.prl:
 C:\Qt\6.7.0\msvc2019_64\mkspecs\features\build_pass.prf:
 C:\Qt\6.7.0\msvc2019_64\lib\Qt6Widgetsd.prl:
 C:\Qt\6.7.0\msvc2019_64\lib\Qt6Guid.prl:
+C:\Qt\6.7.0\msvc2019_64\lib\Qt6Sqld.prl:
 C:\Qt\6.7.0\msvc2019_64\lib\Qt6Cored.prl:
 C:\Qt\6.7.0\msvc2019_64\lib\Qt6EntryPointd.prl:
 qmake: FORCE
