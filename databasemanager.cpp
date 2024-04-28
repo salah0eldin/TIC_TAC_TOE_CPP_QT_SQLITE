@@ -75,7 +75,7 @@ int DatabaseManager::signUp(const QString &username, const QString &password)
 {
     // Prepare SQL query to check if username already exists
     QSqlQuery selectQuery;
-    selectQuery.prepare("SELECT * FROM users WHERE username = ?");
+    selectQuery.prepare("SELECT * FROM users WHERE username = ? ");
     selectQuery.addBindValue(username);
 
     // Execute the query
