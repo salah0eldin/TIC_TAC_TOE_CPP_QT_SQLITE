@@ -98,7 +98,6 @@ bool Init_db() {
             wins          INTEGER      NOT NULL,
             losses        INTEGER      NOT NULL,
             ties          INTEGER      NOT NULL,
-            numberofgames INTEGER      NOT NULL,
             timestamp     DATETIME     DEFAULT CURRENT_TIMESTAMP,
             FOREIGN KEY (userid) REFERENCES users (id)
         );
@@ -307,14 +306,12 @@ bool Save_Session(const int &userid, const QString &against, const int &wins,
         return DATABASE_ERROR; // Return false if database opening fails
 
     sqlite3_stmt *stmt;
-    // Calculate number of games by summing wins, losses, and ties
-    int numberofgames = wins + losses + ties;
-    QString insert_query = "INSERT INTO sessions (userid, against, wins, losses, ties, numberofgames) VALUES ("
+
+    QString insert_query = "INSERT INTO sessions (userid, against, wins, losses, ties) VALUES ("
                             "'" + QString::number(userid) + "', ? ,"
                             "'" + QString::number(wins) + "', "
                             "'" + QString::number(losses) + "', "
-                            "'" + QString::number(ties) + "', "
-                            "'" + QString::number(numberofgames) + "')";
+                            "'" + QString::number(ties) + "')";
 
     int rc = sqlite3_prepare_v2(db, insert_query.toUtf8().constData(), -1, &stmt, nullptr);
     if (rc != SQLITE_OK) {
