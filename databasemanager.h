@@ -49,6 +49,28 @@ public:
     int signIn(const QString &username, const QString &password);
 
     /**
+     * @brief Changes the username of a user in the database.
+     * @param id The ID of the user whose username is to be changed.
+     * @param newUsername The new username to be set.
+     * @param password The password of the user to authenticate the change.
+     * @return DATABASE_SUCCESS if the username is successfully changed,
+     *         WRONG_PASSWORD if the provided password is incorrect,
+     *         DATABASE_ERROR if there is an error in the database operation.
+     */
+    int changeUsername(const int &id, const QString &newUsername, const QString &password);
+
+    /**
+     * @brief Changes the password of a user in the database.
+     * @param id The ID of the user whose password is to be changed.
+     * @param oldPassword The current password of the user to authenticate the change.
+     * @param newPassword The new password to be set.
+     * @return DATABASE_SUCCESS if the password is successfully changed,
+     *         WRONG_PASSWORD if the provided old password is incorrect,
+     *         DATABASE_ERROR if there is an error in the database operation.
+     */
+    int changePassword(const int &id, const QString &oldPassword, const QString &newPassword);
+
+    /**
      * @brief Saves a session record into the database.
      * @param userid The ID of the user associated with the session.
      * @param against The name of the opponent.
