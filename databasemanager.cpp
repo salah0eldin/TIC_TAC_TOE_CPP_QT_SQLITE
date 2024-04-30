@@ -57,7 +57,7 @@ DatabaseManager::DatabaseManager()
             session_id      INTEGER      NOT NULL,
             playerCharacter CHAR(1)      NOT NULL,
             moves           VARCHAR(500) NULL,
-            state           VARCHAR(500) NOT NULL,
+            state           VARCHAR(20)  NOT NULL,
             FOREIGN KEY (session_id) REFERENCES sessions (id)
         );
     )";
