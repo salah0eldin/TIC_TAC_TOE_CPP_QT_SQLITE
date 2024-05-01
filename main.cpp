@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
     MainWindow w;
 
     DatabaseManager db;
-    ;
+
     w.show();
     return a.exec();
 }
