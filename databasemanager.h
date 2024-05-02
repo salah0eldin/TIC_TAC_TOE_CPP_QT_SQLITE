@@ -70,6 +70,8 @@ public:
      */
     bool saveGame(const int &session_id, const char &playerCharacter,
                   const QString &moves,const QString &state);
+
+    //add a logout function
 };
 
 #endif // DATABASEMANAGER_H

@@ -14,6 +14,7 @@ class Session
     int currentGameIndex;
     Game* currentGame;
 public:
+
     Session();
     Session(const int id, const QVector<QPair<int, std::string>>& sessionHistory);
     void updateScore();
