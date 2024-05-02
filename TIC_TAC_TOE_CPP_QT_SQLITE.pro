@@ -9,13 +9,21 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    authenticationsystem.cpp \
     databasemanager.cpp \
+    game.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    player.cpp \
+    session.cpp
 
 HEADERS += \
+    authenticationsystem.h \
     databasemanager.h \
-    mainwindow.h
+    game.h \
+    mainwindow.h \
+    player.h \
+    session.h
 
 FORMS += \
     mainwindow.ui
