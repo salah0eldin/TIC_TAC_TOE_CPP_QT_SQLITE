@@ -10,12 +10,18 @@ CONFIG += c++17
 
 SOURCES += \
     databasemanager.cpp \
+    game.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    player.cpp \
+    session.cpp
 
 HEADERS += \
     databasemanager.h \
-    mainwindow.h
+    game.h \
+    mainwindow.h \
+    player.h \
+    session.h
 
 FORMS += \
     mainwindow.ui

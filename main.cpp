@@ -10,6 +10,7 @@ int main(int argc, char *argv[])
 
     DatabaseManager db;
 
+
     w.show();
     return a.exec();
 }
