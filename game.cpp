@@ -1,95 +1,73 @@
 #include "game.h"
 
-/**
- * Constructor for the Game class.
- * Initializes the Game object with default values.
- * Sets the players to nullptr, player turn to false, and id to -1.
- * Calls the resetGame() method to reset the game state.
- *
- * @returns None
- */
-Game::Game() : playerx(nullptr), playero(nullptr), playerturn(false) {
+Game::Game() :playerturn(false) {
     id = -1;
     resetGame();
 }
 
-/**
- * Makes a move in the game at the specified row and column.
- *
- * @param row The row index of the move.
- * @param col The column index of the move.
- *
- * @returns None
- */
 void Game::makeMove(int row, int col) {
     if (board[row][col] == ' ') {
         if (playerturn) {
-            board[row][col] = 'X';
+            board[row][col] = playerChar;
         } else {
-            board[row][col] = 'O';
+            board[row][col] = oppoChar;
         }
         playerturn = !playerturn;
-        emit gameStateChanged(checkWinDraw());
-        switchPlayers();
+
+        state = checkWinDraw();
     }
 }
 
-/**
- * Checks the current state of the game board to determine if there is a winner or a draw.
- *
- * @return The result of the game: PLAYERX_WON, PLAYERO_WON, or DRAW.
- */
 char Game::checkWinDraw() {
+    // Check rows
     for (int i = 0; i < 3; ++i) {
-        if (board[i][0] != ' ' && board[i][0] == board[i][1] && board[i][1] == board[i][2]) {
-            return (board[i][0] == 'X') ? PLAYERX_WON : PLAYERO_WON; // Player X or O won
-        }
-        if (board[0][i] != ' ' && board[0][i] == board[1][i] && board[1][i] == board[2][i]) {
-            return (board[0][i] == 'X') ? PLAYERX_WON : PLAYERO_WON; // Player X or O won
-            finished = true;
+        if (board[i][0] == board[i][1] && board[i][1] == board[i][2]) {
+            if (board[i][0] == playerChar)
+                return 'w'; // Player wins
+            else if (board[i][0] == oppoChar)
+                return 'l'; // Player loses
         }
     }
 
-
-    if ((board[0][0] != ' ' && board[0][0] == board[1][1] && board[1][1] == board[2][2]) ||
-        (board[0][2] != ' ' && board[0][2] == board[1][1] && board[1][1] == board[2][0])) {
-        return (board[1][1] == 'X') ? PLAYERX_WON : PLAYERO_WON; // Player X or O won
-        finished = true;
+    // Check columns
+    for (int j = 0; j < 3; ++j) {
+        if (board[0][j] == board[1][j] && board[1][j] == board[2][j]) {
+            if (board[0][j] == playerChar)
+                return 'w'; // Player wins
+            else if (board[0][j] == oppoChar)
+                return 'l'; // Player loses
+        }
     }
 
+    // Check diagonals
+    if ((board[0][0] == board[1][1] && board[1][1] == board[2][2]) ||
+        (board[0][2] == board[1][1] && board[1][1] == board[2][0])) {
+        if (board[1][1] == playerChar)
+            return 'w'; // Player wins
+        else if (board[1][1] == oppoChar)
+            return 'l'; // Player loses
+    }
 
+    // Check for draw
+    bool draw = true;
     for (int i = 0; i < 3; ++i) {
         for (int j = 0; j < 3; ++j) {
             if (board[i][j] == ' ') {
-                return DRAW;
-                finished = true;
+                draw = false;
+                break;
             }
         }
+        if (!draw)
+            break;
     }
-    return DRAW;
-    finished = true;
+    if (draw)
+        return 't'; // Tie
+
+    // Game not finished
+    return 'n';
 }
 
-/**
- * Switches the current player in the game.
- *
- * This function toggles the current player between 'playerx' and 'playero'.
- * It emits a signal 'currentPlayerChanged' with the username of the new current player.
- *
- * @returns None
- */
-void Game::switchPlayers() {
-    currentplayer = (currentplayer == playerx) ? playero : playerx;
-    emit currentPlayerChanged(currentplayer->getUsername());
-}
 
-/**
- * Resets the game board and sets the game state to unfinished.
- *
- * @param None
- *
- * @returns None
- */
 void Game::resetGame() {
     // Clear the board
     for (int i = 0; i < 3; ++i) {
@@ -97,17 +75,9 @@ void Game::resetGame() {
             board[i][j] = ' ';
         }
     }
-    finished = false;
+    state = 'n';
 }
 
-/**
- * Loads a game state from a string of game moves into the board.
- *
- * @param id The identifier of the game.
- * @param gameMoves A string representing the game moves.
- *
- * @returns None
- */
 void Game::loadGame(const int id, const std::string& gameMoves){
     this->id = id;
     for (int i = 0; i < 3; ++i) {
@@ -117,27 +87,8 @@ void Game::loadGame(const int id, const std::string& gameMoves){
     }
 }
 
-/**
- * Saves the current game state by serializing the game moves.
- *
- * @return A QPair containing the game ID and serialized game moves.
- */
-QPair<int, std::string> Game::saveGame(){
-    std::string gameMoves;
-    for (int i = 0; i < 3; ++i) {
-        for (int j = 0; j < 3; ++j) {
-            gameMoves.push_back(board[i][j]);
-        }
-    }
-    return {id, gameMoves};
+char Game::getState(){
+    return state;
 }
 
 
-/**
- * Check if the game is finished.
- *
- * @return true if the game is finished, false otherwise.
- */
-bool Game::isFinished() {
-    return finished;
-}

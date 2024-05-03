@@ -1,21 +1,27 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
+
 #include "qobject.h"
-class Player : public QObject {
-    Q_OBJECT
+#include "session.h"
+
+class Player {
 
 private:
     const int id;
     const QString username;
     const QString hashedPassword;
 
+    QVector<Session> sessions;
+
+
 public:
-    explicit Player(const int id, QString username, QString hashedPassword, QObject *parent = nullptr);
+    Player(const int id, QString username, QString hashedPassword);
     QString getUsername() const;
     QString getHashedPassword() const;
     int getId() const;
-signals:
+    void addSession(Session session);
+    void removeSessionAt(int &index);
 };
 #endif // PLAYER_H
 

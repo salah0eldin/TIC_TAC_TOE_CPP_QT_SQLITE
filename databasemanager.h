@@ -57,7 +57,7 @@ public:
      * @param ties The number of ties in the session.
      * @return True if insertion succeeds, false if there is an error in database operation.
      */
-    bool saveSession(const int &userid, const QString &against, const int &wins,
+    bool saveSession(const int &specificId,const int &userid, const QString &against, const int &wins,
                      const int &loss, const int &ties);
 
     /**

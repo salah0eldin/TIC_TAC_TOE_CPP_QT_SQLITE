@@ -33,6 +33,7 @@ DatabaseManager::DatabaseManager()
     query = R"(
         CREATE TABLE IF NOT EXISTS sessions (
             id            INTEGER      PRIMARY KEY AUTOINCREMENT,
+            specificId    INTEGER      NOT NULL,
             userid        INTEGER      NOT NULL,
             against       VARCHAR(255) NOT NULL,
             wins          INTEGER      NOT NULL,
@@ -57,7 +58,7 @@ DatabaseManager::DatabaseManager()
             session_id      INTEGER      NOT NULL,
             playerCharacter CHAR(1)      NOT NULL,
             moves           VARCHAR(500) NULL,
-            state           VARCHAR(20)  NOT NULL,
+            state           CHAR(1)      NOT NULL,
             FOREIGN KEY (session_id) REFERENCES sessions (id)
         );
     )";
@@ -142,14 +143,14 @@ int DatabaseManager::signIn(const QString &username, const QString &password)
     }
 }
 
-
-bool DatabaseManager::saveSession(const int &userid, const QString &against, const int &wins,
+bool DatabaseManager::saveSession(const int &specificId,const int &userid, const QString &against, const int &wins,
                                   const int &losses, const int &ties)
 {
     // Prepare SQL query to insert new session
     QSqlQuery insertQuery;
-    insertQuery.prepare("INSERT INTO sessions (userid, against, wins, losses, ties) "
-                        "VALUES (?, ?, ?, ?, ?)");
+    insertQuery.prepare("INSERT INTO sessions (specificId, userid, against, wins, losses, ties) "
+                        "VALUES (?, ?, ?, ?, ?, ?)");
+    insertQuery.addBindValue(specificId);
     insertQuery.addBindValue(userid);
     insertQuery.addBindValue(against);
     insertQuery.addBindValue(wins);

@@ -1,24 +1,29 @@
 #ifndef SESSION_H
 #define SESSION_H
+
 #include <QVector>
 #include <QPair>
-#include "player.h"
+
 #include "game.h"
+
 class Session
 {
     int id;
-    QVector<QPair<int, std::string>> sessionHistory;
-    QPair<int, int> score;
-    Player *playerX, *playerO, *currentPlayer;
-    bool playerTurn;
-    int currentGameIndex;
-    Game* currentGame;
+    QVector<Game> games;
+
+    struct sessionScore{
+        int wins = 0;
+        int ties = 0;
+        int loss = 0;
+    } score;
+
+    QString oppoName;
+
 public:
 
     Session();
-    Session(const int id, const QVector<QPair<int, std::string>>& sessionHistory);
-    void updateScore();
-    void saveSession();
+    Session(const int id, const QVector<Game> & games);
+    void addGame(Game game);
 };
 
 #endif // SESSION_H
