@@ -22,11 +22,12 @@ public:
     Player *player;
     bool loggedIN;
 
+protected:
+    bool eventFilter(QObject *obj, QEvent *event) override;
+
 private slots:
 
     void on_pushButton_login_from_main_clicked();
-
-    //void on_ShowPassword_stateChanged(int arg1);
 
     void on_back_from_login_to_main_clicked();
 
@@ -70,7 +71,29 @@ private slots:
 
     void on_pushButton_close_main_clicked();
 
-    void on_showPasswordCheckbox_stateChanged(int arg1);
+    void on_showPasswordCheckbox_stateChanged();
+
+    void on_pushButton_play_withAI_clicked();
+
+    void on_checkBox_oldpass_stateChanged();
+
+    void on_checkBox_pass_signup_stateChanged();
+
+    void on_checkBox_changeuser_stateChanged();
+
+    void on_checkBox_confirm_pass_signup_stateChanged();
+
+    void on_checkBox_newpass_stateChanged();
+
+    void on_checkBox_confirm_newpass_stateChanged();
+
+    void on_pushButton_back_from_history_to_session_clicked();
+
+    void on_pushButton_replay_clicked();
+
+    void on_pushButton_back_from_history_to_session_2_clicked();
+
+    void on_pushButton_session1_clicked();
 
 private:
     Ui::MainWindow *ui;
