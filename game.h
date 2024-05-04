@@ -1,14 +1,9 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include <QObject>
-#include <QPair>
+#include <QString>
 
-#define PLAYERX_WON 1
-#define DRAW 0
-#define PLAYERO_WON -1
-
-class Game : public QObject {
+class Game{
 
 private:
     int id;

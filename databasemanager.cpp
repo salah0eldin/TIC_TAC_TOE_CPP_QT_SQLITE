@@ -109,7 +109,7 @@ int DatabaseManager::signUp(const QString &username, const QString &password) {
     return SIGNED_UP; // Return success code
 }
 
-int DatabaseManager::signIn(const QString &username, const QString &password) {
+int DatabaseManager::signIn(const QString &username, const QString &password,int &id) {
     // Prepare SQL query to retrieve user record based on username
     QSqlQuery selectQuery;
     selectQuery.prepare("SELECT * FROM users WHERE username = ?");
@@ -135,6 +135,7 @@ int DatabaseManager::signIn(const QString &username, const QString &password) {
     // Compare the provided password with the stored password
     if (password == storedPassword) {
         qDebug() << "Signed in"; // Print sign-in success message
+        id = selectQuery.value("id").toInt();
         return SIGNED_IN;        // Return success code
     } else {
         qDebug() << "Wrong password"; // Print incorrect password message

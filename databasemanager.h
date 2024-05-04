@@ -46,7 +46,7 @@ public:
      *         WRONG_PASSWORD if the provided password is incorrect, DATABASE_ERROR if there is an error
      *         in database operation.
      */
-    int signIn(const QString &username, const QString &password);
+    int signIn(const QString &username, const QString &password, int &id);
 
     /**
      * @brief Changes the username of a user in the database.
