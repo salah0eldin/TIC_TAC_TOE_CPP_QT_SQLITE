@@ -2,8 +2,8 @@
 #include "player.h"
 
 
-Player::Player(const int id, QString username, QString hashedPassword)
-    : id(id), username(username), hashedPassword(hashedPassword) {}
+Player::Player(const int id, QString username, QString hashedPassword,QImage imagee)
+    : id(id), username(username), hashedPassword(hashedPassword) ,image(imagee) {}
 
 QString Player::getUsername() const  {
     return username;
@@ -25,4 +25,20 @@ void Player::addSession(Session session){
 
 void Player::removeSessionAt(int &index){
     sessions.removeAt(index);
+}
+
+QImage Player::getImage(){
+    return image;
+}
+
+void Player::setImage(QImage & image){
+    this->image = image;
+}
+
+void Player::setUsername(QString &username){
+    this->username = username;
+}
+
+void Player::setHashedPassword(QString &password){
+    this->hashedPassword = password;
 }

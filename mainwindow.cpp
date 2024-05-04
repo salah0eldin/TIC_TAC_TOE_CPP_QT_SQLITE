@@ -1,23 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-#include <QCheckBox>
-#include <QMessageBox>
-#include <QDebug>
-#include <QString>
-
-#define MAIN_WINDOW             0
-#define PROFILE_WINDOW          1
-#define CHANGE_USERNAME_WINDOW  2
-#define CHANGE_PASSWORD_WINDOW  3
-#define LOGIN_WINDOW            4
-#define SIGNUP_WINDOW           5
-#define PLAYER2_WINDOW          6
-#define BOARD_WINDOW            8
-#define SESSIONS_WINDOW         9
-#define GAMES_WINDOW            10
-
-
 QString hashing(const QString& str) {
     const int p = 31; // Prime number
     const int m = 1e9 + 9; // Modulo value
@@ -32,6 +15,22 @@ QString hashing(const QString& str) {
     return QString::number(hash_value); // Convert hash_value to QString before returning
 }
 
+void MainWindow::changePictures(QImage &originalImage){
+    if(originalImage.isNull())
+        originalImage = QImage("../../pictures/user.jpg");
+    // Check if resizing is necessary
+    if (originalImage.width() > 200 || originalImage.height() > 200) {
+        // Resize the image while maintaining aspect ratio if it's larger than 200x200 pixels
+        originalImage = originalImage.scaled(200, 200, Qt::KeepAspectRatio);
+    }
+
+    // Set the pixmap of the QLabel
+    ui->label_pic->setPixmap(QPixmap::fromImage(originalImage));
+
+    QImage image2 = originalImage.scaled(75,75, Qt::KeepAspectRatio);
+
+    ui->label_picture->setPixmap(QPixmap::fromImage(image2));
+}
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -96,17 +95,29 @@ MainWindow::MainWindow(QWidget *parent)
     ui->lineEdit_pass2_signup->setClearButtonEnabled(true);
 
     QSettings settings("MyApp", "MyApp");
+    if(settings.contains("id")){
     int id = settings.value("id").toInt();
     QString username = settings.value("username").toString();
     QString password = settings.value("password").toString();
 
-    if(username != ""){
-        player = new Player(id,username,password);
-        ui->label_guest->setText(username);
-        loggedIN = true;
-        ui->pushButton_login_from_main->setText("Log Out");
-    }else
+    QString base64Image = settings.value("ImageData").toString();
+    QByteArray imageData = QByteArray::fromBase64(base64Image.toLatin1());
+    QImage image;
+    image.loadFromData(imageData, "PNG");
+
+    changePictures(image);
+
+    player = new Player(id,username,password,image);
+    ui->label_guest->setText(username);
+    ui->label_19->setText(username);
+
+    loggedIN = true;
+    ui->pushButton_login_from_main->setText("Log Out");
+
+    } else
         loggedIN = false;
+
+    ui->stackedWidget->setCurrentIndex(MAIN_WINDOW);
 
 }
 
@@ -120,11 +131,15 @@ MainWindow::~MainWindow()
 bool MainWindow::eventFilter(QObject *obj, QEvent *event)
 {
     if (obj == ui->label_picture && event->type() == QEvent::MouseButtonPress) {
-        ui->stackedWidget->setCurrentIndex(PROFILE_WINDOW);
+        if(loggedIN){
+            ui->stackedWidget->setCurrentIndex(PROFILE_WINDOW);
+        }
         return true;
     }
     if (obj == ui->label_guest && event->type() == QEvent::MouseButtonPress) {
-        ui->stackedWidget->setCurrentIndex(PROFILE_WINDOW);
+        if(loggedIN){
+            ui->stackedWidget->setCurrentIndex(PROFILE_WINDOW);
+        }
         return true;
     }
     return false;
@@ -145,12 +160,17 @@ void MainWindow::on_pushButton_login_from_main_clicked()
                                               QMessageBox::Yes | QMessageBox::No);
         if (confirmLogout == QMessageBox::Yes) {
             ui->label_guest->setText("Guest");
+            ui->label_19->setText("Quest");
+
+            QImage image("../../pictures/user.jpg");
+            changePictures(image);
             loggedIN = false;
             ui->pushButton_login_from_main->setText("Sign In");
             QSettings settings("MyApp", "MyApp");
             settings.remove("id");
             settings.remove("username");
             settings.remove("password");
+            settings.remove("ImageData");
             delete player;
         }
     }
@@ -176,7 +196,8 @@ void MainWindow::on_pushButton_login_to_main_clicked()
         return; // Exit the function early
     }
     int id;
-    int handl = db.signIn(username,password,id);
+    QImage image;
+    int handl = db.signIn(username,password,id,image);
     if (handl == DATABASE_ERROR) {
         QMessageBox::warning(this, "Error", "Error in database, try again later.");
     } else if (handl == WRONG_USERNAME || handl == WRONG_PASSWORD) {
@@ -187,15 +208,26 @@ void MainWindow::on_pushButton_login_to_main_clicked()
         QMessageBox::information(this, "Success", "You have successfully signed In!");
         ui->lineEdit_user->setText("");
         ui->lineEdit_pass->setText("");
-        Player *tempPlayer = new Player(id,username,password);
+
+        Player *tempPlayer = new Player(id,username,password,image);
         player = tempPlayer;
         ui->label_guest->setText(username);
-
+        ui->label_19->setText(username);
+        changePictures(image);
         // Save the credentials to local storage
         QSettings settings("MyApp", "MyApp");
         settings.setValue("id",id);
         settings.setValue("username", username);
         settings.setValue("password", password);
+
+        // Convert the displayed image to Base64 format and save it to QSettings
+        QByteArray imageData;
+        QBuffer buffer(&imageData);
+        buffer.open(QIODevice::WriteOnly);
+        image.save(&buffer, "PNG"); // Save as PNG format
+        QString base64Image = QString::fromLatin1(imageData.toBase64().data());
+        settings.setValue("ImageData", base64Image);
+
         loggedIN = true;
         ui->pushButton_login_from_main->setText("Log Out");
         ui->stackedWidget->setCurrentIndex(MAIN_WINDOW);
@@ -247,7 +279,6 @@ void MainWindow::on_pushButton_signup_to_main_clicked()
     }
 }
 
-
 void MainWindow::on_pushButton_back_from_board_to_main_clicked()
 {
     ui->stackedWidget->setCurrentIndex(MAIN_WINDOW);
@@ -290,7 +321,46 @@ void MainWindow::on_pushButton_change_user_pass_clicked()
 
 void MainWindow::on_pushButton_change_pass_clicked()
 {
-    ui->stackedWidget->setCurrentIndex(PROFILE_WINDOW);
+    QString oldPassword = ui->lineEdit_old_pass->text();
+    QString newPassword = ui->lineEdit_new_pass->text();
+    QString confirmPassword = ui->lineEdit_change_pass->text();
+
+    if (oldPassword.isEmpty() || newPassword.isEmpty() || confirmPassword.isEmpty()) {
+        QMessageBox::warning(this, "Error", "Username or password can't be empty.");
+        return; // Exit the function early
+    }
+
+    if(newPassword != confirmPassword){
+        QMessageBox::warning(this, "Error", "Passwords don't match");
+        return;
+    }
+
+    oldPassword = hashing(oldPassword);
+    newPassword = hashing(newPassword);
+
+    int handl = db.changePassword(player->getId(),oldPassword,newPassword);
+
+    switch(handl){
+    case DATABASE_ERROR:
+        QMessageBox::warning(this, "Error", "Error in database, try again later.");
+        break;
+    case WRONG_PASSWORD:
+        QMessageBox::warning(this, "Error", "Wrong Password.");
+        ui->lineEdit_old_pass->setText("");
+        break;
+    case DATABASE_SUCCESS:
+        QMessageBox::information(this, "Success", "Password changed");
+        ui->lineEdit_old_pass->setText("");
+        ui->lineEdit_change_pass->setText("");
+        ui->lineEdit_change_pass->setText("");
+
+        player->setHashedPassword(newPassword);
+        QSettings settings("MyApp", "MyApp");
+        settings.setValue("password", newPassword);
+
+        ui->stackedWidget->setCurrentIndex(PROFILE_WINDOW);
+        break;
+    }
 }
 
 void MainWindow::on_pushButton_not_change_pass_clicked()
@@ -300,7 +370,47 @@ void MainWindow::on_pushButton_not_change_pass_clicked()
 
 void MainWindow::on_pushButton_change_username_clicked()
 {
-    ui->stackedWidget->setCurrentIndex(PROFILE_WINDOW);
+    QString newUsername = ui->lineEdit_change_username->text();
+    QString password = ui->lineEdit_pass_to_change_user->text();
+
+    if (newUsername.isEmpty() || password.isEmpty()) {
+        QMessageBox::warning(this, "Error", "Username or password can't be empty.");
+        return; // Exit the function early
+    }
+
+    password = hashing(password);
+
+    int handl = db.changeUsername(player->getId(),newUsername,password);
+
+    switch(handl){
+    case DATABASE_ERROR:
+        QMessageBox::warning(this, "Error", "Error in database, try again later.");
+        break;
+    case WRONG_PASSWORD:
+        QMessageBox::warning(this, "Error", "Wrong Password.");
+        ui->lineEdit_pass_to_change_user->setText("");
+        break;
+    case USERNAME_TAKEN:
+        QMessageBox::warning(this, "Error", "Username already taken.");
+        ui->lineEdit_pass_to_change_user->setText("");
+        ui->lineEdit_pass_to_change_user->setText("");
+        break;
+    case DATABASE_SUCCESS:
+        QMessageBox::information(this, "Success", "Username changed");
+        ui->lineEdit_pass_to_change_user->setText("");
+        ui->lineEdit_pass_to_change_user->setText("");
+
+        ui->label_guest->setText(newUsername);
+        ui->label_19->setText(newUsername);
+
+        player->setUsername(newUsername);
+        QSettings settings("MyApp", "MyApp");
+        settings.setValue("username", newUsername);
+
+        ui->stackedWidget->setCurrentIndex(PROFILE_WINDOW);
+        break;
+    }
+
 }
 
 void MainWindow::on_pushButton_not_change_username_clicked()
@@ -417,5 +527,36 @@ void MainWindow::on_pushButton_replay_clicked()
     ui->label_33->clear();
     ui->label_34->clear();
     ui->label_35->clear();
+}
+
+void MainWindow::on_Change_photo_clicked()
+{
+    // Open file dialog to select an image
+    QString filePath = QFileDialog::getOpenFileName(nullptr, "Select Image", QDir::homePath(), "Images (*.png *.jpg *.bmp)");
+
+    if (!filePath.isEmpty()) {
+        // Load the selected image into a QImage variable
+        QImage originalImage(filePath);
+        player->setImage(originalImage);
+        changePictures(originalImage);
+
+        originalImage = originalImage.scaled(200, 200, Qt::KeepAspectRatio);
+        // Convert the displayed image to Base64 format and save it to QSettings
+        QByteArray imageData;
+        QBuffer buffer(&imageData);
+        buffer.open(QIODevice::WriteOnly);
+        originalImage.save(&buffer, "PNG"); // Save as PNG format
+        QString base64Image = QString::fromLatin1(imageData.toBase64().data());
+
+        // Save the Base64-encoded image data to QSettings
+        QSettings settings("MyCompany", "MyApp");
+        settings.setValue("ImageData", base64Image);
+
+        db.changeImage(player->getId(),imageData);
+
+        qDebug() << "Image selected and loaded successfully!";
+    } else {
+        qDebug() << "No image selected.";
+    }
 }
 

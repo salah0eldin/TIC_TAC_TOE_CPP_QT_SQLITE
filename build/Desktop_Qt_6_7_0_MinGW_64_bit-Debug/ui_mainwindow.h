@@ -67,6 +67,7 @@ public:
     QLabel *label_17;
     QLabel *label_52;
     QLabel *label_20;
+    QPushButton *Change_photo;
     QWidget *change_username;
     QHBoxLayout *horizontalLayout_4;
     QGridLayout *gridLayout_6;
@@ -283,11 +284,14 @@ public:
 
         label_picture = new QLabel(main);
         label_picture->setObjectName("label_picture");
-        sizePolicy.setHeightForWidth(label_picture->sizePolicy().hasHeightForWidth());
-        label_picture->setSizePolicy(sizePolicy);
-        label_picture->setMinimumSize(QSize(50, 50));
+        QSizePolicy sizePolicy4(QSizePolicy::Policy::Fixed, QSizePolicy::Policy::Fixed);
+        sizePolicy4.setHorizontalStretch(0);
+        sizePolicy4.setVerticalStretch(0);
+        sizePolicy4.setHeightForWidth(label_picture->sizePolicy().hasHeightForWidth());
+        label_picture->setSizePolicy(sizePolicy4);
+        label_picture->setMinimumSize(QSize(75, 75));
 
-        gridLayout_2->addWidget(label_picture, 0, 0, 1, 1);
+        gridLayout_2->addWidget(label_picture, 0, 0, 1, 1, Qt::AlignHCenter);
 
         pushButton_load_session = new QPushButton(main);
         pushButton_load_session->setObjectName("pushButton_load_session");
@@ -355,11 +359,11 @@ public:
         gridLayout_5->setContentsMargins(50, 50, 50, 50);
         label_pic = new QLabel(profile);
         label_pic->setObjectName("label_pic");
-        sizePolicy2.setHeightForWidth(label_pic->sizePolicy().hasHeightForWidth());
-        label_pic->setSizePolicy(sizePolicy2);
+        sizePolicy4.setHeightForWidth(label_pic->sizePolicy().hasHeightForWidth());
+        label_pic->setSizePolicy(sizePolicy4);
         label_pic->setMinimumSize(QSize(200, 200));
 
-        gridLayout_5->addWidget(label_pic, 1, 1, 1, 1);
+        gridLayout_5->addWidget(label_pic, 1, 1, 1, 1, Qt::AlignHCenter);
 
         label_18 = new QLabel(profile);
         label_18->setObjectName("label_18");
@@ -425,6 +429,11 @@ public:
 
         gridLayout_5->addWidget(label_20, 1, 0, 1, 1);
 
+        Change_photo = new QPushButton(profile);
+        Change_photo->setObjectName("Change_photo");
+
+        gridLayout_5->addWidget(Change_photo, 2, 1, 1, 1);
+
 
         horizontalLayout_3->addLayout(gridLayout_5);
 
@@ -438,11 +447,11 @@ public:
         gridLayout_6->setContentsMargins(100, 50, 100, 50);
         pushButton_not_change_username = new QPushButton(change_username);
         pushButton_not_change_username->setObjectName("pushButton_not_change_username");
-        QSizePolicy sizePolicy4(QSizePolicy::Policy::Maximum, QSizePolicy::Policy::Fixed);
-        sizePolicy4.setHorizontalStretch(0);
-        sizePolicy4.setVerticalStretch(0);
-        sizePolicy4.setHeightForWidth(pushButton_not_change_username->sizePolicy().hasHeightForWidth());
-        pushButton_not_change_username->setSizePolicy(sizePolicy4);
+        QSizePolicy sizePolicy5(QSizePolicy::Policy::Maximum, QSizePolicy::Policy::Fixed);
+        sizePolicy5.setHorizontalStretch(0);
+        sizePolicy5.setVerticalStretch(0);
+        sizePolicy5.setHeightForWidth(pushButton_not_change_username->sizePolicy().hasHeightForWidth());
+        pushButton_not_change_username->setSizePolicy(sizePolicy5);
         pushButton_not_change_username->setStyleSheet(QString::fromUtf8("font: 11pt \"Simple Indust Outline\";\n"
 ""));
 
@@ -450,8 +459,8 @@ public:
 
         pushButton_change_username = new QPushButton(change_username);
         pushButton_change_username->setObjectName("pushButton_change_username");
-        sizePolicy4.setHeightForWidth(pushButton_change_username->sizePolicy().hasHeightForWidth());
-        pushButton_change_username->setSizePolicy(sizePolicy4);
+        sizePolicy5.setHeightForWidth(pushButton_change_username->sizePolicy().hasHeightForWidth());
+        pushButton_change_username->setSizePolicy(sizePolicy5);
         pushButton_change_username->setStyleSheet(QString::fromUtf8("font: 11pt \"Simple Indust Outline\";\n"
 ""));
 
@@ -490,8 +499,8 @@ public:
 
         lineEdit_pass_to_change_user = new QLineEdit(change_username);
         lineEdit_pass_to_change_user->setObjectName("lineEdit_pass_to_change_user");
-        sizePolicy4.setHeightForWidth(lineEdit_pass_to_change_user->sizePolicy().hasHeightForWidth());
-        lineEdit_pass_to_change_user->setSizePolicy(sizePolicy4);
+        sizePolicy5.setHeightForWidth(lineEdit_pass_to_change_user->sizePolicy().hasHeightForWidth());
+        lineEdit_pass_to_change_user->setSizePolicy(sizePolicy5);
         lineEdit_pass_to_change_user->setMinimumSize(QSize(500, 0));
         lineEdit_pass_to_change_user->setEchoMode(QLineEdit::Password);
 
@@ -508,8 +517,8 @@ public:
 
         lineEdit_change_username = new QLineEdit(change_username);
         lineEdit_change_username->setObjectName("lineEdit_change_username");
-        sizePolicy4.setHeightForWidth(lineEdit_change_username->sizePolicy().hasHeightForWidth());
-        lineEdit_change_username->setSizePolicy(sizePolicy4);
+        sizePolicy5.setHeightForWidth(lineEdit_change_username->sizePolicy().hasHeightForWidth());
+        lineEdit_change_username->setSizePolicy(sizePolicy5);
         lineEdit_change_username->setMinimumSize(QSize(500, 0));
 
         gridLayout_6->addWidget(lineEdit_change_username, 1, 2, 1, 1);
@@ -532,8 +541,8 @@ public:
         gridLayout_7->setContentsMargins(100, 50, 100, 50);
         pushButton_not_change_pass = new QPushButton(change_password);
         pushButton_not_change_pass->setObjectName("pushButton_not_change_pass");
-        sizePolicy4.setHeightForWidth(pushButton_not_change_pass->sizePolicy().hasHeightForWidth());
-        pushButton_not_change_pass->setSizePolicy(sizePolicy4);
+        sizePolicy5.setHeightForWidth(pushButton_not_change_pass->sizePolicy().hasHeightForWidth());
+        pushButton_not_change_pass->setSizePolicy(sizePolicy5);
         pushButton_not_change_pass->setStyleSheet(QString::fromUtf8("font: 11pt \"Simple Indust Outline\";\n"
 ""));
 
@@ -546,15 +555,15 @@ public:
 
         checkBox_confirm_newpass = new QCheckBox(change_password);
         checkBox_confirm_newpass->setObjectName("checkBox_confirm_newpass");
-        sizePolicy4.setHeightForWidth(checkBox_confirm_newpass->sizePolicy().hasHeightForWidth());
-        checkBox_confirm_newpass->setSizePolicy(sizePolicy4);
+        sizePolicy5.setHeightForWidth(checkBox_confirm_newpass->sizePolicy().hasHeightForWidth());
+        checkBox_confirm_newpass->setSizePolicy(sizePolicy5);
 
         gridLayout_7->addWidget(checkBox_confirm_newpass, 3, 4, 1, 1);
 
         pushButton_change_pass = new QPushButton(change_password);
         pushButton_change_pass->setObjectName("pushButton_change_pass");
-        sizePolicy4.setHeightForWidth(pushButton_change_pass->sizePolicy().hasHeightForWidth());
-        pushButton_change_pass->setSizePolicy(sizePolicy4);
+        sizePolicy5.setHeightForWidth(pushButton_change_pass->sizePolicy().hasHeightForWidth());
+        pushButton_change_pass->setSizePolicy(sizePolicy5);
         pushButton_change_pass->setMinimumSize(QSize(200, 0));
         pushButton_change_pass->setStyleSheet(QString::fromUtf8("font: 11pt \"Simple Indust Outline\";\n"
 ""));
@@ -584,8 +593,8 @@ public:
 
         lineEdit_new_pass = new QLineEdit(change_password);
         lineEdit_new_pass->setObjectName("lineEdit_new_pass");
-        sizePolicy4.setHeightForWidth(lineEdit_new_pass->sizePolicy().hasHeightForWidth());
-        lineEdit_new_pass->setSizePolicy(sizePolicy4);
+        sizePolicy5.setHeightForWidth(lineEdit_new_pass->sizePolicy().hasHeightForWidth());
+        lineEdit_new_pass->setSizePolicy(sizePolicy5);
         lineEdit_new_pass->setMinimumSize(QSize(500, 0));
         lineEdit_new_pass->setEchoMode(QLineEdit::Password);
 
@@ -593,15 +602,15 @@ public:
 
         checkBox_oldpass = new QCheckBox(change_password);
         checkBox_oldpass->setObjectName("checkBox_oldpass");
-        sizePolicy4.setHeightForWidth(checkBox_oldpass->sizePolicy().hasHeightForWidth());
-        checkBox_oldpass->setSizePolicy(sizePolicy4);
+        sizePolicy5.setHeightForWidth(checkBox_oldpass->sizePolicy().hasHeightForWidth());
+        checkBox_oldpass->setSizePolicy(sizePolicy5);
 
         gridLayout_7->addWidget(checkBox_oldpass, 1, 4, 1, 1);
 
         checkBox_newpass = new QCheckBox(change_password);
         checkBox_newpass->setObjectName("checkBox_newpass");
-        sizePolicy4.setHeightForWidth(checkBox_newpass->sizePolicy().hasHeightForWidth());
-        checkBox_newpass->setSizePolicy(sizePolicy4);
+        sizePolicy5.setHeightForWidth(checkBox_newpass->sizePolicy().hasHeightForWidth());
+        checkBox_newpass->setSizePolicy(sizePolicy5);
 
         gridLayout_7->addWidget(checkBox_newpass, 2, 4, 1, 1);
 
@@ -616,8 +625,8 @@ public:
 
         lineEdit_change_pass = new QLineEdit(change_password);
         lineEdit_change_pass->setObjectName("lineEdit_change_pass");
-        sizePolicy4.setHeightForWidth(lineEdit_change_pass->sizePolicy().hasHeightForWidth());
-        lineEdit_change_pass->setSizePolicy(sizePolicy4);
+        sizePolicy5.setHeightForWidth(lineEdit_change_pass->sizePolicy().hasHeightForWidth());
+        lineEdit_change_pass->setSizePolicy(sizePolicy5);
         lineEdit_change_pass->setMinimumSize(QSize(500, 0));
         lineEdit_change_pass->setEchoMode(QLineEdit::Password);
 
@@ -625,8 +634,8 @@ public:
 
         lineEdit_old_pass = new QLineEdit(change_password);
         lineEdit_old_pass->setObjectName("lineEdit_old_pass");
-        sizePolicy4.setHeightForWidth(lineEdit_old_pass->sizePolicy().hasHeightForWidth());
-        lineEdit_old_pass->setSizePolicy(sizePolicy4);
+        sizePolicy5.setHeightForWidth(lineEdit_old_pass->sizePolicy().hasHeightForWidth());
+        lineEdit_old_pass->setSizePolicy(sizePolicy5);
         lineEdit_old_pass->setMinimumSize(QSize(500, 0));
         lineEdit_old_pass->setEchoMode(QLineEdit::Password);
 
@@ -703,8 +712,8 @@ public:
 
         lineEdit_pass = new QLineEdit(login);
         lineEdit_pass->setObjectName("lineEdit_pass");
-        sizePolicy4.setHeightForWidth(lineEdit_pass->sizePolicy().hasHeightForWidth());
-        lineEdit_pass->setSizePolicy(sizePolicy4);
+        sizePolicy5.setHeightForWidth(lineEdit_pass->sizePolicy().hasHeightForWidth());
+        lineEdit_pass->setSizePolicy(sizePolicy5);
         lineEdit_pass->setMinimumSize(QSize(500, 0));
         lineEdit_pass->setEchoMode(QLineEdit::Password);
 
@@ -712,8 +721,8 @@ public:
 
         lineEdit_user = new QLineEdit(login);
         lineEdit_user->setObjectName("lineEdit_user");
-        sizePolicy4.setHeightForWidth(lineEdit_user->sizePolicy().hasHeightForWidth());
-        lineEdit_user->setSizePolicy(sizePolicy4);
+        sizePolicy5.setHeightForWidth(lineEdit_user->sizePolicy().hasHeightForWidth());
+        lineEdit_user->setSizePolicy(sizePolicy5);
         lineEdit_user->setMinimumSize(QSize(500, 0));
         lineEdit_user->setEchoMode(QLineEdit::Normal);
 
@@ -737,8 +746,8 @@ public:
 
         showPasswordCheckbox = new QCheckBox(login);
         showPasswordCheckbox->setObjectName("showPasswordCheckbox");
-        sizePolicy4.setHeightForWidth(showPasswordCheckbox->sizePolicy().hasHeightForWidth());
-        showPasswordCheckbox->setSizePolicy(sizePolicy4);
+        sizePolicy5.setHeightForWidth(showPasswordCheckbox->sizePolicy().hasHeightForWidth());
+        showPasswordCheckbox->setSizePolicy(sizePolicy5);
         showPasswordCheckbox->setStyleSheet(QString::fromUtf8("font: 9pt \"Segoe UI\";\n"
 "color: rgb(255, 255, 255);"));
 
@@ -746,11 +755,11 @@ public:
 
         label_3 = new QLabel(login);
         label_3->setObjectName("label_3");
-        QSizePolicy sizePolicy5(QSizePolicy::Policy::Preferred, QSizePolicy::Policy::Preferred);
-        sizePolicy5.setHorizontalStretch(0);
-        sizePolicy5.setVerticalStretch(0);
-        sizePolicy5.setHeightForWidth(label_3->sizePolicy().hasHeightForWidth());
-        label_3->setSizePolicy(sizePolicy5);
+        QSizePolicy sizePolicy6(QSizePolicy::Policy::Preferred, QSizePolicy::Policy::Preferred);
+        sizePolicy6.setHorizontalStretch(0);
+        sizePolicy6.setVerticalStretch(0);
+        sizePolicy6.setHeightForWidth(label_3->sizePolicy().hasHeightForWidth());
+        label_3->setSizePolicy(sizePolicy6);
         label_3->setMinimumSize(QSize(10, 0));
 
         gridLayout_3->addWidget(label_3, 1, 0, 1, 1);
@@ -801,8 +810,8 @@ public:
 
         lineEdit_pass_signup = new QLineEdit(signup);
         lineEdit_pass_signup->setObjectName("lineEdit_pass_signup");
-        sizePolicy4.setHeightForWidth(lineEdit_pass_signup->sizePolicy().hasHeightForWidth());
-        lineEdit_pass_signup->setSizePolicy(sizePolicy4);
+        sizePolicy5.setHeightForWidth(lineEdit_pass_signup->sizePolicy().hasHeightForWidth());
+        lineEdit_pass_signup->setSizePolicy(sizePolicy5);
         lineEdit_pass_signup->setMinimumSize(QSize(500, 0));
         lineEdit_pass_signup->setEchoMode(QLineEdit::Password);
 
@@ -810,8 +819,8 @@ public:
 
         checkBox_confirm_pass_signup = new QCheckBox(signup);
         checkBox_confirm_pass_signup->setObjectName("checkBox_confirm_pass_signup");
-        sizePolicy4.setHeightForWidth(checkBox_confirm_pass_signup->sizePolicy().hasHeightForWidth());
-        checkBox_confirm_pass_signup->setSizePolicy(sizePolicy4);
+        sizePolicy5.setHeightForWidth(checkBox_confirm_pass_signup->sizePolicy().hasHeightForWidth());
+        checkBox_confirm_pass_signup->setSizePolicy(sizePolicy5);
 
         gridLayout_4->addWidget(checkBox_confirm_pass_signup, 3, 3, 1, 1);
 
@@ -826,8 +835,8 @@ public:
 
         checkBox_pass_signup = new QCheckBox(signup);
         checkBox_pass_signup->setObjectName("checkBox_pass_signup");
-        sizePolicy4.setHeightForWidth(checkBox_pass_signup->sizePolicy().hasHeightForWidth());
-        checkBox_pass_signup->setSizePolicy(sizePolicy4);
+        sizePolicy5.setHeightForWidth(checkBox_pass_signup->sizePolicy().hasHeightForWidth());
+        checkBox_pass_signup->setSizePolicy(sizePolicy5);
 
         gridLayout_4->addWidget(checkBox_pass_signup, 2, 3, 1, 1);
 
@@ -847,8 +856,8 @@ public:
 
         lineEdit_user_signup = new QLineEdit(signup);
         lineEdit_user_signup->setObjectName("lineEdit_user_signup");
-        sizePolicy4.setHeightForWidth(lineEdit_user_signup->sizePolicy().hasHeightForWidth());
-        lineEdit_user_signup->setSizePolicy(sizePolicy4);
+        sizePolicy5.setHeightForWidth(lineEdit_user_signup->sizePolicy().hasHeightForWidth());
+        lineEdit_user_signup->setSizePolicy(sizePolicy5);
         lineEdit_user_signup->setMinimumSize(QSize(500, 0));
         lineEdit_user_signup->setEchoMode(QLineEdit::Normal);
 
@@ -866,8 +875,8 @@ public:
 
         lineEdit_pass2_signup = new QLineEdit(signup);
         lineEdit_pass2_signup->setObjectName("lineEdit_pass2_signup");
-        sizePolicy4.setHeightForWidth(lineEdit_pass2_signup->sizePolicy().hasHeightForWidth());
-        lineEdit_pass2_signup->setSizePolicy(sizePolicy4);
+        sizePolicy5.setHeightForWidth(lineEdit_pass2_signup->sizePolicy().hasHeightForWidth());
+        lineEdit_pass2_signup->setSizePolicy(sizePolicy5);
         lineEdit_pass2_signup->setMinimumSize(QSize(500, 0));
         lineEdit_pass2_signup->setEchoMode(QLineEdit::Password);
 
@@ -1018,27 +1027,27 @@ public:
         verticalLayout_6->setContentsMargins(0, 0, 0, 0);
         pushButton_session1 = new QPushButton(layoutWidget1);
         pushButton_session1->setObjectName("pushButton_session1");
-        QSizePolicy sizePolicy6(QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Preferred);
-        sizePolicy6.setHorizontalStretch(0);
-        sizePolicy6.setVerticalStretch(0);
-        sizePolicy6.setHeightForWidth(pushButton_session1->sizePolicy().hasHeightForWidth());
-        pushButton_session1->setSizePolicy(sizePolicy6);
+        QSizePolicy sizePolicy7(QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Preferred);
+        sizePolicy7.setHorizontalStretch(0);
+        sizePolicy7.setVerticalStretch(0);
+        sizePolicy7.setHeightForWidth(pushButton_session1->sizePolicy().hasHeightForWidth());
+        pushButton_session1->setSizePolicy(sizePolicy7);
         pushButton_session1->setStyleSheet(QString::fromUtf8("font: 700 14pt \"Segoe UI\";"));
 
         verticalLayout_6->addWidget(pushButton_session1);
 
         pushButton_5 = new QPushButton(layoutWidget1);
         pushButton_5->setObjectName("pushButton_5");
-        sizePolicy6.setHeightForWidth(pushButton_5->sizePolicy().hasHeightForWidth());
-        pushButton_5->setSizePolicy(sizePolicy6);
+        sizePolicy7.setHeightForWidth(pushButton_5->sizePolicy().hasHeightForWidth());
+        pushButton_5->setSizePolicy(sizePolicy7);
         pushButton_5->setStyleSheet(QString::fromUtf8("font: 700 14pt \"Segoe UI\";"));
 
         verticalLayout_6->addWidget(pushButton_5);
 
         pushButton_4 = new QPushButton(layoutWidget1);
         pushButton_4->setObjectName("pushButton_4");
-        sizePolicy6.setHeightForWidth(pushButton_4->sizePolicy().hasHeightForWidth());
-        pushButton_4->setSizePolicy(sizePolicy6);
+        sizePolicy7.setHeightForWidth(pushButton_4->sizePolicy().hasHeightForWidth());
+        pushButton_4->setSizePolicy(sizePolicy7);
         pushButton_4->setStyleSheet(QString::fromUtf8("font: 700 14pt \"Segoe UI\";"));
 
         verticalLayout_6->addWidget(pushButton_4);
@@ -1058,22 +1067,22 @@ public:
         verticalLayout_7->setContentsMargins(0, 0, 0, 0);
         pushButton_game1 = new QPushButton(layoutWidget2);
         pushButton_game1->setObjectName("pushButton_game1");
-        sizePolicy5.setHeightForWidth(pushButton_game1->sizePolicy().hasHeightForWidth());
-        pushButton_game1->setSizePolicy(sizePolicy5);
+        sizePolicy6.setHeightForWidth(pushButton_game1->sizePolicy().hasHeightForWidth());
+        pushButton_game1->setSizePolicy(sizePolicy6);
 
         verticalLayout_7->addWidget(pushButton_game1);
 
         pushButton_game2 = new QPushButton(layoutWidget2);
         pushButton_game2->setObjectName("pushButton_game2");
-        sizePolicy5.setHeightForWidth(pushButton_game2->sizePolicy().hasHeightForWidth());
-        pushButton_game2->setSizePolicy(sizePolicy5);
+        sizePolicy6.setHeightForWidth(pushButton_game2->sizePolicy().hasHeightForWidth());
+        pushButton_game2->setSizePolicy(sizePolicy6);
 
         verticalLayout_7->addWidget(pushButton_game2);
 
         pushButton_game3 = new QPushButton(layoutWidget2);
         pushButton_game3->setObjectName("pushButton_game3");
-        sizePolicy5.setHeightForWidth(pushButton_game3->sizePolicy().hasHeightForWidth());
-        pushButton_game3->setSizePolicy(sizePolicy5);
+        sizePolicy6.setHeightForWidth(pushButton_game3->sizePolicy().hasHeightForWidth());
+        pushButton_game3->setSizePolicy(sizePolicy6);
 
         verticalLayout_7->addWidget(pushButton_game3);
 
@@ -1094,22 +1103,22 @@ public:
         horizontalLayout_15->setContentsMargins(0, 0, 0, 0);
         pushButton_30 = new QPushButton(layoutWidget3);
         pushButton_30->setObjectName("pushButton_30");
-        sizePolicy5.setHeightForWidth(pushButton_30->sizePolicy().hasHeightForWidth());
-        pushButton_30->setSizePolicy(sizePolicy5);
+        sizePolicy6.setHeightForWidth(pushButton_30->sizePolicy().hasHeightForWidth());
+        pushButton_30->setSizePolicy(sizePolicy6);
 
         horizontalLayout_15->addWidget(pushButton_30);
 
         pushButton_replay = new QPushButton(layoutWidget3);
         pushButton_replay->setObjectName("pushButton_replay");
-        sizePolicy5.setHeightForWidth(pushButton_replay->sizePolicy().hasHeightForWidth());
-        pushButton_replay->setSizePolicy(sizePolicy5);
+        sizePolicy6.setHeightForWidth(pushButton_replay->sizePolicy().hasHeightForWidth());
+        pushButton_replay->setSizePolicy(sizePolicy6);
 
         horizontalLayout_15->addWidget(pushButton_replay);
 
         pushButton_31 = new QPushButton(layoutWidget3);
         pushButton_31->setObjectName("pushButton_31");
-        sizePolicy5.setHeightForWidth(pushButton_31->sizePolicy().hasHeightForWidth());
-        pushButton_31->setSizePolicy(sizePolicy5);
+        sizePolicy6.setHeightForWidth(pushButton_31->sizePolicy().hasHeightForWidth());
+        pushButton_31->setSizePolicy(sizePolicy6);
 
         horizontalLayout_15->addWidget(pushButton_31);
 
@@ -1192,7 +1201,7 @@ public:
         retranslateUi(MainWindow);
         QObject::connect(pushButton_close_main, &QPushButton::clicked, pushButton_close_main, qOverload<>(&QPushButton::hide));
 
-        stackedWidget->setCurrentIndex(0);
+        stackedWidget->setCurrentIndex(3);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -1224,6 +1233,7 @@ public:
         label_17->setText(QCoreApplication::translate("MainWindow", "Username :", nullptr));
         label_52->setText(QCoreApplication::translate("MainWindow", "Profile", nullptr));
         label_20->setText(QString());
+        Change_photo->setText(QCoreApplication::translate("MainWindow", "Change photo", nullptr));
         pushButton_not_change_username->setText(QCoreApplication::translate("MainWindow", "Cancel", nullptr));
         pushButton_change_username->setText(QCoreApplication::translate("MainWindow", "Confirm", nullptr));
         label_23->setText(QCoreApplication::translate("MainWindow", "Change Username", nullptr));

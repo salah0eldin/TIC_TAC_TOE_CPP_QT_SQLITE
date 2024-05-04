@@ -17,7 +17,8 @@ DatabaseManager::DatabaseManager() {
         CREATE TABLE IF NOT EXISTS users (
             id       INTEGER      PRIMARY KEY AUTOINCREMENT,
             username VARCHAR(255) UNIQUE NOT NULL,
-            password VARCHAR(255) NOT NULL
+            password VARCHAR(255) NOT NULL,
+            image    BLOB
         );
     )";
 
@@ -109,7 +110,7 @@ int DatabaseManager::signUp(const QString &username, const QString &password) {
     return SIGNED_UP; // Return success code
 }
 
-int DatabaseManager::signIn(const QString &username, const QString &password,int &id) {
+int DatabaseManager::signIn(const QString &username, const QString &password,int &id,QImage &image) {
     // Prepare SQL query to retrieve user record based on username
     QSqlQuery selectQuery;
     selectQuery.prepare("SELECT * FROM users WHERE username = ?");
@@ -136,6 +137,14 @@ int DatabaseManager::signIn(const QString &username, const QString &password,int
     if (password == storedPassword) {
         qDebug() << "Signed in"; // Print sign-in success message
         id = selectQuery.value("id").toInt();
+        QByteArray imageData = selectQuery.value("image").toByteArray();
+
+        if (image.loadFromData(imageData)) {
+            qDebug() << "Image retrieved from database successfully!";
+        } else {
+            qDebug() << "Failed to load image from retrieved data.";
+        }
+
         return SIGNED_IN;        // Return success code
     } else {
         qDebug() << "Wrong password"; // Print incorrect password message
@@ -168,6 +177,25 @@ int DatabaseManager::changeUsername(const int &id, const QString &newUsername,
         return WRONG_PASSWORD;        // Return error code to indicate failure
     }
 
+    // Prepare SQL query to check if the new username already exists
+    QSqlQuery checkQuery;
+    checkQuery.prepare("SELECT * FROM users WHERE username = ?");
+    checkQuery.addBindValue(newUsername);
+
+    // Execute the query
+    if (!checkQuery.exec()) {
+        // Print error message if query execution fails
+        qDebug() << "Error executing check username query:"
+                 << checkQuery.lastError().text();
+        return DATABASE_ERROR; // Return error code to indicate failure
+    }
+
+    // Check if the new username already exists
+    if (checkQuery.next()) {
+        qDebug() << "Username already taken";
+        return USERNAME_TAKEN;
+    }
+
     // Prepare SQL query to update username
     QSqlQuery updateQuery;
     updateQuery.prepare("UPDATE users SET username = ? WHERE id = ?");
@@ -182,9 +210,10 @@ int DatabaseManager::changeUsername(const int &id, const QString &newUsername,
         return DATABASE_ERROR; // Return error code to indicate failure
     }
 
-    qDebug() << "changed username";
+    qDebug() << "Changed username";
     return DATABASE_SUCCESS; // Return success code to indicate successful update
 }
+
 
 int DatabaseManager::changePassword(const int &id, const QString &oldPassword,
                                     const QString &newPassword) {
@@ -229,6 +258,22 @@ int DatabaseManager::changePassword(const int &id, const QString &oldPassword,
     return DATABASE_SUCCESS; // Return success code to indicate successful update
 }
 
+int DatabaseManager::changeImage(const int &id, const QByteArray &imageData){
+
+    // Update the image data in the database
+    QSqlQuery query;
+    query.prepare("UPDATE users SET image = :imageData WHERE id = :id");
+    query.bindValue(":imageData", imageData);
+    query.bindValue(":id", id);
+
+    if (!query.exec()) {
+        qDebug() << "Failed to update image in database:" << query.lastError().text();
+        return DATABASE_ERROR;
+    }
+
+    qDebug() << "Image updated in database successfully!";
+    return DATABASE_SUCCESS;
+}
 
 bool DatabaseManager::saveSession(const int &specificId,const int &userid, const QString &against, const int &wins,
                                   const int &losses, const int &ties)

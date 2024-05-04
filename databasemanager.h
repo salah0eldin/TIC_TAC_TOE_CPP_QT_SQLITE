@@ -46,7 +46,7 @@ public:
      *         WRONG_PASSWORD if the provided password is incorrect, DATABASE_ERROR if there is an error
      *         in database operation.
      */
-    int signIn(const QString &username, const QString &password, int &id);
+    int signIn(const QString &username, const QString &password, int &id, QImage &image);
 
     /**
      * @brief Changes the username of a user in the database.
@@ -69,6 +69,8 @@ public:
      *         DATABASE_ERROR if there is an error in the database operation.
      */
     int changePassword(const int &id, const QString &oldPassword, const QString &newPassword);
+
+    int changeImage(const int &id,const QByteArray &imageData);
 
     /**
      * @brief Saves a session record into the database.

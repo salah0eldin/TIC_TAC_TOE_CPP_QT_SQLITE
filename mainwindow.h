@@ -1,9 +1,29 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include <QMessageBox>
+#include <QFileDialog>
 #include <QMainWindow>
+#include <QCheckBox>
+#include <QPainter>
+#include <QBuffer>
+#include <QString>
+#include <QImage>
+#include <QDebug>
+
 #include "databasemanager.h"
 #include "player.h"
+
+#define MAIN_WINDOW             0
+#define PROFILE_WINDOW          1
+#define CHANGE_USERNAME_WINDOW  2
+#define CHANGE_PASSWORD_WINDOW  3
+#define LOGIN_WINDOW            4
+#define SIGNUP_WINDOW           5
+#define PLAYER2_WINDOW          6
+#define BOARD_WINDOW            8
+#define SESSIONS_WINDOW         9
+#define GAMES_WINDOW            10
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -94,6 +114,10 @@ private slots:
     void on_pushButton_back_from_history_to_session_2_clicked();
 
     void on_pushButton_session1_clicked();
+
+    void on_Change_photo_clicked();
+
+    void changePictures(QImage &image);
 
 private:
     Ui::MainWindow *ui;
