@@ -163,7 +163,7 @@ void MainWindow::on_back_from_login_to_main_clicked()
 
 void MainWindow::on_pushButton_back_from_signup_to_login_clicked()
 {
-    ui->stackedWidget->setCurrentIndex(MAIN_WINDOW);
+    ui->stackedWidget->setCurrentIndex(LOGIN_WINDOW);
 }
 
 void MainWindow::on_pushButton_login_to_main_clicked()
