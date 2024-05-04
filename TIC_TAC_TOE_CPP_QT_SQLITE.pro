@@ -13,6 +13,7 @@ SOURCES += \
     game.cpp \
     main.cpp \
     mainwindow.cpp \
+    mainwindowFunctions.cpp \
     player.cpp \
     session.cpp
 

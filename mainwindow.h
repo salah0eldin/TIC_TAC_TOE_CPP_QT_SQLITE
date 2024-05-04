@@ -119,6 +119,29 @@ private slots:
 
     void changePictures(QImage &image);
 
+    // Function to center the text in specific labels
+    void centerLabels();
+
+    // Function to make a label clickable
+    void makeLabelClickable(QLabel* label);
+
+    // Function to set initial pictures for certain labels
+    void setInitialPictures();
+
+    // Function to add placeholder text to line edits
+    void addPlaceholderText();
+
+    // Function to add pictures to icons
+    void addPicturesToIcons();
+
+    // Function to enable clear buttons for line edits
+    void enableClearButtons();
+
+    // Function to load user session if it exists
+    void loadUserSession();
+
+    QString hashing(const QString& str);
+
 private:
     Ui::MainWindow *ui;
 };
