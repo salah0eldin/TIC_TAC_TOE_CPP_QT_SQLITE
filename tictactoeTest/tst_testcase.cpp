@@ -23,7 +23,7 @@ private slots:
     void testSetters()
     {
         Player player;
-        const int id = 2;
+        int id = 2;
         QString username = "newUser";
         QString hashedPassword = "newHashedPassword";
         QImage image(200, 200, QImage::Format_RGB32); // Creating a dummy image for testing

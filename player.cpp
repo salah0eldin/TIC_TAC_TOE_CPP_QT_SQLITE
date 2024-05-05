@@ -31,6 +31,14 @@ QImage Player::getImage(){
     return image;
 }
 
+QVector<Session> Player::getSessions(){
+    return sessions;
+}
+
+void Player::setId(int &id){
+    this->id = id;
+}
+
 void Player::setImage(QImage & image){
     this->image = image;
 }
