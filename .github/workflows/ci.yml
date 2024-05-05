@@ -19,7 +19,7 @@ jobs:
 
       - name: Build project
         run: |
-          qmake tictactoeTest1/tictactoeTest.pro
+          qmake tictactoeTest2/tictactoeTest.pro
           make
 
       - name: Run tests
