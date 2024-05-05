@@ -18,7 +18,7 @@ void Game::makeMove(int row, int col) {
     }
 }
 
-char Game::checkWinDraw() {
+QChar Game::checkWinDraw() {
     // Check rows
     for (int i = 0; i < 3; ++i) {
         if (board[i][0] == board[i][1] && board[i][1] == board[i][2]) {
@@ -87,8 +87,28 @@ void Game::loadGame(const int id, const std::string& gameMoves){
     }
 }
 
-char Game::getState(){
+QChar Game::getState(){
     return state;
 }
 
+void Game::setId(int gameId) {
+    id = gameId;
+}
 
+void Game::setPlayerCharacter(QChar character) {
+    playerChar = character;
+    // Set opponent character based on player character
+    oppoChar = (character == 'X') ? 'O' : 'X';
+}
+
+void Game::setPlayerIsFirst(bool Turn){
+    playerIsFirst = Turn;
+}
+
+void Game::setMoves(const QString &gameMoves) {
+    moves = gameMoves;
+}
+
+void Game::setState(QChar gameState) {
+    state = gameState;
+}

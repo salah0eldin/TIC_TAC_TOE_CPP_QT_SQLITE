@@ -3,6 +3,8 @@
 
 #include <QtSql>            // Include Qt SQL module
 #include <QDebug>           // Include qDebug for debugging output
+#include <QVector>
+#include "session.h"
 
 #define DATABASE_ERROR   0     ///< Error code indicating a database operation failure.
 #define DATABASE_SUCCESS 1     ///< Success code indicating a successful database operation.
@@ -92,10 +94,12 @@ public:
      * @param state The state of the game.
      * @return True if insertion succeeds, false if there is an error in database operation.
      */
-    bool saveGame(const int &session_id, const char &playerCharacter,
+    bool saveGame(const int &session_id, const char &playerCharacter,const char &playerIsFirst,
                   const QString &moves,const QString &state);
 
-    //add a logout function
+    QVector<Game> loadGames(const int &session_id);
+
+    QVector<Session> loadHistory(const int &id);
 };
 
 #endif // DATABASEMANAGER_H

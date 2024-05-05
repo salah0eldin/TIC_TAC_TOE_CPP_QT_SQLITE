@@ -155,6 +155,9 @@ void MainWindow::on_pushButton_login_to_main_clicked() {
 
         // Create player object with retrieved data
         Player *tempPlayer = new Player(id, username, password, image);
+        QVector<Session> s = db.loadHistory(id);
+        tempPlayer->setSessions(s);
+
         player = tempPlayer;
 
         // Update UI with user information

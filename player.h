@@ -29,6 +29,7 @@ public:
     void setImage(QImage & image);
     void setUsername(QString &username);
     void setHashedPassword(QString &password);
+    void setSessions(QVector<Session> &sessions);
 };
 #endif // PLAYER_H
 

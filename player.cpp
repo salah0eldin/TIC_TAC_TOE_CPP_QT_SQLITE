@@ -42,3 +42,7 @@ void Player::setUsername(QString &username){
 void Player::setHashedPassword(QString &password){
     this->hashedPassword = password;
 }
+
+void Player::setSessions(QVector<Session> &sessions){
+    this->sessions = sessions;
+}
