@@ -78,7 +78,7 @@ void MainWindow::on_pushButton_login_from_main_clicked() {
         if (confirmLogout == QMessageBox::Yes) {
             // Set labels to default values
             ui->label_guest->setText("Guest");
-            ui->label_19->setText("Quest");
+            ui->label_19->setText("Guest");
 
             // Change profile picture to default
             QImage image("../../pictures/user.jpg");
