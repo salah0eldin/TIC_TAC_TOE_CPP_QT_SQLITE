@@ -15,6 +15,7 @@ SOURCES += \
     mainwindow.cpp \
     mainwindowFunctions.cpp \
     player.cpp \
+    player_test.cpp \
     session.cpp
 
 HEADERS += \
@@ -31,3 +32,7 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+DISTFILES += \
+    BUILD.bazel \
+    WORKSPACE

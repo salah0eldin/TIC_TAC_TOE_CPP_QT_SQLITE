@@ -1,8 +1,6 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-
-#include "qobject.h"
 #include "session.h"
 
 #include <QImage>
