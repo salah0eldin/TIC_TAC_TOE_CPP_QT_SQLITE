@@ -16,3 +16,6 @@ HEADERS += \
     ../game.h \
     ../player.h \
     ../session.h
+
+TARGET = MyQtTest
+
