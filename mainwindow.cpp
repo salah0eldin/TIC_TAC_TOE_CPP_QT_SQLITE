@@ -78,7 +78,7 @@ void MainWindow::on_pushButton_login_from_main_clicked() {
         if (confirmLogout == QMessageBox::Yes) {
             // Set labels to default values
             ui->label_guest->setText("Guest");
-            ui->label_19->setText("Quest");
+            ui->label_19->setText("Guest");
 
             // Change profile picture to default
             QImage image("../../pictures/user.jpg");
@@ -155,6 +155,9 @@ void MainWindow::on_pushButton_login_to_main_clicked() {
 
         // Create player object with retrieved data
         Player *tempPlayer = new Player(id, username, password, image);
+        QVector<Session> s = db.loadHistory(id);
+        tempPlayer->setSessions(s);
+
         player = tempPlayer;
 
         // Update UI with user information

@@ -23,12 +23,20 @@ void Player::addSession(Session session){
     sessions.push_back(session);
 }
 
-void Player::removeSessionAt(int &index){
+void Player::removeSessionAt(int index){
     sessions.removeAt(index);
 }
 
 QImage Player::getImage(){
     return image;
+}
+
+QVector<Session> Player::getSessions(){
+    return sessions;
+}
+
+void Player::setId(int &id){
+    this->id = id;
 }
 
 void Player::setImage(QImage & image){
@@ -41,4 +49,8 @@ void Player::setUsername(QString &username){
 
 void Player::setHashedPassword(QString &password){
     this->hashedPassword = password;
+}
+
+void Player::setSessions(QVector<Session> &sessions){
+    this->sessions = sessions;
 }

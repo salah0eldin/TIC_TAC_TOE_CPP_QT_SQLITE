@@ -77,6 +77,9 @@ void MainWindow::loadUserSession() {
         ui->label_guest->setText(username);
         ui->label_19->setText(username);
 
+        QVector<Session> s = db.loadHistory(id);
+        player->setSessions(s);
+
         // Update login status
         loggedIN = true;
         ui->pushButton_login_from_main->setText("Log Out");

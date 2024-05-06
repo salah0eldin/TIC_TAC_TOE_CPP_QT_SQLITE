@@ -1,8 +1,6 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-
-#include "qobject.h"
 #include "session.h"
 
 #include <QImage>
@@ -10,7 +8,7 @@
 class Player {
 
 private:
-    const int id;
+    int id;
     QString username;
     QString hashedPassword;
     QImage image;
@@ -19,16 +17,20 @@ private:
 
 
 public:
+    Player(){};
     Player(const int id, QString username, QString hashedPassword, QImage imagee);
     QString getUsername() const;
     QString getHashedPassword() const;
     int getId() const;
     void addSession(Session session);
-    void removeSessionAt(int &index);
+    void removeSessionAt(int index);
+    QVector<Session> getSessions();
     QImage getImage();
+    void setId(int &id);
     void setImage(QImage & image);
     void setUsername(QString &username);
     void setHashedPassword(QString &password);
+    void setSessions(QVector<Session> &sessions);
 };
 #endif // PLAYER_H
 

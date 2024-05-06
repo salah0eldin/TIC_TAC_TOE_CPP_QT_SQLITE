@@ -130,13 +130,14 @@ public:
     QLineEdit *lineEdit_pass2_signup;
     QLabel *label_25;
     QWidget *player2;
-    QPushButton *pushButton_back_from_player2_to_main;
-    QPushButton *pushButton_confirm_player2;
-    QLabel *label_16;
-    QWidget *layoutWidget;
     QHBoxLayout *horizontalLayout_6;
+    QGridLayout *gridLayout_8;
     QLabel *label_15;
+    QPushButton *pushButton_confirm_player2;
     QLineEdit *lineEdit_player2;
+    QPushButton *pushButton_back_from_player2_to_main;
+    QLabel *label_16;
+    QSpacerItem *horizontalSpacer_4;
     QWidget *null_2;
     QWidget *board;
     QPushButton *pushButton;
@@ -161,26 +162,26 @@ public:
     QWidget *sessions;
     QPushButton *pushButton_back_from_session_to_main;
     QLabel *label_4;
-    QWidget *layoutWidget1;
+    QWidget *layoutWidget;
     QVBoxLayout *verticalLayout_6;
     QPushButton *pushButton_session1;
     QPushButton *pushButton_5;
     QPushButton *pushButton_4;
     QWidget *games;
     QGroupBox *groupBox;
-    QWidget *layoutWidget2;
+    QWidget *layoutWidget1;
     QVBoxLayout *verticalLayout_7;
     QPushButton *pushButton_game1;
     QPushButton *pushButton_game2;
     QPushButton *pushButton_game3;
     QPushButton *pushButton_back_from_history_to_session;
     QLabel *label_27;
-    QWidget *layoutWidget3;
+    QWidget *layoutWidget2;
     QHBoxLayout *horizontalLayout_15;
     QPushButton *pushButton_30;
     QPushButton *pushButton_replay;
     QPushButton *pushButton_31;
-    QWidget *layoutWidget4;
+    QWidget *layoutWidget3;
     QGridLayout *gridLayout;
     QLabel *label_31;
     QLabel *label_29;
@@ -199,7 +200,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName("MainWindow");
-        MainWindow->resize(1071, 688);
+        MainWindow->resize(1077, 713);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName("centralwidget");
         horizontalLayout_17 = new QHBoxLayout(centralwidget);
@@ -893,40 +894,62 @@ public:
         stackedWidget->addWidget(signup);
         player2 = new QWidget();
         player2->setObjectName("player2");
-        pushButton_back_from_player2_to_main = new QPushButton(player2);
-        pushButton_back_from_player2_to_main->setObjectName("pushButton_back_from_player2_to_main");
-        pushButton_back_from_player2_to_main->setGeometry(QRect(80, 460, 101, 31));
-        pushButton_back_from_player2_to_main->setStyleSheet(QString::fromUtf8("font: 11pt \"Simple Indust Outline\";\n"
-""));
-        pushButton_confirm_player2 = new QPushButton(player2);
-        pushButton_confirm_player2->setObjectName("pushButton_confirm_player2");
-        pushButton_confirm_player2->setGeometry(QRect(550, 460, 101, 31));
-        pushButton_confirm_player2->setStyleSheet(QString::fromUtf8("font: 11pt \"Simple Indust Outline\";\n"
-""));
-        label_16 = new QLabel(player2);
-        label_16->setObjectName("label_16");
-        label_16->setGeometry(QRect(260, 30, 261, 41));
-        label_16->setStyleSheet(QString::fromUtf8("font: 700 14pt \"Segoe UI\";\n"
-"color: rgb(255, 255, 255);"));
-        layoutWidget = new QWidget(player2);
-        layoutWidget->setObjectName("layoutWidget");
-        layoutWidget->setGeometry(QRect(180, 130, 341, 31));
-        horizontalLayout_6 = new QHBoxLayout(layoutWidget);
+        horizontalLayout_6 = new QHBoxLayout(player2);
         horizontalLayout_6->setObjectName("horizontalLayout_6");
-        horizontalLayout_6->setContentsMargins(0, 0, 0, 0);
-        label_15 = new QLabel(layoutWidget);
+        gridLayout_8 = new QGridLayout();
+        gridLayout_8->setObjectName("gridLayout_8");
+        gridLayout_8->setContentsMargins(100, 100, 100, 100);
+        label_15 = new QLabel(player2);
         label_15->setObjectName("label_15");
+        sizePolicy2.setHeightForWidth(label_15->sizePolicy().hasHeightForWidth());
+        label_15->setSizePolicy(sizePolicy2);
         label_15->setStyleSheet(QString::fromUtf8("font: 700 14pt \"Segoe UI\";\n"
 "color: rgb(255, 255, 255);\n"
 "\n"
 ""));
 
-        horizontalLayout_6->addWidget(label_15);
+        gridLayout_8->addWidget(label_15, 2, 1, 1, 1);
 
-        lineEdit_player2 = new QLineEdit(layoutWidget);
+        pushButton_confirm_player2 = new QPushButton(player2);
+        pushButton_confirm_player2->setObjectName("pushButton_confirm_player2");
+        sizePolicy5.setHeightForWidth(pushButton_confirm_player2->sizePolicy().hasHeightForWidth());
+        pushButton_confirm_player2->setSizePolicy(sizePolicy5);
+        pushButton_confirm_player2->setMinimumSize(QSize(200, 0));
+        pushButton_confirm_player2->setStyleSheet(QString::fromUtf8("font: 11pt \"Simple Indust Outline\";\n"
+""));
+
+        gridLayout_8->addWidget(pushButton_confirm_player2, 3, 2, 1, 1, Qt::AlignHCenter);
+
+        lineEdit_player2 = new QLineEdit(player2);
         lineEdit_player2->setObjectName("lineEdit_player2");
+        sizePolicy5.setHeightForWidth(lineEdit_player2->sizePolicy().hasHeightForWidth());
+        lineEdit_player2->setSizePolicy(sizePolicy5);
+        lineEdit_player2->setMinimumSize(QSize(500, 0));
 
-        horizontalLayout_6->addWidget(lineEdit_player2);
+        gridLayout_8->addWidget(lineEdit_player2, 2, 2, 1, 1);
+
+        pushButton_back_from_player2_to_main = new QPushButton(player2);
+        pushButton_back_from_player2_to_main->setObjectName("pushButton_back_from_player2_to_main");
+        pushButton_back_from_player2_to_main->setStyleSheet(QString::fromUtf8("font: 11pt \"Simple Indust Outline\";\n"
+""));
+
+        gridLayout_8->addWidget(pushButton_back_from_player2_to_main, 3, 1, 1, 1);
+
+        label_16 = new QLabel(player2);
+        label_16->setObjectName("label_16");
+        sizePolicy2.setHeightForWidth(label_16->sizePolicy().hasHeightForWidth());
+        label_16->setSizePolicy(sizePolicy2);
+        label_16->setStyleSheet(QString::fromUtf8("font: 700 14pt \"Segoe UI\";\n"
+"color: rgb(255, 255, 255);"));
+
+        gridLayout_8->addWidget(label_16, 0, 2, 1, 1, Qt::AlignHCenter);
+
+        horizontalSpacer_4 = new QSpacerItem(40, 20, QSizePolicy::Policy::Maximum, QSizePolicy::Policy::Minimum);
+
+        gridLayout_8->addItem(horizontalSpacer_4, 2, 3, 1, 1);
+
+
+        horizontalLayout_6->addLayout(gridLayout_8);
 
         stackedWidget->addWidget(player2);
         null_2 = new QWidget();
@@ -1019,13 +1042,13 @@ public:
         label_4->setObjectName("label_4");
         label_4->setGeometry(QRect(320, 60, 121, 41));
         label_4->setStyleSheet(QString::fromUtf8("font: 700 18pt \"Segoe UI\";"));
-        layoutWidget1 = new QWidget(sessions);
-        layoutWidget1->setObjectName("layoutWidget1");
-        layoutWidget1->setGeometry(QRect(240, 150, 271, 131));
-        verticalLayout_6 = new QVBoxLayout(layoutWidget1);
+        layoutWidget = new QWidget(sessions);
+        layoutWidget->setObjectName("layoutWidget");
+        layoutWidget->setGeometry(QRect(240, 150, 271, 131));
+        verticalLayout_6 = new QVBoxLayout(layoutWidget);
         verticalLayout_6->setObjectName("verticalLayout_6");
         verticalLayout_6->setContentsMargins(0, 0, 0, 0);
-        pushButton_session1 = new QPushButton(layoutWidget1);
+        pushButton_session1 = new QPushButton(layoutWidget);
         pushButton_session1->setObjectName("pushButton_session1");
         QSizePolicy sizePolicy7(QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Preferred);
         sizePolicy7.setHorizontalStretch(0);
@@ -1036,7 +1059,7 @@ public:
 
         verticalLayout_6->addWidget(pushButton_session1);
 
-        pushButton_5 = new QPushButton(layoutWidget1);
+        pushButton_5 = new QPushButton(layoutWidget);
         pushButton_5->setObjectName("pushButton_5");
         sizePolicy7.setHeightForWidth(pushButton_5->sizePolicy().hasHeightForWidth());
         pushButton_5->setSizePolicy(sizePolicy7);
@@ -1044,7 +1067,7 @@ public:
 
         verticalLayout_6->addWidget(pushButton_5);
 
-        pushButton_4 = new QPushButton(layoutWidget1);
+        pushButton_4 = new QPushButton(layoutWidget);
         pushButton_4->setObjectName("pushButton_4");
         sizePolicy7.setHeightForWidth(pushButton_4->sizePolicy().hasHeightForWidth());
         pushButton_4->setSizePolicy(sizePolicy7);
@@ -1059,27 +1082,27 @@ public:
         groupBox->setObjectName("groupBox");
         groupBox->setGeometry(QRect(10, 20, 161, 291));
         groupBox->setStyleSheet(QString::fromUtf8("font: 700 12pt \"Segoe UI\";"));
-        layoutWidget2 = new QWidget(groupBox);
-        layoutWidget2->setObjectName("layoutWidget2");
-        layoutWidget2->setGeometry(QRect(10, 30, 141, 141));
-        verticalLayout_7 = new QVBoxLayout(layoutWidget2);
+        layoutWidget1 = new QWidget(groupBox);
+        layoutWidget1->setObjectName("layoutWidget1");
+        layoutWidget1->setGeometry(QRect(10, 30, 141, 141));
+        verticalLayout_7 = new QVBoxLayout(layoutWidget1);
         verticalLayout_7->setObjectName("verticalLayout_7");
         verticalLayout_7->setContentsMargins(0, 0, 0, 0);
-        pushButton_game1 = new QPushButton(layoutWidget2);
+        pushButton_game1 = new QPushButton(layoutWidget1);
         pushButton_game1->setObjectName("pushButton_game1");
         sizePolicy6.setHeightForWidth(pushButton_game1->sizePolicy().hasHeightForWidth());
         pushButton_game1->setSizePolicy(sizePolicy6);
 
         verticalLayout_7->addWidget(pushButton_game1);
 
-        pushButton_game2 = new QPushButton(layoutWidget2);
+        pushButton_game2 = new QPushButton(layoutWidget1);
         pushButton_game2->setObjectName("pushButton_game2");
         sizePolicy6.setHeightForWidth(pushButton_game2->sizePolicy().hasHeightForWidth());
         pushButton_game2->setSizePolicy(sizePolicy6);
 
         verticalLayout_7->addWidget(pushButton_game2);
 
-        pushButton_game3 = new QPushButton(layoutWidget2);
+        pushButton_game3 = new QPushButton(layoutWidget1);
         pushButton_game3->setObjectName("pushButton_game3");
         sizePolicy6.setHeightForWidth(pushButton_game3->sizePolicy().hasHeightForWidth());
         pushButton_game3->setSizePolicy(sizePolicy6);
@@ -1095,88 +1118,88 @@ public:
         label_27->setObjectName("label_27");
         label_27->setGeometry(QRect(310, 30, 71, 21));
         label_27->setStyleSheet(QString::fromUtf8("font: 700 14pt \"Segoe UI\";"));
-        layoutWidget3 = new QWidget(games);
-        layoutWidget3->setObjectName("layoutWidget3");
-        layoutWidget3->setGeometry(QRect(300, 350, 311, 31));
-        horizontalLayout_15 = new QHBoxLayout(layoutWidget3);
+        layoutWidget2 = new QWidget(games);
+        layoutWidget2->setObjectName("layoutWidget2");
+        layoutWidget2->setGeometry(QRect(300, 350, 311, 31));
+        horizontalLayout_15 = new QHBoxLayout(layoutWidget2);
         horizontalLayout_15->setObjectName("horizontalLayout_15");
         horizontalLayout_15->setContentsMargins(0, 0, 0, 0);
-        pushButton_30 = new QPushButton(layoutWidget3);
+        pushButton_30 = new QPushButton(layoutWidget2);
         pushButton_30->setObjectName("pushButton_30");
         sizePolicy6.setHeightForWidth(pushButton_30->sizePolicy().hasHeightForWidth());
         pushButton_30->setSizePolicy(sizePolicy6);
 
         horizontalLayout_15->addWidget(pushButton_30);
 
-        pushButton_replay = new QPushButton(layoutWidget3);
+        pushButton_replay = new QPushButton(layoutWidget2);
         pushButton_replay->setObjectName("pushButton_replay");
         sizePolicy6.setHeightForWidth(pushButton_replay->sizePolicy().hasHeightForWidth());
         pushButton_replay->setSizePolicy(sizePolicy6);
 
         horizontalLayout_15->addWidget(pushButton_replay);
 
-        pushButton_31 = new QPushButton(layoutWidget3);
+        pushButton_31 = new QPushButton(layoutWidget2);
         pushButton_31->setObjectName("pushButton_31");
         sizePolicy6.setHeightForWidth(pushButton_31->sizePolicy().hasHeightForWidth());
         pushButton_31->setSizePolicy(sizePolicy6);
 
         horizontalLayout_15->addWidget(pushButton_31);
 
-        layoutWidget4 = new QWidget(games);
-        layoutWidget4->setObjectName("layoutWidget4");
-        layoutWidget4->setGeometry(QRect(310, 60, 281, 231));
-        gridLayout = new QGridLayout(layoutWidget4);
+        layoutWidget3 = new QWidget(games);
+        layoutWidget3->setObjectName("layoutWidget3");
+        layoutWidget3->setGeometry(QRect(310, 60, 281, 231));
+        gridLayout = new QGridLayout(layoutWidget3);
         gridLayout->setObjectName("gridLayout");
         gridLayout->setContentsMargins(0, 0, 0, 0);
-        label_31 = new QLabel(layoutWidget4);
+        label_31 = new QLabel(layoutWidget3);
         label_31->setObjectName("label_31");
         label_31->setStyleSheet(QString::fromUtf8("\n"
 "font: 28pt \"Segoe UI\";"));
 
         gridLayout->addWidget(label_31, 1, 1, 1, 1);
 
-        label_29 = new QLabel(layoutWidget4);
+        label_29 = new QLabel(layoutWidget3);
         label_29->setObjectName("label_29");
 
         gridLayout->addWidget(label_29, 2, 0, 1, 1);
 
-        label_33 = new QLabel(layoutWidget4);
+        label_33 = new QLabel(layoutWidget3);
         label_33->setObjectName("label_33");
         label_33->setStyleSheet(QString::fromUtf8("font: 28pt \"Segoe UI\";"));
 
         gridLayout->addWidget(label_33, 2, 1, 1, 1);
 
-        label_32 = new QLabel(layoutWidget4);
+        label_32 = new QLabel(layoutWidget3);
         label_32->setObjectName("label_32");
         label_32->setStyleSheet(QString::fromUtf8("font: 28pt \"Segoe UI\";"));
 
         gridLayout->addWidget(label_32, 0, 1, 1, 1);
 
-        label_6 = new QLabel(layoutWidget4);
+        label_6 = new QLabel(layoutWidget3);
         label_6->setObjectName("label_6");
         label_6->setStyleSheet(QString::fromUtf8("\n"
 "font: 28pt \"Segoe UI\";"));
 
         gridLayout->addWidget(label_6, 0, 0, 1, 1);
 
-        label_34 = new QLabel(layoutWidget4);
+        label_34 = new QLabel(layoutWidget3);
         label_34->setObjectName("label_34");
         label_34->setStyleSheet(QString::fromUtf8("\n"
 "font: 28pt \"Segoe UI\";"));
 
         gridLayout->addWidget(label_34, 1, 0, 1, 1);
 
-        label_35 = new QLabel(layoutWidget4);
+        label_35 = new QLabel(layoutWidget3);
         label_35->setObjectName("label_35");
 
         gridLayout->addWidget(label_35, 1, 2, 1, 1);
 
-        label_28 = new QLabel(layoutWidget4);
+        label_28 = new QLabel(layoutWidget3);
         label_28->setObjectName("label_28");
 
         gridLayout->addWidget(label_28, 0, 2, 1, 1);
 
-        label_30 = new QLabel(layoutWidget4);
+        label_30 = new QLabel(layoutWidget3);
         label_30->setObjectName("label_30");
         label_30->setStyleSheet(QString::fromUtf8("font: 28pt \"Segoe UI\";"));
 
@@ -1192,7 +1215,7 @@ public:
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 1071, 22));
+        menubar->setGeometry(QRect(0, 0, 1077, 22));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName("statusbar");
@@ -1201,7 +1224,7 @@ public:
         retranslateUi(MainWindow);
         QObject::connect(pushButton_close_main, &QPushButton::clicked, pushButton_close_main, qOverload<>(&QPushButton::hide));
 
-        stackedWidget->setCurrentIndex(0);
+        stackedWidget->setCurrentIndex(6);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -1273,10 +1296,10 @@ public:
         pushButton_back_from_signup_to_login->setText(QCoreApplication::translate("MainWindow", "Back", nullptr));
         label_11->setText(QCoreApplication::translate("MainWindow", "Sign Up", nullptr));
         label_25->setText(QString());
-        pushButton_back_from_player2_to_main->setText(QCoreApplication::translate("MainWindow", "Back", nullptr));
-        pushButton_confirm_player2->setText(QCoreApplication::translate("MainWindow", "confirm", nullptr));
-        label_16->setText(QCoreApplication::translate("MainWindow", "Choose Name for Opponent", nullptr));
         label_15->setText(QCoreApplication::translate("MainWindow", "Name :", nullptr));
+        pushButton_confirm_player2->setText(QCoreApplication::translate("MainWindow", "confirm", nullptr));
+        pushButton_back_from_player2_to_main->setText(QCoreApplication::translate("MainWindow", "Back", nullptr));
+        label_16->setText(QCoreApplication::translate("MainWindow", "Choose Name for Opponent", nullptr));
         pushButton->setText(QString());
         pushButton_7->setText(QString());
         pushButton_10->setText(QString());

@@ -58,6 +58,7 @@ DatabaseManager::DatabaseManager() {
             id              INTEGER      PRIMARY KEY AUTOINCREMENT,
             session_id      INTEGER      NOT NULL,
             playerCharacter CHAR(1)      NOT NULL,
+            playerIsFirst   BOOLEAN      NOT NULL,
             moves           VARCHAR(500) NULL,
             state           CHAR(1)      NOT NULL,
             FOREIGN KEY (session_id) REFERENCES sessions (id)
@@ -139,11 +140,7 @@ int DatabaseManager::signIn(const QString &username, const QString &password,int
         id = selectQuery.value("id").toInt();
         QByteArray imageData = selectQuery.value("image").toByteArray();
 
-        if (image.loadFromData(imageData)) {
-            qDebug() << "Image retrieved from database successfully!";
-        } else {
-            qDebug() << "Failed to load image from retrieved data.";
-        }
+        image.loadFromData(imageData);
 
         return SIGNED_IN;        // Return success code
     } else {
@@ -301,15 +298,16 @@ bool DatabaseManager::saveSession(const int &specificId,const int &userid, const
 }
 
 bool DatabaseManager::saveGame(const int &session_id,
-                               const char &playerCharacter,
+                               const char &playerCharacter,const char &playerIsFirst,
                                const QString &moves, const QString &state) {
     // Prepare SQL query to insert a new game
     QSqlQuery insertQuery;
     insertQuery.prepare(
-        "INSERT INTO games (session_id, playerCharacter, moves, state) "
-        "VALUES (?, ?, ?, ?)");
+        "INSERT INTO games (session_id, playerCharacter, playerIsFirst, moves, state) "
+        "VALUES (?, ?, ?, ?, ?)");
     insertQuery.addBindValue(session_id);
     insertQuery.addBindValue(QString(playerCharacter));
+    insertQuery.addBindValue(QString(playerIsFirst));
     insertQuery.addBindValue(moves);
     insertQuery.addBindValue(state);
 
@@ -323,3 +321,68 @@ bool DatabaseManager::saveGame(const int &session_id,
 
     return DATABASE_SUCCESS; // Return true to indicate successful insertion
 }
+
+QVector<Game> DatabaseManager::loadGames(const int &session_id){
+    QVector<Game> games;
+
+    // Prepare SQL query to select games for a specific session
+    QSqlQuery selectQuery;
+    selectQuery.prepare("SELECT * FROM games WHERE session_id = ?");
+    selectQuery.addBindValue(session_id);
+
+    // Execute the query
+    if (!selectQuery.exec()) {
+        // Print error message if query execution fails
+        qDebug() << "Error executing select games query:"
+                 << selectQuery.lastError().text();
+        return games; // Return an empty vector to indicate failure
+    }
+
+    // Iterate over the results and create Game objects
+    while (selectQuery.next()) {
+        Game game;
+        game.setId(selectQuery.value("id").toInt());
+        game.setPlayerCharacter(selectQuery.value("playerCharacter").toChar());
+        game.setPlayerIsFirst(selectQuery.value("playerIsFirst").toBool());
+        game.setMoves(selectQuery.value("moves").toString());
+        game.setState(selectQuery.value("state").toChar());
+
+        games.push_back(game);
+    }
+
+    return games; // Return the vector of games
+}
+
+QVector<Session> DatabaseManager::loadHistory(const int &id){
+    QVector<Session> sessions;
+
+    // Prepare SQL query to select sessions for a specific user
+    QSqlQuery selectQuery;
+    selectQuery.prepare("SELECT * FROM sessions WHERE userid = ?");
+    selectQuery.addBindValue(id);
+
+    // Execute the query
+    if (!selectQuery.exec()) {
+        // Print error message if query execution fails
+        qDebug() << "Error executing select sessions query:"
+                 << selectQuery.lastError().text();
+        return sessions; // Return an empty vector to indicate failure
+    }
+
+    // Iterate over the results and create Session objects
+    while (selectQuery.next()) {
+        Session session;
+        session.setId(selectQuery.value("id").toInt());
+        session.setSpecificId(selectQuery.value("specificId").toInt());
+        session.setUserId(selectQuery.value("userid").toInt());
+        session.setOpponentName(selectQuery.value("against").toString());
+        session.setScore(selectQuery.value("wins").toInt(),selectQuery.value("ties").toInt(),selectQuery.value("losses").toInt());
+        session.setTimestamp(selectQuery.value("timestamp").toDateTime());
+        session.setGames(loadGames(session.getId()));
+
+        sessions.push_back(session);
+    }
+
+    return sessions; // Return the vector of sessions
+}
+
