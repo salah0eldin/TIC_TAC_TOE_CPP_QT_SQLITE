@@ -55,4 +55,4 @@ private slots:
 };
 
 QTEST_APPLESS_MAIN(TestPlayer)
-#include "test_player.moc"
+#include "tst_testcase.moc"
