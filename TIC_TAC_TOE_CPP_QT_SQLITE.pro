@@ -18,7 +18,6 @@ SOURCES += \
     mainwindow.cpp \
     mainwindowFunctions.cpp \
     player.cpp \
-    player_test.cpp \
     session.cpp \
     tst_testcase.cpp
 
