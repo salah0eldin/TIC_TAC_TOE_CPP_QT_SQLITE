@@ -5,12 +5,20 @@ on:
   pull_request:
 
 jobs:
-  test-runner:  # Renamed the job to 'test-runner'
+  test-runner:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+
+      - name: Cache Qt dependencies
+        uses: actions/cache@v2
+        with:
+          path: |
+            /usr/lib/x86_64-linux-gnu/qt5
+            /usr/include/x86_64-linux-gnu/qt5
+          key: ${{ runner.os }}-qt-${{ hashFiles('**/QtTest/QtTest.pro') }}  # Change the key based on your project setup
 
       - name: Install Qt
         run: |
