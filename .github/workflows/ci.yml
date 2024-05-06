@@ -19,7 +19,7 @@ jobs:
 
       - name: Run moc
         run: |
-          moc test_player.cpp -o test_player.moc
+          moc tictactoeTest2/test_player.cpp -o test_player.moc
 
       - name: Build project
         run: |
