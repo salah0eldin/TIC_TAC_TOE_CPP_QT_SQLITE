@@ -1,5 +1,5 @@
 #include <QtTest/QtTest>
-#include "player.h"
+#include "C:\Users\dell\Documents\TIC_TAC_TOE_CPP_QT_SQLITE\player.h"
 
 class TestPlayer : public QObject
 {
