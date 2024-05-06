@@ -140,11 +140,7 @@ int DatabaseManager::signIn(const QString &username, const QString &password,int
         id = selectQuery.value("id").toInt();
         QByteArray imageData = selectQuery.value("image").toByteArray();
 
-        if (image.loadFromData(imageData)) {
-            qDebug() << "Image retrieved from database successfully!";
-        } else {
-            qDebug() << "Failed to load image from retrieved data.";
-        }
+        image.loadFromData(imageData);
 
         return SIGNED_IN;        // Return success code
     } else {

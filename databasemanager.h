@@ -1,6 +1,7 @@
 #ifndef DATABASEMANAGER_H
 #define DATABASEMANAGER_H
 
+#include <QImage>
 #include <QtSql>            // Include Qt SQL module
 #include <QDebug>           // Include qDebug for debugging output
 #include <QVector>
