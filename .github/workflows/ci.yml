@@ -5,7 +5,7 @@ on:
   pull_request:
 
 jobs:
-  build:
+  test-runner:  # Renamed the job to 'test-runner'
     runs-on: ubuntu-latest
 
     steps:
