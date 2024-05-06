@@ -23,7 +23,7 @@ void Player::addSession(Session session){
     sessions.push_back(session);
 }
 
-void Player::removeSessionAt(int &index){
+void Player::removeSessionAt(int index){
     sessions.removeAt(index);
 }
 
