@@ -1,5 +1,5 @@
 #include <QtTest/QtTest>
-#include "../player.h"
+#include "player.h"
 
 class TestPlayer : public QObject
 {
