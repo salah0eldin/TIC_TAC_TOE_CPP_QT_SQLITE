@@ -1,8 +1,11 @@
-QT       += core gui sql
+
+TEMPLATE = app
+
+QT       += core gui sql testlib
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-CONFIG += c++17
+CONFIG += c++17 qt warn_on depend_includepath testcase
 
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
@@ -16,7 +19,8 @@ SOURCES += \
     mainwindowFunctions.cpp \
     player.cpp \
     player_test.cpp \
-    session.cpp
+    session.cpp \
+    tst_testcase.cpp
 
 HEADERS += \
     databasemanager.h \

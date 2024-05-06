@@ -17,15 +17,11 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y qtbase5-dev qt5-qmake
 
-      - name: Run moc
-        run: |
-          moc tictactoeTest2/test_player.cpp -o test_player.moc
-
       - name: Build project
         run: |
-          qmake tictactoeTest2/tictactoeTest.pro
+          qmake TIC_TAC_TOE_CPP_QT_SQLITE.pro
           make
 
       - name: Run tests
         run: |
-          ./tictacetoeTest
+          ./tst_testcase.cpp
