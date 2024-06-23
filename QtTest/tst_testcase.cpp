@@ -52,6 +52,7 @@ private slots:
         player.removeSessionAt(0);
         QCOMPARE(player.getSessions().size(), 0);
     }
+
 };
 
 QTEST_APPLESS_MAIN(TestPlayer)
