@@ -27,7 +27,10 @@ private:
 
 // تنفيذ الدوال الخاصة بالاختبار
 void TestDatabaseManager::initTestCase() {
-    dbManager = DatabaseManager();
+    // تأكد من تهيئة قاعدة البيانات بحالة جديدة لكل اختبار
+    QSqlQuery resetQuery;
+    resetQuery.exec("DELETE FROM users");
+    qDebug() << "Database reset for testing";
 }
 
 void TestDatabaseManager::testSignUp() {

@@ -1,5 +1,6 @@
 #include "databasemanager.h"
 
+
 DatabaseManager::DatabaseManager() {
     // Open the SQLite database
     db = QSqlDatabase::addDatabase("QSQLITE");
@@ -74,42 +75,34 @@ DatabaseManager::DatabaseManager() {
 }
 
 int DatabaseManager::signUp(const QString &username, const QString &password) {
-    // Prepare SQL query to check if username already exists
-    QSqlQuery selectQuery;
-    selectQuery.prepare("SELECT * FROM users WHERE username = ? ");
-    selectQuery.addBindValue(username);
+    QSqlQuery checkQuery;
+    checkQuery.prepare("SELECT * FROM users WHERE username = ?");
+    checkQuery.addBindValue(username);
 
-    // Execute the query
-    if (!selectQuery.exec()) {
-        // Print error message if query execution fails
-        qDebug() << "Error executing select user up query:"
-                 << selectQuery.lastError().text();
-        return DATABASE_ERROR; // Return error code
+    if (!checkQuery.exec()) {
+        qDebug() << "Error executing checkQuery:" << checkQuery.lastError().text();
+        return DATABASE_ERROR;
     }
 
-    // Check if the query returned a row (username already exists)
-    if (selectQuery.next()) {
+    if (checkQuery.next()) {
         qDebug() << "Username already exists";
-        return USERNAME_TAKEN; // Return username taken code
+        return USERNAME_TAKEN;
     }
 
-    // Prepare SQL query to insert new user
     QSqlQuery insertQuery;
     insertQuery.prepare("INSERT INTO users (username, password) VALUES (?, ?)");
     insertQuery.addBindValue(username);
     insertQuery.addBindValue(password);
 
-    // Execute the query
     if (!insertQuery.exec()) {
-        // Print error message if query execution fails
-        qDebug() << "Error executing insert user query:"
-                 << insertQuery.lastError().text();
-        return DATABASE_ERROR; // Return error code
+        qDebug() << "Error executing insertQuery:" << insertQuery.lastError().text();
+        return DATABASE_ERROR;
     }
 
-    qDebug() << "Signed Up";
-    return SIGNED_UP; // Return success code
+    qDebug() << "User signed up successfully";
+    return SIGNED_UP;
 }
+
 
 int DatabaseManager::signIn(const QString &username, const QString &password,int &id,QImage &image) {
     // Prepare SQL query to retrieve user record based on username
@@ -149,111 +142,75 @@ int DatabaseManager::signIn(const QString &username, const QString &password,int
     }
 }
 
-int DatabaseManager::changeUsername(const int &id, const QString &newUsername,
-                                    const QString &password) {
-    // Prepare SQL query to retrieve user record based on id
+int DatabaseManager::changeUsername(const int &id, const QString &newUsername, const QString &password) {
     QSqlQuery selectQuery;
     selectQuery.prepare("SELECT * FROM users WHERE id = ?");
     selectQuery.addBindValue(id);
 
-    // Execute the query
-    if (!selectQuery.exec()) {
-        // Print error message if query execution fails
-        qDebug() << "Error executing select user query:"
-                 << selectQuery.lastError().text();
-        return DATABASE_ERROR; // Return error code to indicate failure
+    if (!selectQuery.exec() || !selectQuery.next()) {
+        qDebug() << "User not found";
+        return DATABASE_ERROR;
     }
 
-    selectQuery.next();
-    // Retrieve the stored password from the result set
     QString storedPassword = selectQuery.value("password").toString();
-
-    // Compare the provided password with the stored password
     if (password != storedPassword) {
-        qDebug() << "Wrong password"; // Print incorrect password message
-        return WRONG_PASSWORD;        // Return error code to indicate failure
+        qDebug() << "Wrong password";
+        return WRONG_PASSWORD;
     }
 
-    // Prepare SQL query to check if the new username already exists
     QSqlQuery checkQuery;
     checkQuery.prepare("SELECT * FROM users WHERE username = ?");
     checkQuery.addBindValue(newUsername);
 
-    // Execute the query
-    if (!checkQuery.exec()) {
-        // Print error message if query execution fails
-        qDebug() << "Error executing check username query:"
-                 << checkQuery.lastError().text();
-        return DATABASE_ERROR; // Return error code to indicate failure
-    }
-
-    // Check if the new username already exists
-    if (checkQuery.next()) {
+    if (!checkQuery.exec() || checkQuery.next()) {
         qDebug() << "Username already taken";
         return USERNAME_TAKEN;
     }
 
-    // Prepare SQL query to update username
     QSqlQuery updateQuery;
     updateQuery.prepare("UPDATE users SET username = ? WHERE id = ?");
     updateQuery.addBindValue(newUsername);
     updateQuery.addBindValue(id);
 
-    // Execute the query
     if (!updateQuery.exec()) {
-        // Print error message if query execution fails
-        qDebug() << "Error executing update username query:"
-                 << updateQuery.lastError().text();
-        return DATABASE_ERROR; // Return error code to indicate failure
+        qDebug() << "Error executing updateQuery:" << updateQuery.lastError().text();
+        return DATABASE_ERROR;
     }
 
-    qDebug() << "Changed username";
-    return DATABASE_SUCCESS; // Return success code to indicate successful update
+    qDebug() << "Username changed successfully";
+    return DATABASE_SUCCESS;
 }
 
-
-int DatabaseManager::changePassword(const int &id, const QString &oldPassword,
-                                    const QString &newPassword) {
-    // Prepare SQL query to retrieve user record based on id
+int DatabaseManager::changePassword(const int &id, const QString &oldPassword, const QString &newPassword) {
     QSqlQuery selectQuery;
     selectQuery.prepare("SELECT * FROM users WHERE id = ?");
     selectQuery.addBindValue(id);
 
-    // Execute the query
-    if (!selectQuery.exec()) {
-        // Print error message if query execution fails
-        qDebug() << "Error executing select user query:"
-                 << selectQuery.lastError().text();
-        return DATABASE_ERROR; // Return error code to indicate failure
+    if (!selectQuery.exec() || !selectQuery.next()) {
+        qDebug() << "User not found";
+        return DATABASE_ERROR;
     }
 
-    selectQuery.next();
-    // Retrieve the stored password from the result set
     QString storedPassword = selectQuery.value("password").toString();
-
-    // Compare the provided password with the stored password
     if (oldPassword != storedPassword) {
-        qDebug() << "Wrong password"; // Print incorrect password message
-        return WRONG_PASSWORD;        // Return error code to indicate failure
+        qDebug() << "Wrong password";
+        return WRONG_PASSWORD;
     }
 
-    // Prepare SQL query to update password
     QSqlQuery updateQuery;
     updateQuery.prepare("UPDATE users SET password = ? WHERE id = ?");
     updateQuery.addBindValue(newPassword);
     updateQuery.addBindValue(id);
 
-    // Execute the query
     if (!updateQuery.exec()) {
-        // Print error message if query execution fails
-        qDebug() << "Error executing update password query:"
-                 << updateQuery.lastError().text();
-        return DATABASE_ERROR; // Return error code to indicate failure
+        qDebug() << "Error executing updateQuery:" << updateQuery.lastError().text();
+        return DATABASE_ERROR;
     }
 
-    qDebug() << "changed password";
-    return DATABASE_SUCCESS; // Return success code to indicate successful update
+    qDebug() << "Password changed successfully";
+    return DATABASE_SUCCESS;
 }
+
 
 int DatabaseManager::changeImage(const int &id, const QByteArray &imageData){
 
