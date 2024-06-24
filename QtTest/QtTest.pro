@@ -10,6 +10,7 @@ SOURCES +=  tst_testcase.cpp \
     ../player.cpp \
     ../session.cpp
 
+
 FORMS += \
     ../mainwindow.ui
 
@@ -17,7 +18,6 @@ HEADERS += \
     ../databasemanager.h \
     ../game.h \
     ../player.h \
-    ../session.h
+    ../session.h \
 
 TARGET = MyQtTest
-
