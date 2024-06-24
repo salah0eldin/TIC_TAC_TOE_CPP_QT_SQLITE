@@ -12,21 +12,21 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Install Qt
+      - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y qtbase5-dev qt5-qmake
+          sudo apt-get install -y qtbase5-dev qt5-qmake xvfb
 
       - name: Build and test 'MyQtTest'
         run: |
           cd QtTest
           qmake QtTest.pro
           make
-          ./MyQtTest
+          xvfb-run --auto-servernum --server-args='-screen 0 1024x768x24' ./MyQtTest
 
       - name: Build and test 'Mydatabase_test'
         run: |
           cd ..
           qmake database_test/database_test.pro
           make
-          ./database_test/Mydatabase_test
+          xvfb-run --auto-servernum --server-args='-screen 0 1024x768x24' ./database_test/Mydatabase_test
