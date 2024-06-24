@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1077</width>
+    <width>1079</width>
     <height>713</height>
    </rect>
   </property>
@@ -36,7 +36,7 @@
        <string notr="true">background-color: rgb(85, 85, 127);</string>
       </property>
       <property name="currentIndex">
-       <number>6</number>
+       <number>3</number>
       </property>
       <widget class="QWidget" name="main">
        <property name="sizePolicy">
@@ -2175,8 +2175,8 @@ font: 28pt &quot;Segoe UI&quot;;</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1077</width>
-     <height>22</height>
+     <width>1079</width>
+     <height>21</height>
     </rect>
    </property>
   </widget>

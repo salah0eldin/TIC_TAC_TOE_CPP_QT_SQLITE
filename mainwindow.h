@@ -142,6 +142,8 @@ private slots:
 
     QString hashing(const QString& str);
 
+    void on_checkBox_changeuser_stateChanged(int arg1);
+
 private:
     Ui::MainWindow *ui;
 };

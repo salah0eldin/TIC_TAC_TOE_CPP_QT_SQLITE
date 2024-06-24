@@ -1,0 +1,13 @@
+release/changepasswordPage.o
+release/changeusernamePage.o
+release/databasemanager.o
+release/game.o
+release/main.o
+release/mainwindow.o
+release/mainwindowFunctions.o
+release/player.o
+release/profilePage.o
+release/session.o
+release/signinPage.o
+release/signupPage.o
+release/moc_mainwindow.o
