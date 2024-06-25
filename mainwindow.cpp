@@ -5,29 +5,54 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
+
     ui->setupUi(this);
 
-    // Center the text in the label of board at history
-    centerLabels();
+    button[0] = ui->b0;
+    button[1] = ui->b2;
+    button[2] = ui->b7;
+    button[3] = ui->b1;
+    button[4] = ui->b6;
+    button[5] = ui->b5;
+    button[6] = ui->b4;
+    button[7] = ui->b8;
+    button[8] = ui->b3;
 
-    // Add default text "Guest" to the line edit of player2
-    ui->lineEdit_player2->setText("Guest");
+    ui->label_6->setAlignment(Qt::AlignCenter);
+    ui->label_31->setAlignment(Qt::AlignCenter);
+    ui->label_32->setAlignment(Qt::AlignCenter);
+    ui->label_28->setAlignment(Qt::AlignCenter);
+    ui->label_29->setAlignment(Qt::AlignCenter);
+    ui->label_30->setAlignment(Qt::AlignCenter);
+    ui->label_33->setAlignment(Qt::AlignCenter);
+    ui->label_34->setAlignment(Qt::AlignCenter);
+    ui->label_35->setAlignment(Qt::AlignCenter);
 
-    // Make picture label clickable
-    makeLabelClickable(ui->label_picture);
-    makeLabelClickable(ui->label_guest);
+    ui->label_picture->setCursor(Qt::PointingHandCursor);
+    ui->label_guest->installEventFilter(this);
 
-    // Set initial pictures
-    setInitialPictures();
+    // Set default picture for label_picture
+    QPixmap pix1("../../pictures/user.jpg");
+    int w1 = ui->label_picture->width();
+    int h1 = ui->label_picture->height();
+    ui->label_picture->setPixmap(pix1.scaled(w1, h1, Qt::KeepAspectRatio));
 
-    // Add placeholder text to line edits
-    addPlaceholderText();
+    // Set default picture for label_pic
+    QPixmap pix("../../pictures/aaa.jpg");
+    int w = ui->label_pic->width();
+    int h = ui->label_pic->height();
+    ui->label_pic->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
 
-    // Add pictures to icons
-    addPicturesToIcons();
+    ui->lineEdit_user->setPlaceholderText("Username");
+    ui->lineEdit_pass->setPlaceholderText("Password");
 
-    // Enable clear buttons for line edits
-    enableClearButtons();
+    QIcon user("../../pictures/user.jpg");
+    ui->lineEdit_user->addAction(user, QLineEdit::LeadingPosition);
+    QIcon pass("../../pictures/password.png");
+    ui->lineEdit_pass->addAction(pass, QLineEdit::LeadingPosition);
+
+    ui->lineEdit_pass->setClearButtonEnabled(true);
+    ui->lineEdit_user->setClearButtonEnabled(true);
 
     // Load user session if exists
     loadUserSession();
@@ -37,7 +62,6 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
-    delete player;
     delete ui;
 }
 
@@ -79,7 +103,7 @@ void MainWindow::on_pushButton_login_from_main_clicked() {
             // Set labels to default values
             ui->label_guest->setText("Guest");
             ui->label_19->setText("Guest");
-
+            ui->label_40->setText("Guest");
             // Change profile picture to default
             QImage image("../../pictures/user.jpg");
             changePictures(image);
@@ -94,36 +118,27 @@ void MainWindow::on_pushButton_login_from_main_clicked() {
             settings.remove("username");
             settings.remove("password");
             settings.remove("ImageData");
-
-            // Delete player object
-            delete player;
         }
     }
 }
 
-void MainWindow::on_pushButton_back_from_board_to_main_clicked()
-{
-    ui->stackedWidget->setCurrentIndex(MAIN_WINDOW);
-}
-
-void MainWindow::on_pushButton_back_from_player2_to_main_clicked()
-{
-    ui->stackedWidget->setCurrentIndex(MAIN_WINDOW);
-}
-
 void MainWindow::on_pushButton_enter_player2name_clicked()
 {
-    ui->stackedWidget->setCurrentIndex(PLAYER2_WINDOW);
+    Ai = false;
+    if(loggedIN){
+        ui->stackedWidget->setCurrentIndex(PLAYER2_WINDOW);
+    }else{
+        ui->label->setText("Guest2");
+        ui->label_40->setText("Guest2");
+        ui->stackedWidget->setCurrentIndex(BOARD_WINDOW);
+    }
 }
 
-void MainWindow::on_pushButton_confirm_player2_clicked()
-{
-    ui->stackedWidget->setCurrentIndex(BOARD_WINDOW);
-}
 
 void MainWindow::on_pushButton_play_withAI_clicked()
 {
-    ui->stackedWidget->setCurrentIndex(BOARD_WINDOW);
+    Ai = true;
+    ui->stackedWidget->setCurrentIndex(AI_WINDOW);
 }
 
 void MainWindow::on_pushButton_from_main_to_profile_clicked()
@@ -168,5 +183,4 @@ void MainWindow::on_pushButton_replay_clicked()
     ui->label_34->clear();
     ui->label_35->clear();
 }
-
 

@@ -3,7 +3,7 @@
 
 
 Player::Player(const int id, QString username, QString hashedPassword,QImage imagee)
-    : id(id), username(username), hashedPassword(hashedPassword) ,image(imagee) {}
+    : id(id), username(username), hashedPassword(hashedPassword) ,image(imagee) { sessionsCount = 0;}
 
 QString Player::getUsername() const  {
     return username;
@@ -34,7 +34,12 @@ QImage Player::getImage(){
 QVector<Session> Player::getSessions(){
     return sessions;
 }
-
+void Player::setSessoinsCount(int count){
+    sessionsCount = count;
+}
+int Player::getSessionsCount() const {
+    return sessionsCount;
+}
 void Player::setId(int &id){
     this->id = id;
 }

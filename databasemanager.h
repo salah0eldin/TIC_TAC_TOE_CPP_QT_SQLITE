@@ -84,8 +84,7 @@ public:
      * @param ties The number of ties in the session.
      * @return True if insertion succeeds, false if there is an error in database operation.
      */
-    bool saveSession(const int &specificId,const int &userid, const QString &against, const int &wins,
-                     const int &loss, const int &ties);
+    bool saveSession(const Session &session);
 
     /**
      * @brief Saves a game record into the database.
@@ -95,8 +94,7 @@ public:
      * @param state The state of the game.
      * @return True if insertion succeeds, false if there is an error in database operation.
      */
-    bool saveGame(const int &session_id, const char &playerCharacter,const char &playerIsFirst,
-                  const QString &moves,const QString &state);
+    bool saveGame(Game &game);
 
     QVector<Game> loadGames(const int &session_id);
 

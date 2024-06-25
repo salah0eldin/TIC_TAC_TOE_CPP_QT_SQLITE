@@ -1,19 +1,15 @@
 #include "game.h"
 
-Game::Game() :playerturn(false) {
-    id = -1;
-    resetGame();
-}
-
-void Game::makeMove(int row, int col) {
-    if (board[row][col] == ' ') {
+void Game:: makeMove(int row, int col) {
+    if (board[row][col] != 'X' && board[row][col] != 'O') {
         if (playerturn) {
             board[row][col] = playerChar;
         } else {
             board[row][col] = oppoChar;
         }
         playerturn = !playerturn;
-
+        int index = row*3+col;
+        moves += QString::number(index);
         state = checkWinDraw();
     }
 }
@@ -76,6 +72,10 @@ void Game::resetGame() {
         }
     }
     state = 'n';
+    specifiedId++;
+    playerIsFirst = !playerIsFirst;
+    playerturn = playerIsFirst;
+    moves = "";
 }
 
 void Game::loadGame(const int id, const std::string& gameMoves){
@@ -90,15 +90,11 @@ void Game::loadGame(const int id, const std::string& gameMoves){
 QChar Game::getState(){
     return state;
 }
-
+void Game::setSessionId(const int&id){
+    sessionId = id;
+}
 void Game::setId(int gameId) {
     id = gameId;
-}
-
-void Game::setPlayerCharacter(QChar character) {
-    playerChar = character;
-    // Set opponent character based on player character
-    oppoChar = (character == 'X') ? 'O' : 'X';
 }
 
 void Game::setPlayerIsFirst(bool Turn){
@@ -111,4 +107,24 @@ void Game::setMoves(const QString &gameMoves) {
 
 void Game::setState(QChar gameState) {
     state = gameState;
+}
+
+void Game::setSpecifiedId(const int &id){
+    specifiedId = id;
+}
+
+int Game::getSpeceifiedId() const{
+    return specifiedId;
+}
+
+int Game::getSessionId() const{
+    return sessionId;
+}
+
+QString Game::getPlayerIsFirst() const{
+    return (playerIsFirst?"T":"F");
+}
+
+QString Game::getMoves(){
+    return moves;
 }

@@ -10,7 +10,7 @@ void MainWindow::on_Change_photo_clicked() {
         QImage originalImage(filePath);
 
         // Update player's image
-        player->setImage(originalImage);
+        player.setImage(originalImage);
 
         // Display the selected image
         changePictures(originalImage);
@@ -30,7 +30,7 @@ void MainWindow::on_Change_photo_clicked() {
         settings.setValue("ImageData", base64Image);
 
         // Update image in the database
-        db.changeImage(player->getId(), imageData);
+        db.changeImage(player.getId(), imageData);
 
         qDebug() << "Image selected and loaded successfully!";
     } else {

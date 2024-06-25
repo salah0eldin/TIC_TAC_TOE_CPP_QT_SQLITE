@@ -57,12 +57,13 @@ void MainWindow::on_pushButton_login_to_main_clicked() {
         Player *tempPlayer = new Player(id, username, password, image);
         QVector<Session> s = db.loadHistory(id);
         tempPlayer->setSessions(s);
-
-        player = tempPlayer;
-
+        int ssize = s.size();
+        player = *tempPlayer;
+        player.setSessoinsCount(ssize);
         // Update UI with user information
         ui->label_guest->setText(username);
         ui->label_19->setText(username);
+        ui->label_40->setText(username);
         changePictures(image);
 
         // Save user credentials to local storage

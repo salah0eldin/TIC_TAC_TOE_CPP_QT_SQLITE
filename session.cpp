@@ -1,9 +1,5 @@
 #include "session.h"
 
-Session::Session() {
-    id = -1;
-}
-
 Session::Session(const int id, const QVector<Game> & games) {
     this->id = id;
     this->games = games;
@@ -39,8 +35,22 @@ void Session::setGames(const QVector<Game> &games) {
     this->games = games;
 }
 
+void Session::setGamesCount(const int &count){
+    gamesCount = count;
+}
+int Session::getSpecificId() const{
+    return specificId;
+}
+int Session::getGamesCout() const{
+    return gamesCount;
+}
+
 int Session::getId() const {
     return id;
+}
+
+int Session::getUserId() const {
+    return userId;
 }
 
 QVector<Game> Session::getGames() const {
@@ -51,7 +61,7 @@ QString Session::getOpponentName() const {
     return opponentName;
 }
 
-Session::SessionScore Session::getScore() const {
+SessionScore Session::getScore() const {
     return score;
 }
 
@@ -61,6 +71,7 @@ QDateTime Session::getTimestamp() const {
 
 void Session::addGame(Game game) {
     games.push_back(game);
+    gamesCount++;
     switch(game.getState().toLatin1()) {
     case 'w':
         score.wins++;

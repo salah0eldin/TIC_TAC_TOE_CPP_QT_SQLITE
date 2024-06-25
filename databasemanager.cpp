@@ -1,6 +1,5 @@
 #include "databasemanager.h"
 
-
 DatabaseManager::DatabaseManager() {
     // Open the SQLite database
     db = QSqlDatabase::addDatabase("QSQLITE");
@@ -58,6 +57,7 @@ DatabaseManager::DatabaseManager() {
         CREATE TABLE IF NOT EXISTS games (
             id              INTEGER      PRIMARY KEY AUTOINCREMENT,
             session_id      INTEGER      NOT NULL,
+            specific_id     INTEGER      NOT NULL,
             playerCharacter CHAR(1)      NOT NULL,
             playerIsFirst   BOOLEAN      NOT NULL,
             moves           VARCHAR(500) NULL,
@@ -229,19 +229,19 @@ int DatabaseManager::changeImage(const int &id, const QByteArray &imageData){
     return DATABASE_SUCCESS;
 }
 
-bool DatabaseManager::saveSession(const int &specificId,const int &userid, const QString &against, const int &wins,
-                                  const int &losses, const int &ties)
+bool DatabaseManager::saveSession(const Session &session)
 {
+
     // Prepare SQL query to insert new session
     QSqlQuery insertQuery;
     insertQuery.prepare("INSERT INTO sessions (specificId, userid, against, wins, losses, ties) "
                         "VALUES (?, ?, ?, ?, ?, ?)");
-    insertQuery.addBindValue(specificId);
-    insertQuery.addBindValue(userid);
-    insertQuery.addBindValue(against);
-    insertQuery.addBindValue(wins);
-    insertQuery.addBindValue(losses);
-    insertQuery.addBindValue(ties);
+    insertQuery.addBindValue(session.getSpecificId());
+    insertQuery.addBindValue(session.getUserId());
+    insertQuery.addBindValue(session.getOpponentName());
+    insertQuery.addBindValue(session.getScore().wins);
+    insertQuery.addBindValue(session.getScore().losses);
+    insertQuery.addBindValue(session.getScore().ties);
 
     // Execute the query
     if (!insertQuery.exec()) {
@@ -251,22 +251,28 @@ bool DatabaseManager::saveSession(const int &specificId,const int &userid, const
         return DATABASE_ERROR; // Return false to indicate failure
     }
 
+    int sessionId = insertQuery.lastInsertId().toLongLong();
+
+    for(Game game:session.getGames()){
+        game.setSessionId(sessionId);
+        saveGame(game);
+    }
+
     return DATABASE_SUCCESS; // Return true to indicate successful insertion
 }
 
-bool DatabaseManager::saveGame(const int &session_id,
-                               const char &playerCharacter,const char &playerIsFirst,
-                               const QString &moves, const QString &state) {
+bool DatabaseManager::saveGame(Game &game) {
     // Prepare SQL query to insert a new game
     QSqlQuery insertQuery;
     insertQuery.prepare(
-        "INSERT INTO games (session_id, playerCharacter, playerIsFirst, moves, state) "
-        "VALUES (?, ?, ?, ?, ?)");
-    insertQuery.addBindValue(session_id);
-    insertQuery.addBindValue(QString(playerCharacter));
-    insertQuery.addBindValue(QString(playerIsFirst));
-    insertQuery.addBindValue(moves);
-    insertQuery.addBindValue(state);
+        "INSERT INTO games (session_id, specific_id, playerCharacter, playerIsFirst, moves, state) "
+        "VALUES (?, ?, ?, ?, ?, ?)");
+    insertQuery.addBindValue(game.getSessionId());
+    insertQuery.addBindValue(game.getSpeceifiedId());
+    insertQuery.addBindValue("X");
+    insertQuery.addBindValue(game.getPlayerIsFirst());
+    insertQuery.addBindValue(game.getMoves());
+    insertQuery.addBindValue(game.getState());
 
     // Execute the query
     if (!insertQuery.exec()) {
@@ -299,7 +305,7 @@ QVector<Game> DatabaseManager::loadGames(const int &session_id){
     while (selectQuery.next()) {
         Game game;
         game.setId(selectQuery.value("id").toInt());
-        game.setPlayerCharacter(selectQuery.value("playerCharacter").toChar());
+        //ame.setPlayerCharacter(selectQuery.value("playerCharacter").toChar());
         game.setPlayerIsFirst(selectQuery.value("playerIsFirst").toBool());
         game.setMoves(selectQuery.value("moves").toString());
         game.setState(selectQuery.value("state").toChar());

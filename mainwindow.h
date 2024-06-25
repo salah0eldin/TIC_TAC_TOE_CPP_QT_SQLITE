@@ -12,6 +12,7 @@
 #include <QDebug>
 
 #include "databasemanager.h"
+#include "aiAlgorithm.h"
 #include "player.h"
 
 #define MAIN_WINDOW             0
@@ -24,6 +25,7 @@
 #define BOARD_WINDOW            8
 #define SESSIONS_WINDOW         9
 #define GAMES_WINDOW            10
+#define AI_WINDOW               7
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -39,8 +41,13 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     DatabaseManager db;
-    Player *player;
+    Player player;
+    Session CurrentSession;
+    Game CurrentGame;
+    int diff; //difficulty
+    bool Ai;
     bool loggedIN;
+    QPushButton *button[9];
 
 protected:
     bool eventFilter(QObject *obj, QEvent *event) override;
@@ -70,8 +77,6 @@ private slots:
     void on_pushButton_back_from_profile_to_main_clicked();
 
     void on_pushButton_from_main_to_profile_clicked();
-
-    void on_pushButton_change_user_pass_clicked();
 
     void on_pushButton_change_pass_clicked();
 
@@ -119,30 +124,46 @@ private slots:
 
     void changePictures(QImage &image);
 
-    // Function to center the text in specific labels
-    void centerLabels();
-
-    // Function to make a label clickable
-    void makeLabelClickable(QLabel* label);
-
-    // Function to set initial pictures for certain labels
-    void setInitialPictures();
-
-    // Function to add placeholder text to line edits
-    void addPlaceholderText();
-
-    // Function to add pictures to icons
-    void addPicturesToIcons();
-
-    // Function to enable clear buttons for line edits
-    void enableClearButtons();
-
     // Function to load user session if it exists
     void loadUserSession();
 
     QString hashing(const QString& str);
 
     void on_checkBox_changeuser_stateChanged(int arg1);
+
+    void boardPlaceMarker(int index1,int index2);
+
+    void on_b0_clicked();
+
+    void on_b2_clicked();
+
+    void on_b7_clicked();
+
+    void on_b3_clicked();
+
+    void on_b1_clicked();
+
+    void on_b6_clicked();
+
+    void on_b5_clicked();
+
+    void on_b4_clicked();
+
+    void on_b8_clicked();
+
+    void on_pushButton_16_clicked();
+
+    void on_pushButton_14_clicked();
+
+    void on_pushButton_12_clicked();
+
+    void on_pushButton_13_clicked();
+
+    void ai_to_board(QString opponame);
+
+    void resetBoard_checkAi();
+
+    void on_pushButton_15_clicked();
 
 private:
     Ui::MainWindow *ui;

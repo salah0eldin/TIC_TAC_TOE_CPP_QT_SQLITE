@@ -56,7 +56,7 @@ void MainWindow::on_pushButton_change_pass_clicked() {
     newPassword = hashing(newPassword);
 
     // Attempt to change password with provided credentials
-    int handl = db.changePassword(player->getId(), oldPassword, newPassword);
+    int handl = db.changePassword(player.getId(), oldPassword, newPassword);
 
     // Handle different change password scenarios
     switch (handl) {
@@ -79,7 +79,7 @@ void MainWindow::on_pushButton_change_pass_clicked() {
         ui->lineEdit_change_pass->setText("");
 
         // Update player's hashed password
-        player->setHashedPassword(newPassword);
+        player.setHashedPassword(newPassword);
 
         // Update password in local storage
         QSettings settings("MyApp", "MyApp");

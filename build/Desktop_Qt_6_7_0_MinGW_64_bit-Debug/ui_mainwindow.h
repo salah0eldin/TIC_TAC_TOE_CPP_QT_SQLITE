@@ -20,6 +20,7 @@
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QScrollArea>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QStatusBar>
@@ -138,50 +139,94 @@ public:
     QPushButton *pushButton_back_from_player2_to_main;
     QLabel *label_16;
     QSpacerItem *horizontalSpacer_4;
-    QWidget *null_2;
-    QWidget *board;
-    QPushButton *pushButton;
-    QPushButton *pushButton_7;
-    QPushButton *pushButton_10;
-    QPushButton *pushButton_11;
+    QWidget *ai_transition;
+    QHBoxLayout *horizontalLayout_12;
+    QGridLayout *gridLayout_12;
+    QVBoxLayout *verticalLayout;
     QPushButton *pushButton_12;
+    QPushButton *pushButton_15;
     QPushButton *pushButton_13;
-    QPushButton *pushButton_14;
-    QPushButton *pushButton_16;
-    QPushButton *pushButton_17;
-    QLabel *label_12;
+    QSpacerItem *horizontalSpacer_12;
     QLabel *label_13;
-    QLabel *label_14;
+    QSpacerItem *verticalSpacer_17;
+    QSpacerItem *horizontalSpacer_11;
+    QSpacerItem *horizontalSpacer_10;
+    QSpacerItem *horizontalSpacer_9;
+    QSpacerItem *verticalSpacer_18;
+    QSpacerItem *verticalSpacer_16;
+    QSpacerItem *verticalSpacer_15;
+    QPushButton *pushButton_14;
+    QWidget *board;
+    QHBoxLayout *horizontalLayout_7;
+    QGridLayout *gridLayout_10;
+    QHBoxLayout *horizontalLayout_8;
     QPushButton *pushButton_back_from_board_to_main;
+    QPushButton *pushButton_16;
+    QHBoxLayout *horizontalLayout_9;
+    QLabel *label_55;
     QLabel *label_53;
     QLabel *label_54;
-    QLabel *label_55;
-    QPushButton *pushButton_8;
-    QPushButton *pushButton_9;
+    QSpacerItem *verticalSpacer_10;
+    QSpacerItem *verticalSpacer_9;
+    QGridLayout *gridLayout_9;
+    QPushButton *b3;
+    QPushButton *b1;
+    QPushButton *b6;
+    QPushButton *b2;
+    QPushButton *b7;
+    QPushButton *b4;
+    QPushButton *b0;
+    QPushButton *b8;
+    QPushButton *b5;
+    QSpacerItem *verticalSpacer_8;
+    QSpacerItem *verticalSpacer_11;
+    QLabel *label_12;
+    QSpacerItem *horizontalSpacer_5;
+    QHBoxLayout *horizontalLayout_11;
+    QLabel *label_40;
+    QLabel *label_14;
     QLabel *label;
+    QSpacerItem *horizontalSpacer_6;
     QWidget *sessions;
-    QPushButton *pushButton_back_from_session_to_main;
+    QHBoxLayout *horizontalLayout_10;
+    QGridLayout *gridLayout_11;
+    QSpacerItem *verticalSpacer_14;
+    QSpacerItem *verticalSpacer_13;
+    QSpacerItem *verticalSpacer_12;
+    QSpacerItem *horizontalSpacer_7;
+    QSpacerItem *horizontalSpacer_8;
     QLabel *label_4;
-    QWidget *layoutWidget;
-    QVBoxLayout *verticalLayout_6;
+    QPushButton *pushButton_back_from_session_to_main;
+    QScrollArea *scrollArea;
+    QWidget *scrollAreaWidgetContents_4;
+    QVBoxLayout *verticalLayout_2;
     QPushButton *pushButton_session1;
-    QPushButton *pushButton_5;
     QPushButton *pushButton_4;
+    QPushButton *pushButton_3;
+    QPushButton *pushButton;
+    QPushButton *pushButton_6;
+    QPushButton *pushButton_11;
+    QPushButton *pushButton_10;
+    QPushButton *pushButton_9;
+    QPushButton *pushButton_7;
+    QPushButton *pushButton_8;
+    QPushButton *pushButton_2;
+    QPushButton *pushButton_5;
     QWidget *games;
     QGroupBox *groupBox;
-    QWidget *layoutWidget1;
+    QWidget *layoutWidget;
     QVBoxLayout *verticalLayout_7;
     QPushButton *pushButton_game1;
     QPushButton *pushButton_game2;
     QPushButton *pushButton_game3;
     QPushButton *pushButton_back_from_history_to_session;
     QLabel *label_27;
-    QWidget *layoutWidget2;
+    QWidget *layoutWidget1;
     QHBoxLayout *horizontalLayout_15;
     QPushButton *pushButton_30;
     QPushButton *pushButton_replay;
     QPushButton *pushButton_31;
-    QWidget *layoutWidget3;
+    QWidget *layoutWidget2;
     QGridLayout *gridLayout;
     QLabel *label_31;
     QLabel *label_29;
@@ -200,7 +245,13 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName("MainWindow");
-        MainWindow->resize(1079, 713);
+        MainWindow->resize(1018, 667);
+        QSizePolicy sizePolicy(QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Minimum);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(MainWindow->sizePolicy().hasHeightForWidth());
+        MainWindow->setSizePolicy(sizePolicy);
+        MainWindow->setMinimumSize(QSize(500, 500));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName("centralwidget");
         horizontalLayout_17 = new QHBoxLayout(centralwidget);
@@ -208,9 +259,6 @@ public:
         stackedWidget = new QStackedWidget(centralwidget);
         stackedWidget->setObjectName("stackedWidget");
         stackedWidget->setEnabled(true);
-        QSizePolicy sizePolicy(QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Minimum);
-        sizePolicy.setHorizontalStretch(0);
-        sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(stackedWidget->sizePolicy().hasHeightForWidth());
         stackedWidget->setSizePolicy(sizePolicy);
         stackedWidget->setMaximumSize(QSize(10000, 10000));
@@ -500,9 +548,12 @@ public:
 
         lineEdit_pass_to_change_user = new QLineEdit(change_username);
         lineEdit_pass_to_change_user->setObjectName("lineEdit_pass_to_change_user");
-        sizePolicy5.setHeightForWidth(lineEdit_pass_to_change_user->sizePolicy().hasHeightForWidth());
-        lineEdit_pass_to_change_user->setSizePolicy(sizePolicy5);
-        lineEdit_pass_to_change_user->setMinimumSize(QSize(500, 0));
+        QSizePolicy sizePolicy6(QSizePolicy::Policy::MinimumExpanding, QSizePolicy::Policy::Fixed);
+        sizePolicy6.setHorizontalStretch(0);
+        sizePolicy6.setVerticalStretch(0);
+        sizePolicy6.setHeightForWidth(lineEdit_pass_to_change_user->sizePolicy().hasHeightForWidth());
+        lineEdit_pass_to_change_user->setSizePolicy(sizePolicy6);
+        lineEdit_pass_to_change_user->setMinimumSize(QSize(100, 0));
         lineEdit_pass_to_change_user->setEchoMode(QLineEdit::Password);
 
         gridLayout_6->addWidget(lineEdit_pass_to_change_user, 2, 2, 1, 1);
@@ -518,9 +569,9 @@ public:
 
         lineEdit_change_username = new QLineEdit(change_username);
         lineEdit_change_username->setObjectName("lineEdit_change_username");
-        sizePolicy5.setHeightForWidth(lineEdit_change_username->sizePolicy().hasHeightForWidth());
-        lineEdit_change_username->setSizePolicy(sizePolicy5);
-        lineEdit_change_username->setMinimumSize(QSize(500, 0));
+        sizePolicy6.setHeightForWidth(lineEdit_change_username->sizePolicy().hasHeightForWidth());
+        lineEdit_change_username->setSizePolicy(sizePolicy6);
+        lineEdit_change_username->setMinimumSize(QSize(100, 0));
 
         gridLayout_6->addWidget(lineEdit_change_username, 1, 2, 1, 1);
 
@@ -594,9 +645,9 @@ public:
 
         lineEdit_new_pass = new QLineEdit(change_password);
         lineEdit_new_pass->setObjectName("lineEdit_new_pass");
-        sizePolicy5.setHeightForWidth(lineEdit_new_pass->sizePolicy().hasHeightForWidth());
-        lineEdit_new_pass->setSizePolicy(sizePolicy5);
-        lineEdit_new_pass->setMinimumSize(QSize(500, 0));
+        sizePolicy6.setHeightForWidth(lineEdit_new_pass->sizePolicy().hasHeightForWidth());
+        lineEdit_new_pass->setSizePolicy(sizePolicy6);
+        lineEdit_new_pass->setMinimumSize(QSize(100, 0));
         lineEdit_new_pass->setEchoMode(QLineEdit::Password);
 
         gridLayout_7->addWidget(lineEdit_new_pass, 2, 3, 1, 1);
@@ -626,18 +677,18 @@ public:
 
         lineEdit_change_pass = new QLineEdit(change_password);
         lineEdit_change_pass->setObjectName("lineEdit_change_pass");
-        sizePolicy5.setHeightForWidth(lineEdit_change_pass->sizePolicy().hasHeightForWidth());
-        lineEdit_change_pass->setSizePolicy(sizePolicy5);
-        lineEdit_change_pass->setMinimumSize(QSize(500, 0));
+        sizePolicy6.setHeightForWidth(lineEdit_change_pass->sizePolicy().hasHeightForWidth());
+        lineEdit_change_pass->setSizePolicy(sizePolicy6);
+        lineEdit_change_pass->setMinimumSize(QSize(100, 0));
         lineEdit_change_pass->setEchoMode(QLineEdit::Password);
 
         gridLayout_7->addWidget(lineEdit_change_pass, 3, 3, 1, 1);
 
         lineEdit_old_pass = new QLineEdit(change_password);
         lineEdit_old_pass->setObjectName("lineEdit_old_pass");
-        sizePolicy5.setHeightForWidth(lineEdit_old_pass->sizePolicy().hasHeightForWidth());
-        lineEdit_old_pass->setSizePolicy(sizePolicy5);
-        lineEdit_old_pass->setMinimumSize(QSize(500, 0));
+        sizePolicy6.setHeightForWidth(lineEdit_old_pass->sizePolicy().hasHeightForWidth());
+        lineEdit_old_pass->setSizePolicy(sizePolicy6);
+        lineEdit_old_pass->setMinimumSize(QSize(100, 0));
         lineEdit_old_pass->setEchoMode(QLineEdit::Password);
 
         gridLayout_7->addWidget(lineEdit_old_pass, 1, 3, 1, 1);
@@ -713,18 +764,21 @@ public:
 
         lineEdit_pass = new QLineEdit(login);
         lineEdit_pass->setObjectName("lineEdit_pass");
-        sizePolicy5.setHeightForWidth(lineEdit_pass->sizePolicy().hasHeightForWidth());
-        lineEdit_pass->setSizePolicy(sizePolicy5);
-        lineEdit_pass->setMinimumSize(QSize(500, 0));
+        sizePolicy6.setHeightForWidth(lineEdit_pass->sizePolicy().hasHeightForWidth());
+        lineEdit_pass->setSizePolicy(sizePolicy6);
+        lineEdit_pass->setMinimumSize(QSize(100, 0));
         lineEdit_pass->setEchoMode(QLineEdit::Password);
 
         gridLayout_3->addWidget(lineEdit_pass, 2, 2, 1, 1);
 
         lineEdit_user = new QLineEdit(login);
         lineEdit_user->setObjectName("lineEdit_user");
-        sizePolicy5.setHeightForWidth(lineEdit_user->sizePolicy().hasHeightForWidth());
-        lineEdit_user->setSizePolicy(sizePolicy5);
-        lineEdit_user->setMinimumSize(QSize(500, 0));
+        QSizePolicy sizePolicy7(QSizePolicy::Policy::Preferred, QSizePolicy::Policy::Fixed);
+        sizePolicy7.setHorizontalStretch(0);
+        sizePolicy7.setVerticalStretch(0);
+        sizePolicy7.setHeightForWidth(lineEdit_user->sizePolicy().hasHeightForWidth());
+        lineEdit_user->setSizePolicy(sizePolicy7);
+        lineEdit_user->setMinimumSize(QSize(100, 0));
         lineEdit_user->setEchoMode(QLineEdit::Normal);
 
         gridLayout_3->addWidget(lineEdit_user, 1, 2, 1, 1);
@@ -756,11 +810,11 @@ public:
 
         label_3 = new QLabel(login);
         label_3->setObjectName("label_3");
-        QSizePolicy sizePolicy6(QSizePolicy::Policy::Preferred, QSizePolicy::Policy::Preferred);
-        sizePolicy6.setHorizontalStretch(0);
-        sizePolicy6.setVerticalStretch(0);
-        sizePolicy6.setHeightForWidth(label_3->sizePolicy().hasHeightForWidth());
-        label_3->setSizePolicy(sizePolicy6);
+        QSizePolicy sizePolicy8(QSizePolicy::Policy::Preferred, QSizePolicy::Policy::Preferred);
+        sizePolicy8.setHorizontalStretch(0);
+        sizePolicy8.setVerticalStretch(0);
+        sizePolicy8.setHeightForWidth(label_3->sizePolicy().hasHeightForWidth());
+        label_3->setSizePolicy(sizePolicy8);
         label_3->setMinimumSize(QSize(10, 0));
 
         gridLayout_3->addWidget(label_3, 1, 0, 1, 1);
@@ -811,9 +865,9 @@ public:
 
         lineEdit_pass_signup = new QLineEdit(signup);
         lineEdit_pass_signup->setObjectName("lineEdit_pass_signup");
-        sizePolicy5.setHeightForWidth(lineEdit_pass_signup->sizePolicy().hasHeightForWidth());
-        lineEdit_pass_signup->setSizePolicy(sizePolicy5);
-        lineEdit_pass_signup->setMinimumSize(QSize(500, 0));
+        sizePolicy6.setHeightForWidth(lineEdit_pass_signup->sizePolicy().hasHeightForWidth());
+        lineEdit_pass_signup->setSizePolicy(sizePolicy6);
+        lineEdit_pass_signup->setMinimumSize(QSize(100, 0));
         lineEdit_pass_signup->setEchoMode(QLineEdit::Password);
 
         gridLayout_4->addWidget(lineEdit_pass_signup, 2, 2, 1, 1);
@@ -857,9 +911,9 @@ public:
 
         lineEdit_user_signup = new QLineEdit(signup);
         lineEdit_user_signup->setObjectName("lineEdit_user_signup");
-        sizePolicy5.setHeightForWidth(lineEdit_user_signup->sizePolicy().hasHeightForWidth());
-        lineEdit_user_signup->setSizePolicy(sizePolicy5);
-        lineEdit_user_signup->setMinimumSize(QSize(500, 0));
+        sizePolicy6.setHeightForWidth(lineEdit_user_signup->sizePolicy().hasHeightForWidth());
+        lineEdit_user_signup->setSizePolicy(sizePolicy6);
+        lineEdit_user_signup->setMinimumSize(QSize(100, 0));
         lineEdit_user_signup->setEchoMode(QLineEdit::Normal);
 
         gridLayout_4->addWidget(lineEdit_user_signup, 1, 2, 1, 1);
@@ -876,9 +930,9 @@ public:
 
         lineEdit_pass2_signup = new QLineEdit(signup);
         lineEdit_pass2_signup->setObjectName("lineEdit_pass2_signup");
-        sizePolicy5.setHeightForWidth(lineEdit_pass2_signup->sizePolicy().hasHeightForWidth());
-        lineEdit_pass2_signup->setSizePolicy(sizePolicy5);
-        lineEdit_pass2_signup->setMinimumSize(QSize(500, 0));
+        sizePolicy6.setHeightForWidth(lineEdit_pass2_signup->sizePolicy().hasHeightForWidth());
+        lineEdit_pass2_signup->setSizePolicy(sizePolicy6);
+        lineEdit_pass2_signup->setMinimumSize(QSize(100, 0));
         lineEdit_pass2_signup->setEchoMode(QLineEdit::Password);
 
         gridLayout_4->addWidget(lineEdit_pass2_signup, 3, 2, 1, 1);
@@ -922,9 +976,9 @@ public:
 
         lineEdit_player2 = new QLineEdit(player2);
         lineEdit_player2->setObjectName("lineEdit_player2");
-        sizePolicy5.setHeightForWidth(lineEdit_player2->sizePolicy().hasHeightForWidth());
-        lineEdit_player2->setSizePolicy(sizePolicy5);
-        lineEdit_player2->setMinimumSize(QSize(500, 0));
+        sizePolicy6.setHeightForWidth(lineEdit_player2->sizePolicy().hasHeightForWidth());
+        lineEdit_player2->setSizePolicy(sizePolicy6);
+        lineEdit_player2->setMinimumSize(QSize(100, 0));
 
         gridLayout_8->addWidget(lineEdit_player2, 2, 2, 1, 1);
 
@@ -952,128 +1006,424 @@ public:
         horizontalLayout_6->addLayout(gridLayout_8);
 
         stackedWidget->addWidget(player2);
-        null_2 = new QWidget();
-        null_2->setObjectName("null_2");
-        stackedWidget->addWidget(null_2);
+        ai_transition = new QWidget();
+        ai_transition->setObjectName("ai_transition");
+        ai_transition->setEnabled(true);
+        horizontalLayout_12 = new QHBoxLayout(ai_transition);
+        horizontalLayout_12->setObjectName("horizontalLayout_12");
+        gridLayout_12 = new QGridLayout();
+        gridLayout_12->setObjectName("gridLayout_12");
+        verticalLayout = new QVBoxLayout();
+        verticalLayout->setSpacing(26);
+        verticalLayout->setObjectName("verticalLayout");
+        pushButton_12 = new QPushButton(ai_transition);
+        pushButton_12->setObjectName("pushButton_12");
+        sizePolicy5.setHeightForWidth(pushButton_12->sizePolicy().hasHeightForWidth());
+        pushButton_12->setSizePolicy(sizePolicy5);
+        pushButton_12->setMinimumSize(QSize(400, 50));
+
+        verticalLayout->addWidget(pushButton_12);
+
+        pushButton_15 = new QPushButton(ai_transition);
+        pushButton_15->setObjectName("pushButton_15");
+        sizePolicy5.setHeightForWidth(pushButton_15->sizePolicy().hasHeightForWidth());
+        pushButton_15->setSizePolicy(sizePolicy5);
+        pushButton_15->setMinimumSize(QSize(400, 50));
+
+        verticalLayout->addWidget(pushButton_15);
+
+        pushButton_13 = new QPushButton(ai_transition);
+        pushButton_13->setObjectName("pushButton_13");
+        sizePolicy5.setHeightForWidth(pushButton_13->sizePolicy().hasHeightForWidth());
+        pushButton_13->setSizePolicy(sizePolicy5);
+        pushButton_13->setMinimumSize(QSize(400, 50));
+
+        verticalLayout->addWidget(pushButton_13);
+
+
+        gridLayout_12->addLayout(verticalLayout, 3, 2, 1, 1);
+
+        horizontalSpacer_12 = new QSpacerItem(200, 20, QSizePolicy::Policy::Maximum, QSizePolicy::Policy::Minimum);
+
+        gridLayout_12->addItem(horizontalSpacer_12, 2, 3, 1, 1);
+
+        label_13 = new QLabel(ai_transition);
+        label_13->setObjectName("label_13");
+        QFont font;
+        font.setPointSize(14);
+        label_13->setFont(font);
+        label_13->setAlignment(Qt::AlignCenter);
+
+        gridLayout_12->addWidget(label_13, 1, 2, 1, 1);
+
+        verticalSpacer_17 = new QSpacerItem(20, 40, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Expanding);
+
+        gridLayout_12->addItem(verticalSpacer_17, 2, 2, 1, 1);
+
+        horizontalSpacer_11 = new QSpacerItem(200, 20, QSizePolicy::Policy::Maximum, QSizePolicy::Policy::Minimum);
+
+        gridLayout_12->addItem(horizontalSpacer_11, 2, 1, 1, 1);
+
+        horizontalSpacer_10 = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
+
+        gridLayout_12->addItem(horizontalSpacer_10, 2, 4, 1, 1);
+
+        horizontalSpacer_9 = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
+
+        gridLayout_12->addItem(horizontalSpacer_9, 5, 0, 1, 1);
+
+        verticalSpacer_18 = new QSpacerItem(20, 20, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Maximum);
+
+        gridLayout_12->addItem(verticalSpacer_18, 4, 2, 1, 1);
+
+        verticalSpacer_16 = new QSpacerItem(20, 40, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Expanding);
+
+        gridLayout_12->addItem(verticalSpacer_16, 0, 2, 1, 1);
+
+        verticalSpacer_15 = new QSpacerItem(20, 40, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Expanding);
+
+        gridLayout_12->addItem(verticalSpacer_15, 7, 2, 1, 1);
+
+        pushButton_14 = new QPushButton(ai_transition);
+        pushButton_14->setObjectName("pushButton_14");
+        sizePolicy5.setHeightForWidth(pushButton_14->sizePolicy().hasHeightForWidth());
+        pushButton_14->setSizePolicy(sizePolicy5);
+        pushButton_14->setMinimumSize(QSize(100, 30));
+
+        gridLayout_12->addWidget(pushButton_14, 6, 1, 1, 1);
+
+
+        horizontalLayout_12->addLayout(gridLayout_12);
+
+        stackedWidget->addWidget(ai_transition);
         board = new QWidget();
         board->setObjectName("board");
         sizePolicy2.setHeightForWidth(board->sizePolicy().hasHeightForWidth());
         board->setSizePolicy(sizePolicy2);
-        pushButton = new QPushButton(board);
-        pushButton->setObjectName("pushButton");
-        pushButton->setGeometry(QRect(250, 140, 81, 81));
-        pushButton_7 = new QPushButton(board);
-        pushButton_7->setObjectName("pushButton_7");
-        pushButton_7->setGeometry(QRect(340, 140, 81, 81));
-        pushButton_10 = new QPushButton(board);
-        pushButton_10->setObjectName("pushButton_10");
-        pushButton_10->setGeometry(QRect(250, 230, 81, 81));
-        pushButton_11 = new QPushButton(board);
-        pushButton_11->setObjectName("pushButton_11");
-        pushButton_11->setGeometry(QRect(430, 320, 81, 81));
-        pushButton_12 = new QPushButton(board);
-        pushButton_12->setObjectName("pushButton_12");
-        pushButton_12->setGeometry(QRect(340, 320, 81, 81));
-        pushButton_13 = new QPushButton(board);
-        pushButton_13->setObjectName("pushButton_13");
-        pushButton_13->setGeometry(QRect(250, 320, 81, 81));
-        pushButton_14 = new QPushButton(board);
-        pushButton_14->setObjectName("pushButton_14");
-        pushButton_14->setGeometry(QRect(430, 230, 81, 81));
+        horizontalLayout_7 = new QHBoxLayout(board);
+        horizontalLayout_7->setObjectName("horizontalLayout_7");
+        gridLayout_10 = new QGridLayout();
+        gridLayout_10->setObjectName("gridLayout_10");
+        gridLayout_10->setSizeConstraint(QLayout::SetDefaultConstraint);
+        horizontalLayout_8 = new QHBoxLayout();
+        horizontalLayout_8->setObjectName("horizontalLayout_8");
+        pushButton_back_from_board_to_main = new QPushButton(board);
+        pushButton_back_from_board_to_main->setObjectName("pushButton_back_from_board_to_main");
+        pushButton_back_from_board_to_main->setStyleSheet(QString::fromUtf8("font: 11pt \"Simple Indust Outline\";\n"
+""));
+
+        horizontalLayout_8->addWidget(pushButton_back_from_board_to_main);
+
         pushButton_16 = new QPushButton(board);
         pushButton_16->setObjectName("pushButton_16");
-        pushButton_16->setGeometry(QRect(630, 460, 91, 31));
         pushButton_16->setStyleSheet(QString::fromUtf8("font: 11pt \"Simple Indust Outline\";\n"
 "\n"
 ""));
-        pushButton_17 = new QPushButton(board);
-        pushButton_17->setObjectName("pushButton_17");
-        pushButton_17->setGeometry(QRect(330, 460, 91, 31));
-        pushButton_17->setStyleSheet(QString::fromUtf8("font: 11pt \"Simple Indust Outline\";\n"
-""));
-        label_12 = new QLabel(board);
-        label_12->setObjectName("label_12");
-        label_12->setGeometry(QRect(20, 170, 41, 21));
-        label_12->setStyleSheet(QString::fromUtf8("font: 11pt \"Segoe UI\";\n"
-"color: rgb(255, 255, 255);"));
-        label_13 = new QLabel(board);
-        label_13->setObjectName("label_13");
-        label_13->setGeometry(QRect(20, 210, 51, 21));
-        label_13->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);\n"
-"font: 12pt \"Segoe UI\";"));
-        label_14 = new QLabel(board);
-        label_14->setObjectName("label_14");
-        label_14->setGeometry(QRect(20, 250, 31, 21));
-        label_14->setStyleSheet(QString::fromUtf8("font: 12pt \"Segoe UI\";\n"
-"color: rgb(255, 255, 255);"));
-        pushButton_back_from_board_to_main = new QPushButton(board);
-        pushButton_back_from_board_to_main->setObjectName("pushButton_back_from_board_to_main");
-        pushButton_back_from_board_to_main->setGeometry(QRect(50, 460, 91, 31));
-        pushButton_back_from_board_to_main->setStyleSheet(QString::fromUtf8("font: 11pt \"Simple Indust Outline\";\n"
-""));
-        label_53 = new QLabel(board);
-        label_53->setObjectName("label_53");
-        label_53->setGeometry(QRect(100, 170, 41, 20));
-        label_54 = new QLabel(board);
-        label_54->setObjectName("label_54");
-        label_54->setGeometry(QRect(100, 210, 31, 20));
+
+        horizontalLayout_8->addWidget(pushButton_16);
+
+
+        gridLayout_10->addLayout(horizontalLayout_8, 8, 1, 1, 1);
+
+        horizontalLayout_9 = new QHBoxLayout();
+        horizontalLayout_9->setObjectName("horizontalLayout_9");
         label_55 = new QLabel(board);
         label_55->setObjectName("label_55");
-        label_55->setGeometry(QRect(100, 250, 41, 21));
-        pushButton_8 = new QPushButton(board);
-        pushButton_8->setObjectName("pushButton_8");
-        pushButton_8->setGeometry(QRect(430, 140, 81, 81));
-        pushButton_9 = new QPushButton(board);
-        pushButton_9->setObjectName("pushButton_9");
-        pushButton_9->setGeometry(QRect(340, 230, 81, 81));
+        label_55->setAlignment(Qt::AlignCenter);
+
+        horizontalLayout_9->addWidget(label_55);
+
+        label_53 = new QLabel(board);
+        label_53->setObjectName("label_53");
+        label_53->setAlignment(Qt::AlignCenter);
+
+        horizontalLayout_9->addWidget(label_53);
+
+        label_54 = new QLabel(board);
+        label_54->setObjectName("label_54");
+        label_54->setAlignment(Qt::AlignCenter);
+
+        horizontalLayout_9->addWidget(label_54);
+
+
+        gridLayout_10->addLayout(horizontalLayout_9, 4, 1, 1, 1);
+
+        verticalSpacer_10 = new QSpacerItem(20, 40, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Expanding);
+
+        gridLayout_10->addItem(verticalSpacer_10, 5, 1, 1, 1);
+
+        verticalSpacer_9 = new QSpacerItem(20, 100, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Expanding);
+
+        gridLayout_10->addItem(verticalSpacer_9, 0, 1, 1, 1);
+
+        gridLayout_9 = new QGridLayout();
+        gridLayout_9->setObjectName("gridLayout_9");
+        gridLayout_9->setSizeConstraint(QLayout::SetDefaultConstraint);
+        b3 = new QPushButton(board);
+        b3->setObjectName("b3");
+        b3->setMinimumSize(QSize(100, 100));
+
+        gridLayout_9->addWidget(b3, 2, 2, 1, 1);
+
+        b1 = new QPushButton(board);
+        b1->setObjectName("b1");
+        sizePolicy2.setHeightForWidth(b1->sizePolicy().hasHeightForWidth());
+        b1->setSizePolicy(sizePolicy2);
+        b1->setMinimumSize(QSize(100, 100));
+
+        gridLayout_9->addWidget(b1, 1, 0, 1, 1);
+
+        b6 = new QPushButton(board);
+        b6->setObjectName("b6");
+        sizePolicy2.setHeightForWidth(b6->sizePolicy().hasHeightForWidth());
+        b6->setSizePolicy(sizePolicy2);
+        b6->setMinimumSize(QSize(100, 100));
+
+        gridLayout_9->addWidget(b6, 1, 1, 1, 1);
+
+        b2 = new QPushButton(board);
+        b2->setObjectName("b2");
+        sizePolicy2.setHeightForWidth(b2->sizePolicy().hasHeightForWidth());
+        b2->setSizePolicy(sizePolicy2);
+        b2->setMinimumSize(QSize(100, 100));
+
+        gridLayout_9->addWidget(b2, 0, 1, 1, 1);
+
+        b7 = new QPushButton(board);
+        b7->setObjectName("b7");
+        sizePolicy2.setHeightForWidth(b7->sizePolicy().hasHeightForWidth());
+        b7->setSizePolicy(sizePolicy2);
+        b7->setMinimumSize(QSize(100, 100));
+
+        gridLayout_9->addWidget(b7, 0, 2, 1, 1);
+
+        b4 = new QPushButton(board);
+        b4->setObjectName("b4");
+        sizePolicy2.setHeightForWidth(b4->sizePolicy().hasHeightForWidth());
+        b4->setSizePolicy(sizePolicy2);
+        b4->setMinimumSize(QSize(100, 100));
+
+        gridLayout_9->addWidget(b4, 2, 0, 1, 1);
+
+        b0 = new QPushButton(board);
+        b0->setObjectName("b0");
+        sizePolicy2.setHeightForWidth(b0->sizePolicy().hasHeightForWidth());
+        b0->setSizePolicy(sizePolicy2);
+        b0->setMinimumSize(QSize(100, 100));
+
+        gridLayout_9->addWidget(b0, 0, 0, 1, 1);
+
+        b8 = new QPushButton(board);
+        b8->setObjectName("b8");
+        sizePolicy2.setHeightForWidth(b8->sizePolicy().hasHeightForWidth());
+        b8->setSizePolicy(sizePolicy2);
+        b8->setMinimumSize(QSize(100, 100));
+
+        gridLayout_9->addWidget(b8, 2, 1, 1, 1);
+
+        b5 = new QPushButton(board);
+        b5->setObjectName("b5");
+        b5->setMinimumSize(QSize(100, 100));
+
+        gridLayout_9->addWidget(b5, 1, 2, 1, 1);
+
+
+        gridLayout_10->addLayout(gridLayout_9, 6, 1, 1, 1);
+
+        verticalSpacer_8 = new QSpacerItem(20, 100, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Maximum);
+
+        gridLayout_10->addItem(verticalSpacer_8, 9, 1, 1, 1);
+
+        verticalSpacer_11 = new QSpacerItem(20, 40, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Expanding);
+
+        gridLayout_10->addItem(verticalSpacer_11, 7, 1, 1, 1);
+
+        label_12 = new QLabel(board);
+        label_12->setObjectName("label_12");
+        label_12->setStyleSheet(QString::fromUtf8("font: 11pt \"Segoe UI\";\n"
+"color: rgb(255, 255, 255);"));
+        label_12->setAlignment(Qt::AlignCenter);
+
+        gridLayout_10->addWidget(label_12, 2, 1, 1, 1);
+
+        horizontalSpacer_5 = new QSpacerItem(400, 20, QSizePolicy::Policy::Maximum, QSizePolicy::Policy::Minimum);
+
+        gridLayout_10->addItem(horizontalSpacer_5, 6, 0, 1, 1);
+
+        horizontalLayout_11 = new QHBoxLayout();
+        horizontalLayout_11->setObjectName("horizontalLayout_11");
+        label_40 = new QLabel(board);
+        label_40->setObjectName("label_40");
+        label_40->setAlignment(Qt::AlignCenter);
+
+        horizontalLayout_11->addWidget(label_40);
+
+        label_14 = new QLabel(board);
+        label_14->setObjectName("label_14");
+        label_14->setAlignment(Qt::AlignCenter);
+
+        horizontalLayout_11->addWidget(label_14);
+
         label = new QLabel(board);
         label->setObjectName("label");
-        label->setGeometry(QRect(300, 40, 161, 31));
         label->setStyleSheet(QString::fromUtf8("font: 700 16pt \"Segoe UI\";"));
+        label->setAlignment(Qt::AlignCenter);
+
+        horizontalLayout_11->addWidget(label);
+
+
+        gridLayout_10->addLayout(horizontalLayout_11, 3, 1, 1, 1);
+
+
+        horizontalLayout_7->addLayout(gridLayout_10);
+
+        horizontalSpacer_6 = new QSpacerItem(400, 20, QSizePolicy::Policy::Maximum, QSizePolicy::Policy::Minimum);
+
+        horizontalLayout_7->addItem(horizontalSpacer_6);
+
         stackedWidget->addWidget(board);
         sessions = new QWidget();
         sessions->setObjectName("sessions");
-        pushButton_back_from_session_to_main = new QPushButton(sessions);
-        pushButton_back_from_session_to_main->setObjectName("pushButton_back_from_session_to_main");
-        pushButton_back_from_session_to_main->setGeometry(QRect(80, 460, 101, 31));
-        pushButton_back_from_session_to_main->setStyleSheet(QString::fromUtf8("font: 11pt \"Simple Indust Outline\";\n"
-""));
+        horizontalLayout_10 = new QHBoxLayout(sessions);
+        horizontalLayout_10->setObjectName("horizontalLayout_10");
+        gridLayout_11 = new QGridLayout();
+        gridLayout_11->setObjectName("gridLayout_11");
+        verticalSpacer_14 = new QSpacerItem(20, 50, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Maximum);
+
+        gridLayout_11->addItem(verticalSpacer_14, 2, 1, 1, 1);
+
+        verticalSpacer_13 = new QSpacerItem(20, 100, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Maximum);
+
+        gridLayout_11->addItem(verticalSpacer_13, 5, 1, 1, 1);
+
+        verticalSpacer_12 = new QSpacerItem(20, 30, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Maximum);
+
+        gridLayout_11->addItem(verticalSpacer_12, 0, 1, 1, 1);
+
+        horizontalSpacer_7 = new QSpacerItem(250, 20, QSizePolicy::Policy::Maximum, QSizePolicy::Policy::Minimum);
+
+        gridLayout_11->addItem(horizontalSpacer_7, 1, 0, 1, 1);
+
+        horizontalSpacer_8 = new QSpacerItem(250, 20, QSizePolicy::Policy::Maximum, QSizePolicy::Policy::Minimum);
+
+        gridLayout_11->addItem(horizontalSpacer_8, 1, 2, 1, 1);
+
         label_4 = new QLabel(sessions);
         label_4->setObjectName("label_4");
-        label_4->setGeometry(QRect(320, 60, 121, 41));
         label_4->setStyleSheet(QString::fromUtf8("font: 700 18pt \"Segoe UI\";"));
-        layoutWidget = new QWidget(sessions);
-        layoutWidget->setObjectName("layoutWidget");
-        layoutWidget->setGeometry(QRect(240, 150, 271, 131));
-        verticalLayout_6 = new QVBoxLayout(layoutWidget);
-        verticalLayout_6->setObjectName("verticalLayout_6");
-        verticalLayout_6->setContentsMargins(0, 0, 0, 0);
-        pushButton_session1 = new QPushButton(layoutWidget);
+        label_4->setAlignment(Qt::AlignCenter);
+
+        gridLayout_11->addWidget(label_4, 1, 1, 1, 1);
+
+        pushButton_back_from_session_to_main = new QPushButton(sessions);
+        pushButton_back_from_session_to_main->setObjectName("pushButton_back_from_session_to_main");
+        sizePolicy5.setHeightForWidth(pushButton_back_from_session_to_main->sizePolicy().hasHeightForWidth());
+        pushButton_back_from_session_to_main->setSizePolicy(sizePolicy5);
+        pushButton_back_from_session_to_main->setStyleSheet(QString::fromUtf8("font: 11pt \"Simple Indust Outline\";\n"
+""));
+
+        gridLayout_11->addWidget(pushButton_back_from_session_to_main, 5, 0, 1, 1);
+
+        scrollArea = new QScrollArea(sessions);
+        scrollArea->setObjectName("scrollArea");
+        sizePolicy2.setHeightForWidth(scrollArea->sizePolicy().hasHeightForWidth());
+        scrollArea->setSizePolicy(sizePolicy2);
+        scrollArea->setMinimumSize(QSize(400, 400));
+        scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+        scrollArea->setSizeAdjustPolicy(QAbstractScrollArea::AdjustIgnored);
+        scrollArea->setWidgetResizable(true);
+        scrollAreaWidgetContents_4 = new QWidget();
+        scrollAreaWidgetContents_4->setObjectName("scrollAreaWidgetContents_4");
+        scrollAreaWidgetContents_4->setGeometry(QRect(0, 0, 384, 564));
+        verticalLayout_2 = new QVBoxLayout(scrollAreaWidgetContents_4);
+        verticalLayout_2->setObjectName("verticalLayout_2");
+        pushButton_session1 = new QPushButton(scrollAreaWidgetContents_4);
         pushButton_session1->setObjectName("pushButton_session1");
-        QSizePolicy sizePolicy7(QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Preferred);
-        sizePolicy7.setHorizontalStretch(0);
-        sizePolicy7.setVerticalStretch(0);
-        sizePolicy7.setHeightForWidth(pushButton_session1->sizePolicy().hasHeightForWidth());
-        pushButton_session1->setSizePolicy(sizePolicy7);
+        sizePolicy3.setHeightForWidth(pushButton_session1->sizePolicy().hasHeightForWidth());
+        pushButton_session1->setSizePolicy(sizePolicy3);
+        pushButton_session1->setMinimumSize(QSize(0, 40));
         pushButton_session1->setStyleSheet(QString::fromUtf8("font: 700 14pt \"Segoe UI\";"));
 
-        verticalLayout_6->addWidget(pushButton_session1);
+        verticalLayout_2->addWidget(pushButton_session1);
 
-        pushButton_5 = new QPushButton(layoutWidget);
-        pushButton_5->setObjectName("pushButton_5");
-        sizePolicy7.setHeightForWidth(pushButton_5->sizePolicy().hasHeightForWidth());
-        pushButton_5->setSizePolicy(sizePolicy7);
-        pushButton_5->setStyleSheet(QString::fromUtf8("font: 700 14pt \"Segoe UI\";"));
-
-        verticalLayout_6->addWidget(pushButton_5);
-
-        pushButton_4 = new QPushButton(layoutWidget);
+        pushButton_4 = new QPushButton(scrollAreaWidgetContents_4);
         pushButton_4->setObjectName("pushButton_4");
-        sizePolicy7.setHeightForWidth(pushButton_4->sizePolicy().hasHeightForWidth());
-        pushButton_4->setSizePolicy(sizePolicy7);
+        sizePolicy3.setHeightForWidth(pushButton_4->sizePolicy().hasHeightForWidth());
+        pushButton_4->setSizePolicy(sizePolicy3);
+        pushButton_4->setMinimumSize(QSize(0, 40));
         pushButton_4->setStyleSheet(QString::fromUtf8("font: 700 14pt \"Segoe UI\";"));
 
-        verticalLayout_6->addWidget(pushButton_4);
+        verticalLayout_2->addWidget(pushButton_4);
+
+        pushButton_3 = new QPushButton(scrollAreaWidgetContents_4);
+        pushButton_3->setObjectName("pushButton_3");
+        pushButton_3->setMinimumSize(QSize(0, 40));
+
+        verticalLayout_2->addWidget(pushButton_3);
+
+        pushButton = new QPushButton(scrollAreaWidgetContents_4);
+        pushButton->setObjectName("pushButton");
+        pushButton->setMinimumSize(QSize(0, 40));
+
+        verticalLayout_2->addWidget(pushButton);
+
+        pushButton_6 = new QPushButton(scrollAreaWidgetContents_4);
+        pushButton_6->setObjectName("pushButton_6");
+        pushButton_6->setMinimumSize(QSize(0, 40));
+
+        verticalLayout_2->addWidget(pushButton_6);
+
+        pushButton_11 = new QPushButton(scrollAreaWidgetContents_4);
+        pushButton_11->setObjectName("pushButton_11");
+        pushButton_11->setMinimumSize(QSize(0, 40));
+
+        verticalLayout_2->addWidget(pushButton_11);
+
+        pushButton_10 = new QPushButton(scrollAreaWidgetContents_4);
+        pushButton_10->setObjectName("pushButton_10");
+        pushButton_10->setMinimumSize(QSize(0, 40));
+
+        verticalLayout_2->addWidget(pushButton_10);
+
+        pushButton_9 = new QPushButton(scrollAreaWidgetContents_4);
+        pushButton_9->setObjectName("pushButton_9");
+        pushButton_9->setMinimumSize(QSize(0, 40));
+
+        verticalLayout_2->addWidget(pushButton_9);
+
+        pushButton_7 = new QPushButton(scrollAreaWidgetContents_4);
+        pushButton_7->setObjectName("pushButton_7");
+        pushButton_7->setMinimumSize(QSize(0, 40));
+
+        verticalLayout_2->addWidget(pushButton_7);
+
+        pushButton_8 = new QPushButton(scrollAreaWidgetContents_4);
+        pushButton_8->setObjectName("pushButton_8");
+        pushButton_8->setMinimumSize(QSize(0, 40));
+
+        verticalLayout_2->addWidget(pushButton_8);
+
+        pushButton_2 = new QPushButton(scrollAreaWidgetContents_4);
+        pushButton_2->setObjectName("pushButton_2");
+        pushButton_2->setMinimumSize(QSize(0, 40));
+
+        verticalLayout_2->addWidget(pushButton_2);
+
+        pushButton_5 = new QPushButton(scrollAreaWidgetContents_4);
+        pushButton_5->setObjectName("pushButton_5");
+        sizePolicy3.setHeightForWidth(pushButton_5->sizePolicy().hasHeightForWidth());
+        pushButton_5->setSizePolicy(sizePolicy3);
+        pushButton_5->setMinimumSize(QSize(0, 40));
+        pushButton_5->setStyleSheet(QString::fromUtf8("font: 700 14pt \"Segoe UI\";"));
+
+        verticalLayout_2->addWidget(pushButton_5);
+
+        scrollArea->setWidget(scrollAreaWidgetContents_4);
+
+        gridLayout_11->addWidget(scrollArea, 3, 1, 1, 1);
+
+
+        horizontalLayout_10->addLayout(gridLayout_11);
 
         stackedWidget->addWidget(sessions);
         games = new QWidget();
@@ -1082,30 +1432,30 @@ public:
         groupBox->setObjectName("groupBox");
         groupBox->setGeometry(QRect(10, 20, 161, 291));
         groupBox->setStyleSheet(QString::fromUtf8("font: 700 12pt \"Segoe UI\";"));
-        layoutWidget1 = new QWidget(groupBox);
-        layoutWidget1->setObjectName("layoutWidget1");
-        layoutWidget1->setGeometry(QRect(10, 30, 141, 141));
-        verticalLayout_7 = new QVBoxLayout(layoutWidget1);
+        layoutWidget = new QWidget(groupBox);
+        layoutWidget->setObjectName("layoutWidget");
+        layoutWidget->setGeometry(QRect(10, 30, 141, 141));
+        verticalLayout_7 = new QVBoxLayout(layoutWidget);
         verticalLayout_7->setObjectName("verticalLayout_7");
         verticalLayout_7->setContentsMargins(0, 0, 0, 0);
-        pushButton_game1 = new QPushButton(layoutWidget1);
+        pushButton_game1 = new QPushButton(layoutWidget);
         pushButton_game1->setObjectName("pushButton_game1");
-        sizePolicy6.setHeightForWidth(pushButton_game1->sizePolicy().hasHeightForWidth());
-        pushButton_game1->setSizePolicy(sizePolicy6);
+        sizePolicy8.setHeightForWidth(pushButton_game1->sizePolicy().hasHeightForWidth());
+        pushButton_game1->setSizePolicy(sizePolicy8);
 
         verticalLayout_7->addWidget(pushButton_game1);
 
-        pushButton_game2 = new QPushButton(layoutWidget1);
+        pushButton_game2 = new QPushButton(layoutWidget);
         pushButton_game2->setObjectName("pushButton_game2");
-        sizePolicy6.setHeightForWidth(pushButton_game2->sizePolicy().hasHeightForWidth());
-        pushButton_game2->setSizePolicy(sizePolicy6);
+        sizePolicy8.setHeightForWidth(pushButton_game2->sizePolicy().hasHeightForWidth());
+        pushButton_game2->setSizePolicy(sizePolicy8);
 
         verticalLayout_7->addWidget(pushButton_game2);
 
-        pushButton_game3 = new QPushButton(layoutWidget1);
+        pushButton_game3 = new QPushButton(layoutWidget);
         pushButton_game3->setObjectName("pushButton_game3");
-        sizePolicy6.setHeightForWidth(pushButton_game3->sizePolicy().hasHeightForWidth());
-        pushButton_game3->setSizePolicy(sizePolicy6);
+        sizePolicy8.setHeightForWidth(pushButton_game3->sizePolicy().hasHeightForWidth());
+        pushButton_game3->setSizePolicy(sizePolicy8);
 
         verticalLayout_7->addWidget(pushButton_game3);
 
@@ -1118,88 +1468,88 @@ public:
         label_27->setObjectName("label_27");
         label_27->setGeometry(QRect(310, 30, 71, 21));
         label_27->setStyleSheet(QString::fromUtf8("font: 700 14pt \"Segoe UI\";"));
-        layoutWidget2 = new QWidget(games);
-        layoutWidget2->setObjectName("layoutWidget2");
-        layoutWidget2->setGeometry(QRect(300, 350, 311, 31));
-        horizontalLayout_15 = new QHBoxLayout(layoutWidget2);
+        layoutWidget1 = new QWidget(games);
+        layoutWidget1->setObjectName("layoutWidget1");
+        layoutWidget1->setGeometry(QRect(300, 350, 311, 31));
+        horizontalLayout_15 = new QHBoxLayout(layoutWidget1);
         horizontalLayout_15->setObjectName("horizontalLayout_15");
         horizontalLayout_15->setContentsMargins(0, 0, 0, 0);
-        pushButton_30 = new QPushButton(layoutWidget2);
+        pushButton_30 = new QPushButton(layoutWidget1);
         pushButton_30->setObjectName("pushButton_30");
-        sizePolicy6.setHeightForWidth(pushButton_30->sizePolicy().hasHeightForWidth());
-        pushButton_30->setSizePolicy(sizePolicy6);
+        sizePolicy8.setHeightForWidth(pushButton_30->sizePolicy().hasHeightForWidth());
+        pushButton_30->setSizePolicy(sizePolicy8);
 
         horizontalLayout_15->addWidget(pushButton_30);
 
-        pushButton_replay = new QPushButton(layoutWidget2);
+        pushButton_replay = new QPushButton(layoutWidget1);
         pushButton_replay->setObjectName("pushButton_replay");
-        sizePolicy6.setHeightForWidth(pushButton_replay->sizePolicy().hasHeightForWidth());
-        pushButton_replay->setSizePolicy(sizePolicy6);
+        sizePolicy8.setHeightForWidth(pushButton_replay->sizePolicy().hasHeightForWidth());
+        pushButton_replay->setSizePolicy(sizePolicy8);
 
         horizontalLayout_15->addWidget(pushButton_replay);
 
-        pushButton_31 = new QPushButton(layoutWidget2);
+        pushButton_31 = new QPushButton(layoutWidget1);
         pushButton_31->setObjectName("pushButton_31");
-        sizePolicy6.setHeightForWidth(pushButton_31->sizePolicy().hasHeightForWidth());
-        pushButton_31->setSizePolicy(sizePolicy6);
+        sizePolicy8.setHeightForWidth(pushButton_31->sizePolicy().hasHeightForWidth());
+        pushButton_31->setSizePolicy(sizePolicy8);
 
         horizontalLayout_15->addWidget(pushButton_31);
 
-        layoutWidget3 = new QWidget(games);
-        layoutWidget3->setObjectName("layoutWidget3");
-        layoutWidget3->setGeometry(QRect(310, 60, 281, 231));
-        gridLayout = new QGridLayout(layoutWidget3);
+        layoutWidget2 = new QWidget(games);
+        layoutWidget2->setObjectName("layoutWidget2");
+        layoutWidget2->setGeometry(QRect(310, 60, 281, 231));
+        gridLayout = new QGridLayout(layoutWidget2);
         gridLayout->setObjectName("gridLayout");
         gridLayout->setContentsMargins(0, 0, 0, 0);
-        label_31 = new QLabel(layoutWidget3);
+        label_31 = new QLabel(layoutWidget2);
         label_31->setObjectName("label_31");
         label_31->setStyleSheet(QString::fromUtf8("\n"
 "font: 28pt \"Segoe UI\";"));
 
         gridLayout->addWidget(label_31, 1, 1, 1, 1);
 
-        label_29 = new QLabel(layoutWidget3);
+        label_29 = new QLabel(layoutWidget2);
         label_29->setObjectName("label_29");
 
         gridLayout->addWidget(label_29, 2, 0, 1, 1);
 
-        label_33 = new QLabel(layoutWidget3);
+        label_33 = new QLabel(layoutWidget2);
         label_33->setObjectName("label_33");
         label_33->setStyleSheet(QString::fromUtf8("font: 28pt \"Segoe UI\";"));
 
         gridLayout->addWidget(label_33, 2, 1, 1, 1);
 
-        label_32 = new QLabel(layoutWidget3);
+        label_32 = new QLabel(layoutWidget2);
         label_32->setObjectName("label_32");
         label_32->setStyleSheet(QString::fromUtf8("font: 28pt \"Segoe UI\";"));
 
         gridLayout->addWidget(label_32, 0, 1, 1, 1);
 
-        label_6 = new QLabel(layoutWidget3);
+        label_6 = new QLabel(layoutWidget2);
         label_6->setObjectName("label_6");
         label_6->setStyleSheet(QString::fromUtf8("\n"
 "font: 28pt \"Segoe UI\";"));
 
         gridLayout->addWidget(label_6, 0, 0, 1, 1);
 
-        label_34 = new QLabel(layoutWidget3);
+        label_34 = new QLabel(layoutWidget2);
         label_34->setObjectName("label_34");
         label_34->setStyleSheet(QString::fromUtf8("\n"
 "font: 28pt \"Segoe UI\";"));
 
         gridLayout->addWidget(label_34, 1, 0, 1, 1);
 
-        label_35 = new QLabel(layoutWidget3);
+        label_35 = new QLabel(layoutWidget2);
         label_35->setObjectName("label_35");
 
         gridLayout->addWidget(label_35, 1, 2, 1, 1);
 
-        label_28 = new QLabel(layoutWidget3);
+        label_28 = new QLabel(layoutWidget2);
         label_28->setObjectName("label_28");
 
         gridLayout->addWidget(label_28, 0, 2, 1, 1);
 
-        label_30 = new QLabel(layoutWidget3);
+        label_30 = new QLabel(layoutWidget2);
         label_30->setObjectName("label_30");
         label_30->setStyleSheet(QString::fromUtf8("font: 28pt \"Segoe UI\";"));
 
@@ -1215,7 +1565,7 @@ public:
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 1079, 21));
+        menubar->setGeometry(QRect(0, 0, 1018, 21));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName("statusbar");
@@ -1224,7 +1574,7 @@ public:
         retranslateUi(MainWindow);
         QObject::connect(pushButton_close_main, &QPushButton::clicked, pushButton_close_main, qOverload<>(&QPushButton::hide));
 
-        stackedWidget->setCurrentIndex(3);
+        stackedWidget->setCurrentIndex(8);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -1298,32 +1648,46 @@ public:
         label_25->setText(QString());
         label_15->setText(QCoreApplication::translate("MainWindow", "Name :", nullptr));
         pushButton_confirm_player2->setText(QCoreApplication::translate("MainWindow", "confirm", nullptr));
+        lineEdit_player2->setPlaceholderText(QCoreApplication::translate("MainWindow", "Guest2", nullptr));
         pushButton_back_from_player2_to_main->setText(QCoreApplication::translate("MainWindow", "Back", nullptr));
         label_16->setText(QCoreApplication::translate("MainWindow", "Choose Name for Opponent", nullptr));
-        pushButton->setText(QString());
-        pushButton_7->setText(QString());
-        pushButton_10->setText(QString());
-        pushButton_11->setText(QString());
-        pushButton_12->setText(QString());
-        pushButton_13->setText(QString());
-        pushButton_14->setText(QString());
+        pushButton_12->setText(QCoreApplication::translate("MainWindow", "Easy", nullptr));
+        pushButton_15->setText(QCoreApplication::translate("MainWindow", "Medium", nullptr));
+        pushButton_13->setText(QCoreApplication::translate("MainWindow", "Hard", nullptr));
+        label_13->setText(QCoreApplication::translate("MainWindow", "Choose AI difficulty", nullptr));
+        pushButton_14->setText(QCoreApplication::translate("MainWindow", "Back", nullptr));
+        pushButton_back_from_board_to_main->setText(QCoreApplication::translate("MainWindow", "Exit game", nullptr));
         pushButton_16->setText(QCoreApplication::translate("MainWindow", "Restart", nullptr));
-        pushButton_17->setText(QCoreApplication::translate("MainWindow", "Save", nullptr));
-        label_12->setText(QCoreApplication::translate("MainWindow", "Wins", nullptr));
-        label_13->setText(QCoreApplication::translate("MainWindow", "Losses", nullptr));
-        label_14->setText(QCoreApplication::translate("MainWindow", "Tie", nullptr));
-        pushButton_back_from_board_to_main->setText(QCoreApplication::translate("MainWindow", "Back", nullptr));
-        label_53->setText(QCoreApplication::translate("MainWindow", "00", nullptr));
-        label_54->setText(QCoreApplication::translate("MainWindow", "00", nullptr));
-        label_55->setText(QCoreApplication::translate("MainWindow", "00", nullptr));
-        pushButton_8->setText(QString());
-        pushButton_9->setText(QString());
-        label->setText(QCoreApplication::translate("MainWindow", "Player Vs Player", nullptr));
-        pushButton_back_from_session_to_main->setText(QCoreApplication::translate("MainWindow", "Back", nullptr));
+        label_55->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
+        label_53->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
+        label_54->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
+        b3->setText(QString());
+        b1->setText(QString());
+        b6->setText(QString());
+        b2->setText(QString());
+        b7->setText(QString());
+        b4->setText(QString());
+        b0->setText(QString());
+        b8->setText(QString());
+        b5->setText(QString());
+        label_12->setText(QCoreApplication::translate("MainWindow", "Score", nullptr));
+        label_40->setText(QCoreApplication::translate("MainWindow", "Guest", nullptr));
+        label_14->setText(QCoreApplication::translate("MainWindow", "vs", nullptr));
+        label->setText(QCoreApplication::translate("MainWindow", "Guest2", nullptr));
         label_4->setText(QCoreApplication::translate("MainWindow", "Sessions", nullptr));
+        pushButton_back_from_session_to_main->setText(QCoreApplication::translate("MainWindow", "Back", nullptr));
         pushButton_session1->setText(QCoreApplication::translate("MainWindow", "Session 1", nullptr));
-        pushButton_5->setText(QCoreApplication::translate("MainWindow", "Session 2", nullptr));
         pushButton_4->setText(QCoreApplication::translate("MainWindow", "Session 3", nullptr));
+        pushButton_3->setText(QCoreApplication::translate("MainWindow", "PushButton", nullptr));
+        pushButton->setText(QCoreApplication::translate("MainWindow", "PushButton", nullptr));
+        pushButton_6->setText(QCoreApplication::translate("MainWindow", "PushButton", nullptr));
+        pushButton_11->setText(QCoreApplication::translate("MainWindow", "PushButton", nullptr));
+        pushButton_10->setText(QCoreApplication::translate("MainWindow", "PushButton", nullptr));
+        pushButton_9->setText(QCoreApplication::translate("MainWindow", "PushButton", nullptr));
+        pushButton_7->setText(QCoreApplication::translate("MainWindow", "PushButton", nullptr));
+        pushButton_8->setText(QCoreApplication::translate("MainWindow", "PushButton", nullptr));
+        pushButton_2->setText(QCoreApplication::translate("MainWindow", "PushButton", nullptr));
+        pushButton_5->setText(QCoreApplication::translate("MainWindow", "Session 2", nullptr));
         groupBox->setTitle(QCoreApplication::translate("MainWindow", "Games", nullptr));
         pushButton_game1->setText(QCoreApplication::translate("MainWindow", "Game 1", nullptr));
         pushButton_game2->setText(QCoreApplication::translate("MainWindow", "Game 2", nullptr));

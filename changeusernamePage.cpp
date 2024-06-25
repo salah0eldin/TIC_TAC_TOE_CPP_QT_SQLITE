@@ -10,6 +10,10 @@ void MainWindow::on_checkBox_changeuser_stateChanged()
     }
 }
 
+void MainWindow::on_checkBox_changeuser_stateChanged(int state) {
+    // Implementation code here
+}
+
 void MainWindow::on_pushButton_not_change_username_clicked()
 {
     ui->stackedWidget->setCurrentIndex(PROFILE_WINDOW);
@@ -31,7 +35,7 @@ void MainWindow::on_pushButton_change_username_clicked() {
     password = hashing(password);
 
     // Attempt to change username with provided credentials
-    int handl = db.changeUsername(player->getId(), newUsername, password);
+    int handl = db.changeUsername(player.getId(), newUsername, password);
 
     // Handle different change username scenarios
     switch(handl){
@@ -64,7 +68,7 @@ void MainWindow::on_pushButton_change_username_clicked() {
         ui->label_19->setText(newUsername);
 
         // Update player's username
-        player->setUsername(newUsername);
+        player.setUsername(newUsername);
 
         // Update username in local storage
         QSettings settings("MyApp", "MyApp");

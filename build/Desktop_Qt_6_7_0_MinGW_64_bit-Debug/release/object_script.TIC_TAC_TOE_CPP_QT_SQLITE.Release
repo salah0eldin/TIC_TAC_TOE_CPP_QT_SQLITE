@@ -1,3 +1,5 @@
+release/aiPage.o
+release/boardPage.o
 release/changepasswordPage.o
 release/changeusernamePage.o
 release/databasemanager.o

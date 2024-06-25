@@ -7,31 +7,34 @@ class Game{
 
 private:
     int id;
-
-    QChar board[3][3];
+    int sessionId;
+    int specifiedId;
     QChar playerChar;
     QChar oppoChar;
-    QChar state;
-
+    QChar state = 'n';
     bool playerIsFirst;
-    bool playerturn;
-
     QString moves;
 
 public:
-    Game();
+    QChar board[3][3];
+    Game():playerChar('X'),oppoChar('O'){resetGame();specifiedId=0;playerIsFirst=true;playerturn=true;};
     void makeMove(int row, int col);
     QChar getState();
     QChar checkWinDraw();
     void resetGame();
     void loadGame(const int id, const std::string& gameMoves);
+    void setSessionId(const int&id);
     void setId(int gameId);
-    void setPlayerCharacter(QChar character);
     void setPlayerIsFirst(bool Turn);
     void setMoves(const QString &gameMoves);
     void setState(QChar gameState);
-
+    void setSpecifiedId(const int &id);
+    int getSpeceifiedId() const;
+    int getSessionId() const;
+    QString getPlayerIsFirst() const;
     QString getMoves();
+    bool playerturn = true;
+
 };
 
 #endif // GAME_H
