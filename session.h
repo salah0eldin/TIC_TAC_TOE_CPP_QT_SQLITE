@@ -8,9 +8,9 @@
 #include "game.h"
 
 #define HUMAN   0
-#define AI_E    1
-#define AI_M    2
-#define AI_H    3
+#define AI_EASY    1
+#define AI_MED    2
+#define AI_HARD    3
 
 struct SessionScore {
     int wins = 0;
@@ -25,7 +25,7 @@ private:
     int specificId;
     int gamesCount;
     int userId;
-    int type;
+
     QString opponentName;
 
     SessionScore score;
@@ -45,17 +45,20 @@ public:
     void setTimestamp(const QDateTime &time);
     void setGames(const QVector<Game> &games);
     void setGamesCount(const int &count);
-    void setType(const int& type);
+    void setType(int type);
     int getType() const;
     int getSpecificId() const;
     int getGamesCout() const;
     int getId() const;
     int getUserId() const;
     QVector<Game> getGames() const;
+    QVector<Game> *getGamesPointer();
+
     QString getOpponentName() const;
     SessionScore getScore() const;
     QDateTime getTimestamp() const;
     void addGame(Game game);
+    int type;
 };
 
 #endif // SESSION_H

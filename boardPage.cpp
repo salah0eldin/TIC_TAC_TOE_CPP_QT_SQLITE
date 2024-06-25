@@ -30,10 +30,15 @@ void MainWindow::on_pushButton_back_from_board_to_main_clicked()
                 button[i]->setText("");
             }
             CurrentGame.resetGame();
+            qDebug()<<"save"<<CurrentSession.type;
             db.saveSession(CurrentSession);
-            qDebug()<<"save"<<CurrentSession.getId();
             CurrentSession.setTimestamp(QDateTime::currentDateTime());
             player.addSession(CurrentSession);
+            for(auto s:player.getSessions()){
+                for(auto g:s.getGames()){
+                    qDebug()<<"psg"<<g.getId();
+                }
+            }
             populateSession(CurrentSession);
             ui->stackedWidget->setCurrentIndex(MAIN_WINDOW);
         } else if (msgBox.clickedButton() == discardButton) {
@@ -68,8 +73,8 @@ void MainWindow::on_pushButton_confirm_player2_clicked()
     s.setOpponentName(oppoName);
     s.setSpecificId(player.getSessionsCount());
     s.setUserId(player.getId());
-    s.setType(HUMAN);
-
+    s.type = HUMAN;
+    Ai = false;
     CurrentSession = s;
 
     Game g;
@@ -86,6 +91,7 @@ void MainWindow::on_pushButton_confirm_player2_clicked()
 }
 
 void MainWindow::boardPlaceMarker(int index1,int index2){
+    qDebug()<<CurrentSession.type;
     int index = index1 * 3 + index2;
     if(CurrentGame.getState() == 'n' && button[index]->text() == ""){
         QString symbol = (CurrentGame.playerturn?"X":"O");

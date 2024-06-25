@@ -238,7 +238,7 @@ int DatabaseManager::changeImage(const int &id, const QByteArray &imageData) {
 bool DatabaseManager::saveSession(Session &session) {
 
     QSqlQuery insertQuery;
-    qDebug()<<session.getId();
+    qDebug()<<session.type;
     if (session.getId() == -1) {
         // Prepare SQL query to insert new session
         insertQuery.prepare("INSERT INTO sessions (specificId, userid, type, against, "
@@ -246,7 +246,7 @@ bool DatabaseManager::saveSession(Session &session) {
                             "VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
         insertQuery.addBindValue(session.getSpecificId());
         insertQuery.addBindValue(session.getUserId());
-        insertQuery.addBindValue(session.getType());
+        insertQuery.addBindValue(session.type);
         insertQuery.addBindValue(session.getOpponentName());
         insertQuery.addBindValue(session.getScore().wins);
         insertQuery.addBindValue(session.getScore().losses);
@@ -271,17 +271,19 @@ bool DatabaseManager::saveSession(Session &session) {
     }
     // If a new session was inserted, update the session ID
 
-    int sessionId = insertQuery.lastInsertId().toLongLong();
-
-    if (session.getId() == -1) {
+    int sessionId = session.getId();
+    if (sessionId == -1) {
+        sessionId = insertQuery.lastInsertId().toLongLong();
         session.setId(sessionId);
     }
+    QVector<Game> *games = session.getGamesPointer();
 
-    for (Game game : session.getGames()) {
+    for (Game &game : *games) {
         qDebug()<<"game"<<game.getId();
         if (game.getId() == -1) {
             game.setSessionId(sessionId);
             saveGame(game);
+            qDebug()<<game.getId();
         }
     }
 
@@ -369,7 +371,7 @@ QVector<Session> DatabaseManager::loadHistory(const int &id) {
         Session session;
         session.setId(selectQuery.value("id").toInt());
         session.setSpecificId(selectQuery.value("specificId").toInt());
-        session.setType(selectQuery.value("type").toInt());
+        session.type = selectQuery.value("type").toInt();
         session.setUserId(selectQuery.value("userid").toInt());
         session.setOpponentName(selectQuery.value("against").toString());
         session.setScore(selectQuery.value("wins").toInt(),

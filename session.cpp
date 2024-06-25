@@ -39,14 +39,6 @@ void Session::setGamesCount(const int &count){
     gamesCount = count;
 }
 
-void Session::setType(const int& type){
-    this->type = type;
-}
-
-int Session::getType() const{
-    return type;
-}
-
 int Session::getSpecificId() const{
     return specificId;
 }
@@ -64,6 +56,10 @@ int Session::getUserId() const {
 
 QVector<Game> Session::getGames() const {
     return games;
+}
+
+QVector<Game> * Session::getGamesPointer(){
+    return &games;
 }
 
 QString Session::getOpponentName() const {

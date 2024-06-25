@@ -10,39 +10,27 @@ void MainWindow::on_pushButton_14_clicked()
 void MainWindow::on_pushButton_12_clicked()
 {
     //easy
-    diff = 1;
+    diff = EASY;
     ai_to_board("AI_Easy");
 }
 
 void MainWindow::on_pushButton_15_clicked()
 {
     //medium
-    diff = 3;
+    diff = MED;
     ai_to_board("AI_Med");
 }
 
 void MainWindow::on_pushButton_13_clicked()
 {
     //hard
-    diff = 10;
+    diff = HARD;
     ai_to_board("AI_Hard");
 }
 
 void MainWindow::ai_to_board(QString opponame){
 
     Session s;
-
-    switch(diff){
-    case EASY:
-        s.setType(AI_E);
-        break;
-    case MED:
-        s.setType(AI_M);
-        break;
-        s.setType(AI_H);
-    case HARD:
-        break;
-    }
 
     ui->label->setText(opponame);
 
@@ -51,6 +39,18 @@ void MainWindow::ai_to_board(QString opponame){
     s.setUserId(player.getId());
 
     CurrentSession = s;
+
+    switch(diff){
+    case EASY:
+        CurrentSession.type = AI_EASY;
+        break;
+    case MED:
+        CurrentSession.type = AI_MED;
+        break;
+    case HARD:
+        CurrentSession.type = AI_HARD;
+        break;
+    }
 
     Game g;
     g.setSpecifiedId(0);

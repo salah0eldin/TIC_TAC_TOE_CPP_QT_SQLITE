@@ -56,20 +56,20 @@ void MainWindow::on_pushButton_replay_clicked()
     ui->label_53->setText(QString::number(score.ties));
     ui->label_54->setText(QString::number(score.losses));
 
-    switch(CurrentSession.getType()){
+    switch(CurrentSession.type){
     case HUMAN:
         Ai = false;
         break;
     default:
         Ai = true;
-        switch(CurrentSession.getType()){
-        case AI_E:
+        switch(CurrentSession.type){
+        case AI_EASY:
             diff = EASY;
             break;
-        case AI_M:
+        case AI_MED:
             diff = MED;
             break;
-        case AI_H:
+        case AI_HARD:
             diff = HARD;
             break;
         }
