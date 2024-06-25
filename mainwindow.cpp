@@ -8,6 +8,10 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->setupUi(this);
 
+    // Set fixed size for the main window
+    setFixedSize(900, 700);  // Adjust these values to your desired dimensions
+
+    // get the board buttons in game board
     button[0] = ui->b0;
     button[1] = ui->b2;
     button[2] = ui->b7;
@@ -17,6 +21,17 @@ MainWindow::MainWindow(QWidget *parent)
     button[6] = ui->b4;
     button[7] = ui->b8;
     button[8] = ui->b3;
+
+    // get the board labels in history board
+    labelBoard[0] = ui->label_6;
+    labelBoard[1] = ui->label_32;
+    labelBoard[2] = ui->label_28;
+    labelBoard[3] = ui->label_34;
+    labelBoard[4] = ui->label_31;
+    labelBoard[5] = ui->label_35;
+    labelBoard[6] = ui->label_29;
+    labelBoard[7] = ui->label_33;
+    labelBoard[8] = ui->label_30;
 
     ui->label_6->setAlignment(Qt::AlignCenter);
     ui->label_31->setAlignment(Qt::AlignCenter);
@@ -53,6 +68,19 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->lineEdit_pass->setClearButtonEnabled(true);
     ui->lineEdit_user->setClearButtonEnabled(true);
+
+
+    // Initialize signal mapper
+    signalMapper = new QSignalMapper(this);
+
+    // Connect the signal mapper to the slot using the new syntax
+    connect(signalMapper, &QSignalMapper::mappedInt, this, &MainWindow::loadSessionGames);
+
+    // Initialize signal mapper
+    signalMapper2 = new QSignalMapper(this);
+
+    // Connect the signal mapper to the slot using the new syntax
+    connect(signalMapper2, &QSignalMapper::mappedInt, this, &MainWindow::loadGame);
 
     // Load user session if exists
     loadUserSession();
@@ -143,27 +171,19 @@ void MainWindow::on_pushButton_play_withAI_clicked()
 
 void MainWindow::on_pushButton_from_main_to_profile_clicked()
 {
-    ui->stackedWidget->setCurrentIndex(PROFILE_WINDOW);
 }
 
 void MainWindow::on_pushButton_load_session_clicked()
 {
-    ui->stackedWidget->setCurrentIndex(SESSIONS_WINDOW);
-}
-
-void MainWindow::on_pushButton_back_from_session_to_main_clicked()
-{
-    ui->stackedWidget->setCurrentIndex(MAIN_WINDOW);
-}
-
-void MainWindow::on_pushButton_back_from_history_to_session_clicked()
-{
-    ui->stackedWidget->setCurrentIndex(SESSIONS_WINDOW);
+    if(loggedIN){
+        ui->stackedWidget->setCurrentIndex(SESSIONS_WINDOW);
+    } else {
+        QMessageBox::warning(this, "Not Logged In", "Log in first to save history and load.");
+    }
 }
 
 void MainWindow::on_pushButton_back_from_history_to_session_2_clicked()
 {
-    ui->stackedWidget->setCurrentIndex(SESSIONS_WINDOW);
 }
 
 void MainWindow::on_pushButton_session1_clicked()
@@ -171,16 +191,5 @@ void MainWindow::on_pushButton_session1_clicked()
     ui->stackedWidget->setCurrentIndex(GAMES_WINDOW);
 }
 
-void MainWindow::on_pushButton_replay_clicked()
-{
-    ui->label_6->clear();
-    ui->label_28->clear();
-    ui->label_29->clear();
-    ui->label_30->clear();
-    ui->label_31->clear();
-    ui->label_32->clear();
-    ui->label_33->clear();
-    ui->label_34->clear();
-    ui->label_35->clear();
-}
+
 

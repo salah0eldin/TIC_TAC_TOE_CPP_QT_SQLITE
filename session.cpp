@@ -38,6 +38,15 @@ void Session::setGames(const QVector<Game> &games) {
 void Session::setGamesCount(const int &count){
     gamesCount = count;
 }
+
+void Session::setType(const int& type){
+    this->type = type;
+}
+
+int Session::getType() const{
+    return type;
+}
+
 int Session::getSpecificId() const{
     return specificId;
 }
@@ -71,11 +80,13 @@ QDateTime Session::getTimestamp() const {
 
 void Session::addGame(Game game) {
     games.push_back(game);
+    qDebug()<<game.getPlayerIsFirst();
     gamesCount++;
     switch(game.getState().toLatin1()) {
     case 'w':
         score.wins++;
         break;
+    case 'n':
     case 't':
         score.ties++;
         break;

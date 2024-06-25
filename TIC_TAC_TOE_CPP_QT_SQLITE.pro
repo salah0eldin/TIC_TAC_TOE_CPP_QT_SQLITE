@@ -16,12 +16,14 @@ SOURCES += \
     changeusernamePage.cpp \
     databasemanager.cpp \
     game.cpp \
+    gamesPage.cpp \
     main.cpp \
     mainwindow.cpp \
     mainwindowFunctions.cpp \
     player.cpp \
     profilePage.cpp \
     session.cpp \
+    sessionsPage.cpp \
     signinPage.cpp \
     signupPage.cpp
 

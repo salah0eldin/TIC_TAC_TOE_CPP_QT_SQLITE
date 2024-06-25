@@ -32,6 +32,18 @@ void MainWindow::ai_to_board(QString opponame){
 
     Session s;
 
+    switch(diff){
+    case EASY:
+        s.setType(AI_E);
+        break;
+    case MED:
+        s.setType(AI_M);
+        break;
+        s.setType(AI_H);
+    case HARD:
+        break;
+    }
+
     ui->label->setText(opponame);
 
     s.setOpponentName(opponame);

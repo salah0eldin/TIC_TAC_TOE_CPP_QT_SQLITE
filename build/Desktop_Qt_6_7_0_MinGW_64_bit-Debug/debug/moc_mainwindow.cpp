@@ -97,7 +97,16 @@ constexpr auto qt_meta_stringdata_CLASSMainWindowENDCLASS = QtMocHelpers::string
     "ai_to_board",
     "opponame",
     "resetBoard_checkAi",
-    "on_pushButton_15_clicked"
+    "on_pushButton_15_clicked",
+    "loadSessionGames",
+    "sessionId",
+    "populateSession",
+    "Session",
+    "s",
+    "loadGame",
+    "gameId",
+    "on_pushButton_31_clicked",
+    "on_pushButton_30_clicked"
 );
 #else  // !QT_MOC_HAS_STRINGDATA
 #error "qtmochelpers.h not found or too old."
@@ -110,7 +119,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-      55,   14, // methods
+      60,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -118,61 +127,66 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,  344,    2, 0x08,    1 /* Private */,
-       3,    0,  345,    2, 0x08,    2 /* Private */,
-       4,    0,  346,    2, 0x08,    3 /* Private */,
-       5,    0,  347,    2, 0x08,    4 /* Private */,
-       6,    0,  348,    2, 0x08,    5 /* Private */,
-       7,    0,  349,    2, 0x08,    6 /* Private */,
-       8,    0,  350,    2, 0x08,    7 /* Private */,
-       9,    0,  351,    2, 0x08,    8 /* Private */,
-      10,    0,  352,    2, 0x08,    9 /* Private */,
-      11,    0,  353,    2, 0x08,   10 /* Private */,
-      12,    0,  354,    2, 0x08,   11 /* Private */,
-      13,    0,  355,    2, 0x08,   12 /* Private */,
-      14,    0,  356,    2, 0x08,   13 /* Private */,
-      15,    0,  357,    2, 0x08,   14 /* Private */,
-      16,    0,  358,    2, 0x08,   15 /* Private */,
-      17,    0,  359,    2, 0x08,   16 /* Private */,
-      18,    0,  360,    2, 0x08,   17 /* Private */,
-      19,    0,  361,    2, 0x08,   18 /* Private */,
-      20,    0,  362,    2, 0x08,   19 /* Private */,
-      21,    0,  363,    2, 0x08,   20 /* Private */,
-      22,    0,  364,    2, 0x08,   21 /* Private */,
-      23,    0,  365,    2, 0x08,   22 /* Private */,
-      24,    0,  366,    2, 0x08,   23 /* Private */,
-      25,    0,  367,    2, 0x08,   24 /* Private */,
-      26,    0,  368,    2, 0x08,   25 /* Private */,
-      27,    0,  369,    2, 0x08,   26 /* Private */,
-      28,    0,  370,    2, 0x08,   27 /* Private */,
-      29,    0,  371,    2, 0x08,   28 /* Private */,
-      30,    0,  372,    2, 0x08,   29 /* Private */,
-      31,    0,  373,    2, 0x08,   30 /* Private */,
-      32,    0,  374,    2, 0x08,   31 /* Private */,
-      33,    0,  375,    2, 0x08,   32 /* Private */,
-      34,    0,  376,    2, 0x08,   33 /* Private */,
-      35,    0,  377,    2, 0x08,   34 /* Private */,
-      36,    1,  378,    2, 0x08,   35 /* Private */,
-      39,    0,  381,    2, 0x08,   37 /* Private */,
-      40,    1,  382,    2, 0x08,   38 /* Private */,
-      27,    1,  385,    2, 0x08,   40 /* Private */,
-      43,    2,  388,    2, 0x08,   42 /* Private */,
-      46,    0,  393,    2, 0x08,   45 /* Private */,
-      47,    0,  394,    2, 0x08,   46 /* Private */,
-      48,    0,  395,    2, 0x08,   47 /* Private */,
-      49,    0,  396,    2, 0x08,   48 /* Private */,
-      50,    0,  397,    2, 0x08,   49 /* Private */,
-      51,    0,  398,    2, 0x08,   50 /* Private */,
-      52,    0,  399,    2, 0x08,   51 /* Private */,
-      53,    0,  400,    2, 0x08,   52 /* Private */,
-      54,    0,  401,    2, 0x08,   53 /* Private */,
-      55,    0,  402,    2, 0x08,   54 /* Private */,
-      56,    0,  403,    2, 0x08,   55 /* Private */,
-      57,    0,  404,    2, 0x08,   56 /* Private */,
-      58,    0,  405,    2, 0x08,   57 /* Private */,
-      59,    1,  406,    2, 0x08,   58 /* Private */,
-      61,    0,  409,    2, 0x08,   60 /* Private */,
-      62,    0,  410,    2, 0x08,   61 /* Private */,
+       1,    0,  374,    2, 0x08,    1 /* Private */,
+       3,    0,  375,    2, 0x08,    2 /* Private */,
+       4,    0,  376,    2, 0x08,    3 /* Private */,
+       5,    0,  377,    2, 0x08,    4 /* Private */,
+       6,    0,  378,    2, 0x08,    5 /* Private */,
+       7,    0,  379,    2, 0x08,    6 /* Private */,
+       8,    0,  380,    2, 0x08,    7 /* Private */,
+       9,    0,  381,    2, 0x08,    8 /* Private */,
+      10,    0,  382,    2, 0x08,    9 /* Private */,
+      11,    0,  383,    2, 0x08,   10 /* Private */,
+      12,    0,  384,    2, 0x08,   11 /* Private */,
+      13,    0,  385,    2, 0x08,   12 /* Private */,
+      14,    0,  386,    2, 0x08,   13 /* Private */,
+      15,    0,  387,    2, 0x08,   14 /* Private */,
+      16,    0,  388,    2, 0x08,   15 /* Private */,
+      17,    0,  389,    2, 0x08,   16 /* Private */,
+      18,    0,  390,    2, 0x08,   17 /* Private */,
+      19,    0,  391,    2, 0x08,   18 /* Private */,
+      20,    0,  392,    2, 0x08,   19 /* Private */,
+      21,    0,  393,    2, 0x08,   20 /* Private */,
+      22,    0,  394,    2, 0x08,   21 /* Private */,
+      23,    0,  395,    2, 0x08,   22 /* Private */,
+      24,    0,  396,    2, 0x08,   23 /* Private */,
+      25,    0,  397,    2, 0x08,   24 /* Private */,
+      26,    0,  398,    2, 0x08,   25 /* Private */,
+      27,    0,  399,    2, 0x08,   26 /* Private */,
+      28,    0,  400,    2, 0x08,   27 /* Private */,
+      29,    0,  401,    2, 0x08,   28 /* Private */,
+      30,    0,  402,    2, 0x08,   29 /* Private */,
+      31,    0,  403,    2, 0x08,   30 /* Private */,
+      32,    0,  404,    2, 0x08,   31 /* Private */,
+      33,    0,  405,    2, 0x08,   32 /* Private */,
+      34,    0,  406,    2, 0x08,   33 /* Private */,
+      35,    0,  407,    2, 0x08,   34 /* Private */,
+      36,    1,  408,    2, 0x08,   35 /* Private */,
+      39,    0,  411,    2, 0x08,   37 /* Private */,
+      40,    1,  412,    2, 0x08,   38 /* Private */,
+      27,    1,  415,    2, 0x08,   40 /* Private */,
+      43,    2,  418,    2, 0x08,   42 /* Private */,
+      46,    0,  423,    2, 0x08,   45 /* Private */,
+      47,    0,  424,    2, 0x08,   46 /* Private */,
+      48,    0,  425,    2, 0x08,   47 /* Private */,
+      49,    0,  426,    2, 0x08,   48 /* Private */,
+      50,    0,  427,    2, 0x08,   49 /* Private */,
+      51,    0,  428,    2, 0x08,   50 /* Private */,
+      52,    0,  429,    2, 0x08,   51 /* Private */,
+      53,    0,  430,    2, 0x08,   52 /* Private */,
+      54,    0,  431,    2, 0x08,   53 /* Private */,
+      55,    0,  432,    2, 0x08,   54 /* Private */,
+      56,    0,  433,    2, 0x08,   55 /* Private */,
+      57,    0,  434,    2, 0x08,   56 /* Private */,
+      58,    0,  435,    2, 0x08,   57 /* Private */,
+      59,    1,  436,    2, 0x08,   58 /* Private */,
+      61,    0,  439,    2, 0x08,   60 /* Private */,
+      62,    0,  440,    2, 0x08,   61 /* Private */,
+      63,    1,  441,    2, 0x08,   62 /* Private */,
+      65,    1,  444,    2, 0x08,   64 /* Private */,
+      68,    1,  447,    2, 0x08,   66 /* Private */,
+      70,    0,  450,    2, 0x08,   68 /* Private */,
+      71,    0,  451,    2, 0x08,   69 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -228,6 +242,11 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void, QMetaType::QString,   60,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::Int,   64,
+    QMetaType::Void, 0x80000000 | 66,   67,
+    QMetaType::Void, QMetaType::Int,   69,
     QMetaType::Void,
     QMetaType::Void,
 
@@ -358,6 +377,19 @@ Q_CONSTINIT const QMetaObject MainWindow::staticMetaObject = { {
         // method 'resetBoard_checkAi'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_pushButton_15_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'loadSessionGames'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<int, std::false_type>,
+        // method 'populateSession'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const Session &, std::false_type>,
+        // method 'loadGame'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<int, std::false_type>,
+        // method 'on_pushButton_31_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_pushButton_30_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
@@ -425,6 +457,11 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 52: _t->ai_to_board((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         case 53: _t->resetBoard_checkAi(); break;
         case 54: _t->on_pushButton_15_clicked(); break;
+        case 55: _t->loadSessionGames((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
+        case 56: _t->populateSession((*reinterpret_cast< std::add_pointer_t<Session>>(_a[1]))); break;
+        case 57: _t->loadGame((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
+        case 58: _t->on_pushButton_31_clicked(); break;
+        case 59: _t->on_pushButton_30_clicked(); break;
         default: ;
         }
     }
@@ -449,13 +486,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 55)
+        if (_id < 60)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 55;
+        _id -= 60;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 55)
+        if (_id < 60)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 55;
+        _id -= 60;
     }
     return _id;
 }

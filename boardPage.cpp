@@ -30,8 +30,11 @@ void MainWindow::on_pushButton_back_from_board_to_main_clicked()
                 button[i]->setText("");
             }
             CurrentGame.resetGame();
-            player.setSessoinsCount(player.getSessionsCount()+1);
             db.saveSession(CurrentSession);
+            qDebug()<<"save"<<CurrentSession.getId();
+            CurrentSession.setTimestamp(QDateTime::currentDateTime());
+            player.addSession(CurrentSession);
+            populateSession(CurrentSession);
             ui->stackedWidget->setCurrentIndex(MAIN_WINDOW);
         } else if (msgBox.clickedButton() == discardButton) {
             for(int i=0;i<9;i++){
@@ -65,6 +68,7 @@ void MainWindow::on_pushButton_confirm_player2_clicked()
     s.setOpponentName(oppoName);
     s.setSpecificId(player.getSessionsCount());
     s.setUserId(player.getId());
+    s.setType(HUMAN);
 
     CurrentSession = s;
 

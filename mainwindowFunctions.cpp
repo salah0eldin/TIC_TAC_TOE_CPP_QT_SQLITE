@@ -27,6 +27,20 @@ void MainWindow::loadUserSession() {
         player.setSessions(s);
         int ssize = s.size();
         player.setSessoinsCount(ssize);
+        // Clear existing buttons if any
+
+        QLayoutItem *item;
+        QWidget *container = ui->scrollAreaWidgetContents_4;
+
+        while ((item = container->layout()->takeAt(0)) != nullptr) {
+            delete item->widget(); // Delete the widget
+            delete item;           // Delete the layout item
+        }
+
+        for (Session s : player.getSessions()) {
+            populateSession(s);
+        }
+
         // Update login status
         loggedIN = true;
         ui->pushButton_login_from_main->setText("Log Out");

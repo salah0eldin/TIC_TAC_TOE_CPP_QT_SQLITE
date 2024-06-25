@@ -4,12 +4,14 @@ debug/changepasswordPage.o
 debug/changeusernamePage.o
 debug/databasemanager.o
 debug/game.o
+debug/gamesPage.o
 debug/main.o
 debug/mainwindow.o
 debug/mainwindowFunctions.o
 debug/player.o
 debug/profilePage.o
 debug/session.o
+debug/sessionsPage.o
 debug/signinPage.o
 debug/signupPage.o
 debug/moc_mainwindow.o

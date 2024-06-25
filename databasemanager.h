@@ -84,7 +84,7 @@ public:
      * @param ties The number of ties in the session.
      * @return True if insertion succeeds, false if there is an error in database operation.
      */
-    bool saveSession(const Session &session);
+    bool saveSession(Session &session);
 
     /**
      * @brief Saves a game record into the database.

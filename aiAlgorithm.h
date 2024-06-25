@@ -7,6 +7,10 @@
 #include <limits>
 #include <algorithm> // for std::max and std::min
 
+#define EASY    1
+#define MED     3
+#define HARD    10
+
 class TreeNode {
 public:
     QChar board[3][3];

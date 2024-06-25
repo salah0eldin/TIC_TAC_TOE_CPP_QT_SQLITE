@@ -60,6 +60,19 @@ void MainWindow::on_pushButton_login_to_main_clicked() {
         int ssize = s.size();
         player = *tempPlayer;
         player.setSessoinsCount(ssize);
+
+        QLayoutItem *item;
+        QWidget *container = ui->scrollAreaWidgetContents_4;
+
+        while ((item = container->layout()->takeAt(0)) != nullptr) {
+            delete item->widget(); // Delete the widget
+            delete item;           // Delete the layout item
+        }
+
+        for (Session s : player.getSessions()) {
+            populateSession(s);
+        }
+
         // Update UI with user information
         ui->label_guest->setText(username);
         ui->label_19->setText(username);

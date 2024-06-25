@@ -22,10 +22,10 @@
 #define LOGIN_WINDOW            4
 #define SIGNUP_WINDOW           5
 #define PLAYER2_WINDOW          6
+#define AI_WINDOW               7
 #define BOARD_WINDOW            8
 #define SESSIONS_WINDOW         9
 #define GAMES_WINDOW            10
-#define AI_WINDOW               7
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -48,6 +48,7 @@ public:
     bool Ai;
     bool loggedIN;
     QPushButton *button[9];
+    QLabel *labelBoard[9];
 
 protected:
     bool eventFilter(QObject *obj, QEvent *event) override;
@@ -165,7 +166,20 @@ private slots:
 
     void on_pushButton_15_clicked();
 
+    void loadSessionGames(int sessionId);
+
+    void populateSession(const Session &s);
+
+    void loadGame(int gameId);
+
+    void on_pushButton_31_clicked();
+
+    void on_pushButton_30_clicked();
+
 private:
+    QSignalMapper *signalMapper;
+    QSignalMapper *signalMapper2;
+
     Ui::MainWindow *ui;
 };
 #endif // MAINWINDOW_H

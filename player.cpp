@@ -21,6 +21,7 @@ int Player::getId() const {
 
 void Player::addSession(Session session){
     sessions.push_back(session);
+    sessionsCount++;
 }
 
 void Player::removeSessionAt(int index){

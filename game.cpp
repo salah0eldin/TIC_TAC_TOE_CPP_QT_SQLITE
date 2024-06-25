@@ -113,12 +113,21 @@ void Game::setSpecifiedId(const int &id){
     specifiedId = id;
 }
 
+void Game::setPlayerCharacter(const QChar&c){
+    playerChar = c;
+    oppoChar = (c=='X'?'O':'X');
+}
+
 int Game::getSpeceifiedId() const{
     return specifiedId;
 }
 
 int Game::getSessionId() const{
     return sessionId;
+}
+
+int Game::getId() const{
+    return id;
 }
 
 QString Game::getPlayerIsFirst() const{

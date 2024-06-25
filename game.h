@@ -17,7 +17,7 @@ private:
 
 public:
     QChar board[3][3];
-    Game():playerChar('X'),oppoChar('O'){resetGame();specifiedId=0;playerIsFirst=true;playerturn=true;};
+    Game():id(-1),playerChar('X'),oppoChar('O'){resetGame();specifiedId=0;playerIsFirst=true;playerturn=true;};
     void makeMove(int row, int col);
     QChar getState();
     QChar checkWinDraw();
@@ -29,8 +29,10 @@ public:
     void setMoves(const QString &gameMoves);
     void setState(QChar gameState);
     void setSpecifiedId(const int &id);
+    void setPlayerCharacter(const QChar&c);
     int getSpeceifiedId() const;
     int getSessionId() const;
+    int getId() const;
     QString getPlayerIsFirst() const;
     QString getMoves();
     bool playerturn = true;

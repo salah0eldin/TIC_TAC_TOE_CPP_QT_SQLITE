@@ -35,6 +35,7 @@ DatabaseManager::DatabaseManager() {
             id            INTEGER      PRIMARY KEY AUTOINCREMENT,
             specificId    INTEGER      NOT NULL,
             userid        INTEGER      NOT NULL,
+            type          INTEGER      NOT NULL,
             against       VARCHAR(255) NOT NULL,
             wins          INTEGER      NOT NULL,
             losses        INTEGER      NOT NULL,
@@ -59,7 +60,7 @@ DatabaseManager::DatabaseManager() {
             session_id      INTEGER      NOT NULL,
             specific_id     INTEGER      NOT NULL,
             playerCharacter CHAR(1)      NOT NULL,
-            playerIsFirst   BOOLEAN      NOT NULL,
+            playerIsFirst   CHAR(1)      NOT NULL,
             moves           VARCHAR(500) NULL,
             state           CHAR(1)      NOT NULL,
             FOREIGN KEY (session_id) REFERENCES sessions (id)
@@ -95,7 +96,8 @@ int DatabaseManager::signUp(const QString &username, const QString &password) {
     insertQuery.addBindValue(password);
 
     if (!insertQuery.exec()) {
-        qDebug() << "Error executing insertQuery:" << insertQuery.lastError().text();
+        qDebug() << "Error executing insertQuery:"
+                 << insertQuery.lastError().text();
         return DATABASE_ERROR;
     }
 
@@ -103,8 +105,8 @@ int DatabaseManager::signUp(const QString &username, const QString &password) {
     return SIGNED_UP;
 }
 
-
-int DatabaseManager::signIn(const QString &username, const QString &password,int &id,QImage &image) {
+int DatabaseManager::signIn(const QString &username, const QString &password,
+                            int &id, QImage &image) {
     // Prepare SQL query to retrieve user record based on username
     QSqlQuery selectQuery;
     selectQuery.prepare("SELECT * FROM users WHERE username = ?");
@@ -135,14 +137,15 @@ int DatabaseManager::signIn(const QString &username, const QString &password,int
 
         image.loadFromData(imageData);
 
-        return SIGNED_IN;        // Return success code
+        return SIGNED_IN; // Return success code
     } else {
         qDebug() << "Wrong password"; // Print incorrect password message
         return WRONG_PASSWORD;        // Return wrong password code
     }
 }
 
-int DatabaseManager::changeUsername(const int &id, const QString &newUsername, const QString &password) {
+int DatabaseManager::changeUsername(const int &id, const QString &newUsername,
+                                    const QString &password) {
     QSqlQuery selectQuery;
     selectQuery.prepare("SELECT * FROM users WHERE id = ?");
     selectQuery.addBindValue(id);
@@ -173,7 +176,8 @@ int DatabaseManager::changeUsername(const int &id, const QString &newUsername, c
     updateQuery.addBindValue(id);
 
     if (!updateQuery.exec()) {
-        qDebug() << "Error executing updateQuery:" << updateQuery.lastError().text();
+        qDebug() << "Error executing updateQuery:"
+                 << updateQuery.lastError().text();
         return DATABASE_ERROR;
     }
 
@@ -181,7 +185,8 @@ int DatabaseManager::changeUsername(const int &id, const QString &newUsername, c
     return DATABASE_SUCCESS;
 }
 
-int DatabaseManager::changePassword(const int &id, const QString &oldPassword, const QString &newPassword) {
+int DatabaseManager::changePassword(const int &id, const QString &oldPassword,
+                                    const QString &newPassword) {
     QSqlQuery selectQuery;
     selectQuery.prepare("SELECT * FROM users WHERE id = ?");
     selectQuery.addBindValue(id);
@@ -203,7 +208,8 @@ int DatabaseManager::changePassword(const int &id, const QString &oldPassword, c
     updateQuery.addBindValue(id);
 
     if (!updateQuery.exec()) {
-        qDebug() << "Error executing updateQuery:" << updateQuery.lastError().text();
+        qDebug() << "Error executing updateQuery:"
+                 << updateQuery.lastError().text();
         return DATABASE_ERROR;
     }
 
@@ -211,8 +217,7 @@ int DatabaseManager::changePassword(const int &id, const QString &oldPassword, c
     return DATABASE_SUCCESS;
 }
 
-
-int DatabaseManager::changeImage(const int &id, const QByteArray &imageData){
+int DatabaseManager::changeImage(const int &id, const QByteArray &imageData) {
 
     // Update the image data in the database
     QSqlQuery query;
@@ -221,7 +226,8 @@ int DatabaseManager::changeImage(const int &id, const QByteArray &imageData){
     query.bindValue(":id", id);
 
     if (!query.exec()) {
-        qDebug() << "Failed to update image in database:" << query.lastError().text();
+        qDebug() << "Failed to update image in database:"
+                 << query.lastError().text();
         return DATABASE_ERROR;
     }
 
@@ -229,19 +235,32 @@ int DatabaseManager::changeImage(const int &id, const QByteArray &imageData){
     return DATABASE_SUCCESS;
 }
 
-bool DatabaseManager::saveSession(const Session &session)
-{
+bool DatabaseManager::saveSession(Session &session) {
 
-    // Prepare SQL query to insert new session
     QSqlQuery insertQuery;
-    insertQuery.prepare("INSERT INTO sessions (specificId, userid, against, wins, losses, ties) "
-                        "VALUES (?, ?, ?, ?, ?, ?)");
-    insertQuery.addBindValue(session.getSpecificId());
-    insertQuery.addBindValue(session.getUserId());
-    insertQuery.addBindValue(session.getOpponentName());
-    insertQuery.addBindValue(session.getScore().wins);
-    insertQuery.addBindValue(session.getScore().losses);
-    insertQuery.addBindValue(session.getScore().ties);
+    qDebug()<<session.getId();
+    if (session.getId() == -1) {
+        // Prepare SQL query to insert new session
+        insertQuery.prepare("INSERT INTO sessions (specificId, userid, type, against, "
+                            "wins, losses, ties, timestamp) "
+                            "VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+        insertQuery.addBindValue(session.getSpecificId());
+        insertQuery.addBindValue(session.getUserId());
+        insertQuery.addBindValue(session.getType());
+        insertQuery.addBindValue(session.getOpponentName());
+        insertQuery.addBindValue(session.getScore().wins);
+        insertQuery.addBindValue(session.getScore().losses);
+        insertQuery.addBindValue(session.getScore().ties);
+        insertQuery.addBindValue(QDateTime::currentDateTime());
+    } else {
+        insertQuery.prepare("UPDATE sessions SET wins = ?, losses = ?, ties = ?, "
+                            "timestamp = ? WHERE id = ?");
+        insertQuery.addBindValue(session.getScore().wins);
+        insertQuery.addBindValue(session.getScore().losses);
+        insertQuery.addBindValue(session.getScore().ties);
+        insertQuery.addBindValue(QDateTime::currentDateTime());
+        insertQuery.addBindValue(session.getId());
+    }
 
     // Execute the query
     if (!insertQuery.exec()) {
@@ -250,12 +269,20 @@ bool DatabaseManager::saveSession(const Session &session)
                  << insertQuery.lastError().text();
         return DATABASE_ERROR; // Return false to indicate failure
     }
+    // If a new session was inserted, update the session ID
 
     int sessionId = insertQuery.lastInsertId().toLongLong();
 
-    for(Game game:session.getGames()){
-        game.setSessionId(sessionId);
-        saveGame(game);
+    if (session.getId() == -1) {
+        session.setId(sessionId);
+    }
+
+    for (Game game : session.getGames()) {
+        qDebug()<<"game"<<game.getId();
+        if (game.getId() == -1) {
+            game.setSessionId(sessionId);
+            saveGame(game);
+        }
     }
 
     return DATABASE_SUCCESS; // Return true to indicate successful insertion
@@ -264,9 +291,10 @@ bool DatabaseManager::saveSession(const Session &session)
 bool DatabaseManager::saveGame(Game &game) {
     // Prepare SQL query to insert a new game
     QSqlQuery insertQuery;
-    insertQuery.prepare(
-        "INSERT INTO games (session_id, specific_id, playerCharacter, playerIsFirst, moves, state) "
-        "VALUES (?, ?, ?, ?, ?, ?)");
+
+    insertQuery.prepare("INSERT INTO games (session_id, specific_id, "
+                        "playerCharacter, playerIsFirst, moves, state) "
+                        "VALUES (?, ?, ?, ?, ?, ?)");
     insertQuery.addBindValue(game.getSessionId());
     insertQuery.addBindValue(game.getSpeceifiedId());
     insertQuery.addBindValue("X");
@@ -282,10 +310,13 @@ bool DatabaseManager::saveGame(Game &game) {
         return DATABASE_ERROR; // Return false to indicate failure
     }
 
+    int gameId = insertQuery.lastInsertId().toLongLong();
+    game.setId(gameId);
+
     return DATABASE_SUCCESS; // Return true to indicate successful insertion
 }
 
-QVector<Game> DatabaseManager::loadGames(const int &session_id){
+QVector<Game> DatabaseManager::loadGames(const int &session_id) {
     QVector<Game> games;
 
     // Prepare SQL query to select games for a specific session
@@ -305,8 +336,9 @@ QVector<Game> DatabaseManager::loadGames(const int &session_id){
     while (selectQuery.next()) {
         Game game;
         game.setId(selectQuery.value("id").toInt());
-        //ame.setPlayerCharacter(selectQuery.value("playerCharacter").toChar());
-        game.setPlayerIsFirst(selectQuery.value("playerIsFirst").toBool());
+        game.setSpecifiedId(selectQuery.value("specific_id").toInt());
+        game.setPlayerCharacter(selectQuery.value("playerCharacter").toChar());
+        game.setPlayerIsFirst(selectQuery.value("playerIsFirst").toChar() == 'T');
         game.setMoves(selectQuery.value("moves").toString());
         game.setState(selectQuery.value("state").toChar());
 
@@ -316,7 +348,7 @@ QVector<Game> DatabaseManager::loadGames(const int &session_id){
     return games; // Return the vector of games
 }
 
-QVector<Session> DatabaseManager::loadHistory(const int &id){
+QVector<Session> DatabaseManager::loadHistory(const int &id) {
     QVector<Session> sessions;
 
     // Prepare SQL query to select sessions for a specific user
@@ -337,9 +369,12 @@ QVector<Session> DatabaseManager::loadHistory(const int &id){
         Session session;
         session.setId(selectQuery.value("id").toInt());
         session.setSpecificId(selectQuery.value("specificId").toInt());
+        session.setType(selectQuery.value("type").toInt());
         session.setUserId(selectQuery.value("userid").toInt());
         session.setOpponentName(selectQuery.value("against").toString());
-        session.setScore(selectQuery.value("wins").toInt(),selectQuery.value("ties").toInt(),selectQuery.value("losses").toInt());
+        session.setScore(selectQuery.value("wins").toInt(),
+                         selectQuery.value("ties").toInt(),
+                         selectQuery.value("losses").toInt());
         session.setTimestamp(selectQuery.value("timestamp").toDateTime());
         session.setGames(loadGames(session.getId()));
 
@@ -348,4 +383,3 @@ QVector<Session> DatabaseManager::loadHistory(const int &id){
 
     return sessions; // Return the vector of sessions
 }
-
