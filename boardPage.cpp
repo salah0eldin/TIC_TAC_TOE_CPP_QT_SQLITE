@@ -142,6 +142,10 @@ void MainWindow::on_pushButton_16_clicked()
         // Set default button
         msgBox.setDefaultButton(cancelButton);
 
+        if (!loggedIN) {
+            saveButton->setEnabled(false);
+        }
+
         // Executing the message box to get user response
         msgBox.exec();
 
