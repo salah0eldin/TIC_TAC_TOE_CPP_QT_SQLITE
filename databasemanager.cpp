@@ -329,8 +329,7 @@ QVector<Game> DatabaseManager::loadGames(const int &session_id) {
         game.setPlayerCharacter(selectQuery.value("playerCharacter").toChar());
         game.setPlayerIsFirst(selectQuery.value("playerIsFirst").toChar() == 'T');
         game.setMoves(selectQuery.value("moves").toString());
-        game.setState(selectQuery.value("state").toChar());
-
+        game.setState(selectQuery.value("state").toString()[0]);
         games.push_back(game);
     }
 
@@ -365,6 +364,7 @@ QVector<Session> DatabaseManager::loadHistory(const int &id) {
                          selectQuery.value("losses").toInt());
         session.setTimestamp(selectQuery.value("timestamp").toDateTime());
         session.setGames(loadGames(session.getId()));
+        session.setGamesCount(session.getGamesPointer()->size());
 
         sessions.push_back(session);
     }

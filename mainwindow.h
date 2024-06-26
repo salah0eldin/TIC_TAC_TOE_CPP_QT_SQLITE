@@ -36,6 +36,13 @@
 #define SESSIONS_WINDOW         9
 #define GAMES_WINDOW            10
 
+// @brief index for styles in styles vector
+#define NORMAL          0
+#define SELECTED        1
+#define MESSAGE_BOX     2
+#define BUTTONS_STYLE   3
+#define BUTTONS_STYLE2  4
+
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
@@ -71,6 +78,7 @@ public:
     bool loggedIN;                     // Login status flag.
     QPushButton *button[9];            // Buttons array for the board.
     QLabel *labelBoard[9];             // Label array for the board.
+    QVector<QString> styles;           // Vector for styles
     QVector<QPushButton *> sessionsButtons; // Vector of session buttons.
 
 protected:
@@ -144,6 +152,8 @@ private slots:
     void loadGame(int gameId);
     void on_pushButton_31_clicked();
     void on_pushButton_30_clicked();
+    void change_playing_styles();
+    void change_revew_styles();
 
 private:
     QSignalMapper *signalMapper;      // Signal mapper instance.

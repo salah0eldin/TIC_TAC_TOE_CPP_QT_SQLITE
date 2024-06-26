@@ -71,6 +71,9 @@ void MainWindow::ai_to_board(QString opponame) {
     ui->label_55->setText("0");
     ui->label_53->setText("0");
 
+    // Change styles
+    change_playing_styles();
+
     // Switch to game board view
     ui->stackedWidget->setCurrentIndex(BOARD_WINDOW);
 }

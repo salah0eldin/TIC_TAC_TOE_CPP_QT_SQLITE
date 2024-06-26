@@ -9,6 +9,8 @@
 
 #include "mainwindow.h"
 #include <QApplication>
+#include <QPushButton>
+#include <QCursor>
 
 int main(int argc, char *argv[])
 {

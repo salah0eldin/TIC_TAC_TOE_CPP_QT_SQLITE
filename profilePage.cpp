@@ -16,7 +16,7 @@ void MainWindow::on_Change_photo_clicked() {
         changePictures(originalImage);
 
         // Resize the image to ensure it fits within desired dimensions
-        originalImage = originalImage.scaled(200, 200, Qt::KeepAspectRatio);
+        originalImage = originalImage.scaled(300, 300, Qt::KeepAspectRatio);
 
         // Convert the displayed image to Base64 format and save it to QSettings
         QByteArray imageData;

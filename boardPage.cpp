@@ -48,6 +48,9 @@ void MainWindow::on_pushButton_confirm_player2_clicked()
     ui->label_55->setText("0");
     ui->label_53->setText("0");
 
+    // Change styles
+    change_playing_styles();
+
     // Navigate to board window
     ui->stackedWidget->setCurrentIndex(BOARD_WINDOW);
 }
@@ -60,6 +63,8 @@ void MainWindow::on_pushButton_back_from_board_to_main_clicked()
 {
     if (CurrentGame.getMoves() != "" || CurrentSession.getGamesCount() != 0) {
         QMessageBox msgBox;
+        msgBox.setStyleSheet(styles[MESSAGE_BOX]);
+
         msgBox.setText("Do you want to save the session?");
         msgBox.setWindowTitle("Confirmation");
 
@@ -164,6 +169,9 @@ void MainWindow::boardPlaceMarker(int index1, int index2) {
         // Update button text with player's symbol
         button[index]->setText(symbol);
 
+        // Change styles
+        change_playing_styles();
+
         // Check game state after move
         QChar state = CurrentGame.getState();
         if (state != 'n') {
@@ -173,6 +181,34 @@ void MainWindow::boardPlaceMarker(int index1, int index2) {
             ui->label_55->setText(QString::number(score.wins));
             ui->label_54->setText(QString::number(score.losses));
             ui->label_53->setText(QString::number(score.ties));
+
+            QMessageBox msgBox;
+
+            msgBox.setStyleSheet(styles[MESSAGE_BOX]);
+
+            msgBox.setWindowTitle("Confirmation");
+
+            // Add buttons with appropriate roles
+            QPushButton *okButton = msgBox.addButton(tr("Ok"), QMessageBox::AcceptRole);
+
+            // Set default button
+            msgBox.setDefaultButton(okButton);
+
+            switch(state.toLatin1()){
+            case 'w':
+                msgBox.setText(player.getUsername() + " Wins !!");
+                break;
+            case 'l':
+                msgBox.setText(CurrentSession.getOpponentName() + " Wins !!");
+                break;
+            case 't':
+                msgBox.setText("It's a Tie !!");
+                break;
+            }
+
+            // Executing the message box to get user response
+            msgBox.exec();
+
         } else {
             // If AI mode enabled and it's AI's turn, make AI move
             if (Ai && !CurrentGame.playerturn) {
@@ -210,6 +246,8 @@ void MainWindow::on_pushButton_16_clicked()
         resetBoard_checkAi();
     } else if (CurrentGame.getMoves() != "") {
         QMessageBox msgBox;
+        msgBox.setStyleSheet(styles[MESSAGE_BOX]);
+
         msgBox.setText("Do you want to save your changes?");
         msgBox.setWindowTitle("Confirmation");
 
@@ -241,5 +279,18 @@ void MainWindow::on_pushButton_16_clicked()
         } else if (msgBox.clickedButton() == cancelButton) {
             // Do nothing, cancel operation
         }
+    }
+}
+
+/*
+ * @brief changes style of the names of players
+ */
+void MainWindow::change_playing_styles(){
+    if(CurrentGame.playerturn){
+        ui->label_40->setStyleSheet(styles[SELECTED]);
+        ui->label->setStyleSheet(styles[NORMAL]);
+    } else {
+        ui->label_40->setStyleSheet(styles[NORMAL]);
+        ui->label->setStyleSheet(styles[SELECTED]);
     }
 }

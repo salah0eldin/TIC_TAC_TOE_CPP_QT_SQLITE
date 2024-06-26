@@ -45,4 +45,8 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 DISTFILES += \
     BUILD.bazel \
-    WORKSPACE
+    WORKSPACE \
+    pictures/aaa.jpg \
+    pictures/bg.png \
+    pictures/password.png \
+    pictures/user.jpg

@@ -19,8 +19,9 @@ void MainWindow::loadGame(int gameId) {
     for (int i = 0; i < 9; i++) {
         labelBoard[i]->setText("");
     }
-
     currentStep = 0;
+    ui->label_27->setText("Game"+QString::number(gameId+1));
+    change_revew_styles();
 }
 
 /**
@@ -56,7 +57,7 @@ void MainWindow::on_pushButton_replay_clicked() {
     ui->label->setText(CurrentSession.getOpponentName());
 
     Game g;
-    g.setSpecifiedId(CurrentGame.getSpeceifiedId() + 1);
+    g.setSpecifiedId(CurrentSession.getGamesCount());
     g.setPlayerIsFirst(true); // Set player's turn to start
     CurrentGame = g;
 
@@ -86,7 +87,42 @@ void MainWindow::on_pushButton_replay_clicked() {
         break;
     }
 
+    // Change styles
+    change_playing_styles();
+
     ui->stackedWidget->setCurrentIndex(BOARD_WINDOW);
+}
+
+/**
+ * @brief Changes the labels styles in the revew page.
+ */
+void MainWindow::change_revew_styles(){
+    switch(CurrentGame.getState().toLatin1()){
+    case 'w':
+        ui->label_41->setStyleSheet(styles[SELECTED]);
+        ui->label_43->setStyleSheet(styles[NORMAL]);
+        ui->label_42->setStyleSheet(styles[NORMAL]);
+        ui->label_44->setStyleSheet(styles[NORMAL]);
+        break;
+    case 't':
+        ui->label_41->setStyleSheet(styles[NORMAL]);
+        ui->label_43->setStyleSheet(styles[SELECTED]);
+        ui->label_42->setStyleSheet(styles[NORMAL]);
+        ui->label_44->setStyleSheet(styles[NORMAL]);
+        break;
+    case 'l':
+        ui->label_41->setStyleSheet(styles[NORMAL]);
+        ui->label_43->setStyleSheet(styles[NORMAL]);
+        ui->label_42->setStyleSheet(styles[SELECTED]);
+        ui->label_44->setStyleSheet(styles[NORMAL]);
+        break;
+    case 'n':
+        ui->label_41->setStyleSheet(styles[NORMAL]);
+        ui->label_43->setStyleSheet(styles[NORMAL]);
+        ui->label_42->setStyleSheet(styles[NORMAL]);
+        ui->label_44->setStyleSheet(styles[SELECTED]);
+        break;
+    }
 }
 
 /**

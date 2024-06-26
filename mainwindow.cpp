@@ -36,6 +36,94 @@ MainWindow::MainWindow(QWidget *parent)
     labelBoard[7] = ui->label_33;
     labelBoard[8] = ui->label_30;
 
+    // Set cursor for all QPushButton instances in MainWindow
+    QList<QPushButton *> allButtons = findChildren<QPushButton *>();
+    for (QPushButton *btn : allButtons) {
+        btn->setCursor(Qt::PointingHandCursor); // Example cursor shape (hand cursor)
+    }
+
+    // Set Clear Button Enabled for all QLineEdit instances in MainWindow
+    QList<QLineEdit *> allLineEdit = findChildren<QLineEdit *>();
+    for (QLineEdit *ledit : allLineEdit) {
+        ledit->setClearButtonEnabled(true);
+    }
+
+    // Insert styles
+    // NORMAL
+    styles.push_back(R"(
+                        color:rgb(113, 113, 113);
+                        font-weight:bold;
+                        font-size:20px;
+                        background-color:rgba(85, 170, 255, 0);
+                        )");
+    // SELECTED
+    styles.push_back(R"(color:white;
+                        font-weight:bold;
+                        font-size:26px;
+                        background-color:rgba(85, 170, 255, 100);
+                        )");
+
+    // MESSAGE_BOX
+    styles.push_back(R"(
+                        QMessageBox { background-image: url(../../pictures/mesbg.png); background-repeat: no-repeat; background-position: center; font-family:  sans-serif;font-size:12px;font-Weight:bold;color:white;}
+                        QMessageBox QPushButton { background-color: rgb(92, 142, 146); color: white; padding: 5px 10px; border-radius: 3px; font-size: 14px; font-weight: bold; min-width: 30px; min-height: 10px; border: none; }
+                        QMessageBox QPushButton:hover { background-color: rgb(204, 177, 161); }
+                        QMessageBox QPushButton:disabled { background-color: #cccccc; color: #666666;}
+                        )");
+
+    // BUTTONS_STYLE
+    styles.push_back(R"(
+                        QPushButton {
+                            background-color: rgb(92, 142, 146); /* Light gray background */
+                            color: white; /* Dark text color */
+                            padding: 10px;
+                            border-radius: 5px; /* Rounded corners */
+                            font-size: 22px;
+                            font-weight: bold;
+                            min-width: 100px;
+                            min-height: 30px;
+                            text-align:left;
+                        }
+
+                        QPushButton:hover {
+                            background-color: rgb(143, 111, 117); /* Green background on hover */
+                            color: white; /* White text on hover */
+                        }
+
+                        QPushButton:disabled {
+                            background-color: #cccccc; /* Gray background when disabled */
+                            border-color: #aaaaaa; /* Gray border when disabled */
+                            color: #666666; /* Gray text when disabled */
+                        }
+                        )");
+
+    // MESSAGE_BOX2
+    styles.push_back(R"(
+                        QPushButton {
+                            background-color: rgb(92, 142, 146); /* Light gray background */
+                            color: white; /* Dark text color */
+                            padding: 10px;
+                            border-radius: 5px; /* Rounded corners */
+                            font-size: 18px;
+                            font-weight: bold;
+                            min-width: 100px;
+                            min-height: 30px;
+                        }
+
+                        QPushButton:hover {
+                            background-color: rgb(143, 111, 117); /* Green background on hover */
+                            color: white; /* White text on hover */
+                        }
+
+                        QPushButton:disabled {
+                            background-color: #cccccc; /* Gray background when disabled */
+                            border-color: #aaaaaa; /* Gray border when disabled */
+                            color: #666666; /* Gray text when disabled */
+                        }
+                        )");
+
+
+
     // Set cursor for label_picture
     ui->label_picture->setCursor(Qt::PointingHandCursor);
     ui->label_picture->installEventFilter(this);
@@ -59,8 +147,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui->lineEdit_user->addAction(user, QLineEdit::LeadingPosition);
     QIcon pass("../../pictures/password.png");
     ui->lineEdit_pass->addAction(pass, QLineEdit::LeadingPosition);
-    ui->lineEdit_pass->setClearButtonEnabled(true);
-    ui->lineEdit_user->setClearButtonEnabled(true);
 
     // Initialize signal mapper for sessions
     signalMapper = new QSignalMapper(this);
@@ -280,14 +366,14 @@ void MainWindow::changePictures(QImage &originalImage) {
     if (originalImage.isNull())
         originalImage = QImage("../../pictures/user.jpg");
 
-    // Resize the image if it's larger than 200x200 pixels
-    if (originalImage.width() > 200 || originalImage.height() > 200) {
-        originalImage = originalImage.scaled(200, 200, Qt::KeepAspectRatio);
+    // Resize the image if it's larger than 300x300 pixels
+    if (originalImage.width() > 300 || originalImage.height() > 300) {
+        originalImage = originalImage.scaled(300, 300, Qt::KeepAspectRatio);
     }
 
     // Set the pixmap of the QLabel
     ui->label_pic->setPixmap(QPixmap::fromImage(originalImage));
 
-    QImage image2 = originalImage.scaled(75, 75, Qt::KeepAspectRatio);
+    QImage image2 = originalImage.scaled(100, 100, Qt::KeepAspectRatio);
     ui->label_picture->setPixmap(QPixmap::fromImage(image2));
 }
