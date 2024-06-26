@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 13.0.0, 2024-06-24T08:42:35. -->
+<!-- Written by QtCreator 13.0.0, 2024-06-26T06:36:18. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -241,10 +241,10 @@
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
     <value type="bool" key="PE.EnvironmentAspect.PrintOnRun">false</value>
     <value type="QString" key="PerfRecordArgsId">-e cpu-cycles --call-graph &quot;dwarf,4096&quot; -F 250</value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:C:/Users/Admin/Desktop/newtic/TIC_TAC_TOE_CPP_QT_SQLITE/TIC_TAC_TOE_CPP_QT_SQLITE.pro</value>
-    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">C:/Users/Admin/Desktop/newtic/TIC_TAC_TOE_CPP_QT_SQLITE/TIC_TAC_TOE_CPP_QT_SQLITE.pro</value>
-    <value type="bool" key="ProjectExplorer.RunConfiguration.Customized">false</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">TIC_TAC_TOE_CPP_QT_SQLITE2</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:C:/Users/Admin/Desktop/final_tictactoe/TIC_TAC_TOE_CPP_QT_SQLITE/TIC_TAC_TOE_CPP_QT_SQLITE.pro</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">C:/Users/Admin/Desktop/final_tictactoe/TIC_TAC_TOE_CPP_QT_SQLITE/TIC_TAC_TOE_CPP_QT_SQLITE.pro</value>
+    <value type="bool" key="ProjectExplorer.RunConfiguration.Customized">true</value>
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
     <value type="bool" key="RunConfiguration.UseLibrarySearchPath">true</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
