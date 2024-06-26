@@ -242,6 +242,7 @@ void TestSession::testGetGamesCount() {
     // Verify again
     QCOMPARE(session.getGamesCount(), 3);
 }
+
 void TestSession::testGetGamesPointer() {
     // Create a Session object
     Session session;
