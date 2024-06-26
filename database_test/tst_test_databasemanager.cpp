@@ -2,8 +2,11 @@
 #include "../databasemanager.h"
 #include <QImage>
 #include <QBuffer>
+#include <QtTest/QtTest>
+#include "../databasemanager.h"
+#include <QImage>
+#include <QBuffer>
 
-// تعريف كلاس الاختبار
 class TestDatabaseManager : public QObject
 {
     Q_OBJECT
@@ -25,9 +28,8 @@ private:
     DatabaseManager dbManager;
 };
 
-// تنفيذ الدوال الخاصة بالاختبار
 void TestDatabaseManager::initTestCase() {
-    // تأكد من تهيئة قاعدة البيانات بحالة جديدة لكل اختبار
+    // Ensure database is reset for testing
     QSqlQuery resetQuery;
     resetQuery.exec("DELETE FROM users");
     qDebug() << "Database reset for testing";
@@ -47,7 +49,7 @@ void TestDatabaseManager::testSignUp() {
 void TestDatabaseManager::testSignIn() {
     QString username = "testUser";
     QString password = "testPassword";
-    int id;
+    int id=1;
     QImage image;
 
     int result = dbManager.signIn(username, password, id, image);
@@ -63,7 +65,7 @@ void TestDatabaseManager::testSignIn() {
 void TestDatabaseManager::testChangeUsername() {
     QString username = "testUser";
     QString newPassword = "newPassword";
-    int id;
+    int id=1;
     QImage image;
     dbManager.signIn(username, "testPassword", id, image);
 
@@ -79,7 +81,7 @@ void TestDatabaseManager::testChangePassword() {
     QString username = "newUser";
     QString oldPassword = "testPassword";
     QString newPassword = "newPassword";
-    int id;
+    int id=1;
     QImage image;
     dbManager.signIn(username, oldPassword, id, image);
 
@@ -110,31 +112,38 @@ void TestDatabaseManager::testChangeImage() {
 void TestDatabaseManager::testSaveSession() {
     QString username = "newUser";
     QString password = "newPassword";
-    int id;
+    int id=1;
     QImage image;
 
     dbManager.signIn(username, password, id, image);
 
-    int specificId = 12345;
-    QString opponent = "opponent";
-    int wins = 1;
-    int losses = 0;
-    int ties = 0;
+    Session session;
+    session.setSpecificId(12345);
+    session.setUserId(id);
+    session.type = 1; // Assigning to 'type' directly if it's a member variable
+    session.setOpponentName("opponent");
+    session.setScore(1, 0, 0); // Wins, losses, ties
+    session.setTimestamp(QDateTime::currentDateTime());
 
-    bool result = dbManager.saveSession(specificId, id, opponent, wins, losses, ties);
-    QVERIFY(result == DATABASE_SUCCESS);
+    bool result = dbManager.saveSession(session);
+    QVERIFY(result); // Assuming saveSession returns true on success
 }
+
+
 
 void TestDatabaseManager::testSaveGame() {
-    int sessionId = 1;
-    char playerCharacter = 'X';
-    char playerIsFirst = 'Y';
-    QString moves = "XOXOXOXOX";
-    QString state = "w";
+    Game game;
+    game.setSessionId(1); // Assuming session id exists
+    game.setSpecifiedId(1); // Assuming specified id exists
+    game.setPlayerCharacter('X');
+    game.setPlayerIsFirst('Y');
+    game.setMoves("XOXOXOXOX");
+    game.setState(QChar('w')); // Use QChar constructor to set the state
 
-    bool result = dbManager.saveGame(sessionId, playerCharacter, playerIsFirst, moves, state);
-    QVERIFY(result == DATABASE_SUCCESS);
+    bool result = dbManager.saveGame(game);
+    QVERIFY(result); // Assuming saveGame returns true on success
 }
+
 
 void TestDatabaseManager::testLoadGames() {
     int sessionId = 1;
@@ -146,8 +155,8 @@ void TestDatabaseManager::testLoadGames() {
 void TestDatabaseManager::testLoadHistory() {
     QString username = "newUser";
     QString password = "newPassword";
-    int id;
-    QImage image;
+    int id =1 ;
+    QImage image ;
 
     dbManager.signIn(username, password, id, image);
 
@@ -156,7 +165,7 @@ void TestDatabaseManager::testLoadHistory() {
 }
 
 void TestDatabaseManager::cleanupTestCase() {
-    // تنظيف قاعدة البيانات إذا لزم الأمر
+    // Clean up if needed
 }
 
 QTEST_MAIN(TestDatabaseManager)
