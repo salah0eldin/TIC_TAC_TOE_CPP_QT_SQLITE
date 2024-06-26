@@ -1,17 +1,20 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+// ----------------------------------------------------------------------------
+// Constructor and Destructor
+// ----------------------------------------------------------------------------
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
-
     ui->setupUi(this);
 
     // Set fixed size for the main window
-    setFixedSize(900, 700);  // Adjust these values to your desired dimensions
+    setFixedSize(900, 700);
 
-    // get the board buttons in game board
+    // Get the board buttons in game board
     button[0] = ui->b0;
     button[1] = ui->b2;
     button[2] = ui->b7;
@@ -22,7 +25,7 @@ MainWindow::MainWindow(QWidget *parent)
     button[7] = ui->b8;
     button[8] = ui->b3;
 
-    // get the board labels in history board
+    // Get the board labels in history board
     labelBoard[0] = ui->label_6;
     labelBoard[1] = ui->label_32;
     labelBoard[2] = ui->label_28;
@@ -33,17 +36,10 @@ MainWindow::MainWindow(QWidget *parent)
     labelBoard[7] = ui->label_33;
     labelBoard[8] = ui->label_30;
 
-    ui->label_6->setAlignment(Qt::AlignCenter);
-    ui->label_31->setAlignment(Qt::AlignCenter);
-    ui->label_32->setAlignment(Qt::AlignCenter);
-    ui->label_28->setAlignment(Qt::AlignCenter);
-    ui->label_29->setAlignment(Qt::AlignCenter);
-    ui->label_30->setAlignment(Qt::AlignCenter);
-    ui->label_33->setAlignment(Qt::AlignCenter);
-    ui->label_34->setAlignment(Qt::AlignCenter);
-    ui->label_35->setAlignment(Qt::AlignCenter);
-
+    // Set cursor for label_picture
     ui->label_picture->setCursor(Qt::PointingHandCursor);
+    ui->label_picture->installEventFilter(this);
+    ui->label_guest->setCursor(Qt::PointingHandCursor);
     ui->label_guest->installEventFilter(this);
 
     // Set default picture for label_picture
@@ -58,33 +54,26 @@ MainWindow::MainWindow(QWidget *parent)
     int h = ui->label_pic->height();
     ui->label_pic->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
 
-    ui->lineEdit_user->setPlaceholderText("Username");
-    ui->lineEdit_pass->setPlaceholderText("Password");
-
+    // Set placeholders and icons for line edits
     QIcon user("../../pictures/user.jpg");
     ui->lineEdit_user->addAction(user, QLineEdit::LeadingPosition);
     QIcon pass("../../pictures/password.png");
     ui->lineEdit_pass->addAction(pass, QLineEdit::LeadingPosition);
-
     ui->lineEdit_pass->setClearButtonEnabled(true);
     ui->lineEdit_user->setClearButtonEnabled(true);
 
-
-    // Initialize signal mapper
+    // Initialize signal mapper for sessions
     signalMapper = new QSignalMapper(this);
-
-    // Connect the signal mapper to the slot using the new syntax
     connect(signalMapper, &QSignalMapper::mappedInt, this, &MainWindow::loadSessionGames);
 
-    // Initialize signal mapper
+    // Initialize signal mapper for games
     signalMapper2 = new QSignalMapper(this);
-
-    // Connect the signal mapper to the slot using the new syntax
     connect(signalMapper2, &QSignalMapper::mappedInt, this, &MainWindow::loadGame);
 
     // Load user session if exists
     loadUserSession();
 
+    // Set initial index for stacked widget
     ui->stackedWidget->setCurrentIndex(MAIN_WINDOW);
 }
 
@@ -93,17 +82,26 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-//add a function to a clickable label
+// ----------------------------------------------------------------------------
+// Event Filter
+// ----------------------------------------------------------------------------
+
+/**
+ * @brief Event filter for handling clickable labels.
+ * @param obj The watched object.
+ * @param event The event.
+ * @return True if the event is handled, false otherwise.
+ */
 bool MainWindow::eventFilter(QObject *obj, QEvent *event)
 {
     if (obj == ui->label_picture && event->type() == QEvent::MouseButtonPress) {
-        if(loggedIN){
+        if (loggedIN) {
             ui->stackedWidget->setCurrentIndex(PROFILE_WINDOW);
         }
         return true;
     }
     if (obj == ui->label_guest && event->type() == QEvent::MouseButtonPress) {
-        if(loggedIN){
+        if (loggedIN) {
             ui->stackedWidget->setCurrentIndex(PROFILE_WINDOW);
         }
         return true;
@@ -111,27 +109,36 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
     return false;
 }
 
+// ----------------------------------------------------------------------------
+// Button Click Handlers
+// ----------------------------------------------------------------------------
+
+/**
+ * @brief Handles the close button click event.
+ */
 void MainWindow::on_pushButton_close_main_clicked()
 {
     close();
 }
 
-void MainWindow::on_pushButton_login_from_main_clicked() {
-    // Check if user is not logged in
+/**
+ * @brief Handles the login/logout button click event.
+ */
+void MainWindow::on_pushButton_login_from_main_clicked()
+{
     if (!loggedIN) {
-        // Navigate to the login window
         ui->stackedWidget->setCurrentIndex(LOGIN_WINDOW);
     } else {
         // Ask for confirmation before logging out
         QMessageBox::StandardButton confirmLogout;
         confirmLogout = QMessageBox::question(this, "Logout", "Are you sure you want to logout?",
                                               QMessageBox::Yes | QMessageBox::No);
-        // If user confirms logout
         if (confirmLogout == QMessageBox::Yes) {
             // Set labels to default values
             ui->label_guest->setText("Guest");
             ui->label_19->setText("Guest");
             ui->label_40->setText("Guest");
+
             // Change profile picture to default
             QImage image("../../pictures/user.jpg");
             changePictures(image);
@@ -150,46 +157,137 @@ void MainWindow::on_pushButton_login_from_main_clicked() {
     }
 }
 
+/**
+ * @brief Handles the player vs player button click event.
+ */
 void MainWindow::on_pushButton_enter_player2name_clicked()
 {
     Ai = false;
-    if(loggedIN){
+    if (loggedIN) {
         ui->stackedWidget->setCurrentIndex(PLAYER2_WINDOW);
-    }else{
+    } else {
         ui->label->setText("Guest2");
-        ui->label_40->setText("Guest2");
+        ui->label_40->setText("Guest");
         ui->stackedWidget->setCurrentIndex(BOARD_WINDOW);
     }
 }
 
-
+/**
+ * @brief Handles the play vs AI button click event.
+ */
 void MainWindow::on_pushButton_play_withAI_clicked()
 {
     Ai = true;
     ui->stackedWidget->setCurrentIndex(AI_WINDOW);
 }
 
-void MainWindow::on_pushButton_from_main_to_profile_clicked()
-{
-}
-
+/**
+ * @brief Handles the load session button click event.
+ */
 void MainWindow::on_pushButton_load_session_clicked()
 {
-    if(loggedIN){
+    if (loggedIN) {
         ui->stackedWidget->setCurrentIndex(SESSIONS_WINDOW);
     } else {
         QMessageBox::warning(this, "Not Logged In", "Log in first to save history and load.");
     }
 }
 
-void MainWindow::on_pushButton_back_from_history_to_session_2_clicked()
-{
+// Placeholder functions for unused buttons
+void MainWindow::on_pushButton_session1_clicked(){}
+void MainWindow::on_pushButton_back_from_history_to_session_2_clicked(){}
+void MainWindow::on_pushButton_from_main_to_profile_clicked(){}
+
+// ----------------------------------------------------------------------------
+// Utility Functions
+// ----------------------------------------------------------------------------
+
+/**
+ * @brief Loads user session data from local storage.
+ * If user data exists, updates the UI and player information.
+ */
+void MainWindow::loadUserSession() {
+    QSettings settings("MyApp", "MyApp");
+    if (settings.contains("id")) {
+        // Retrieve user session data from settings
+        int id = settings.value("id").toInt();
+        QString username = settings.value("username").toString();
+        QString password = settings.value("password").toString();
+        QString base64Image = settings.value("ImageData").toString();
+
+        // Decode image data from Base64
+        QByteArray imageData = QByteArray::fromBase64(base64Image.toLatin1());
+        QImage image;
+        image.loadFromData(imageData, "PNG");
+
+        // Update UI with user session data
+        changePictures(image);
+        Player p(id, username, password, image);
+        player = p;
+        ui->label_guest->setText(username);
+        ui->label_19->setText(username);
+
+        QVector<Session> s = db.loadHistory(id);
+        player.setSessions(s);
+        int ssize = s.size();
+        player.setSessoinsCount(ssize);
+
+        // Clear existing buttons if any
+        QLayoutItem *item;
+        QWidget *container = ui->scrollAreaWidgetContents_4;
+        while ((item = container->layout()->takeAt(0)) != nullptr) {
+            delete item->widget(); // Delete the widget
+            delete item;           // Delete the layout item
+        }
+        sessionsButtons.clear();
+
+        for (Session s : player.getSessions()) {
+            populateSession(s);
+        }
+
+        // Update login status
+        loggedIN = true;
+        ui->pushButton_login_from_main->setText("Log Out");
+    } else {
+        loggedIN = false;
+    }
 }
 
-void MainWindow::on_pushButton_session1_clicked()
-{
-    ui->stackedWidget->setCurrentIndex(GAMES_WINDOW);
+/**
+ * @brief Hashes a given QString using a custom algorithm.
+ * @param str The input string to be hashed.
+ * @return The resulting hash as a QString.
+ */
+QString MainWindow::hashing(const QString& str) {
+    const int p = 31; // Prime number
+    const int m = 1e9 + 9; // Modulo value
+    unsigned long long hash_value = 0;
+    unsigned long long p_pow = 1;
+
+    for (QChar c : str) {
+        hash_value = (hash_value + (c.unicode() - 'a' + 1) * p_pow) % m;
+        p_pow = (p_pow * p) % m;
+    }
+
+    return QString::number(hash_value); // Convert hash_value to QString before returning
 }
 
+/**
+ * @brief Updates the UI with new user pictures.
+ * @param originalImage The new user image to be set.
+ */
+void MainWindow::changePictures(QImage &originalImage) {
+    if (originalImage.isNull())
+        originalImage = QImage("../../pictures/user.jpg");
 
+    // Resize the image if it's larger than 200x200 pixels
+    if (originalImage.width() > 200 || originalImage.height() > 200) {
+        originalImage = originalImage.scaled(200, 200, Qt::KeepAspectRatio);
+    }
 
+    // Set the pixmap of the QLabel
+    ui->label_pic->setPixmap(QPixmap::fromImage(originalImage));
+
+    QImage image2 = originalImage.scaled(75, 75, Qt::KeepAspectRatio);
+    ui->label_picture->setPixmap(QPixmap::fromImage(image2));
+}

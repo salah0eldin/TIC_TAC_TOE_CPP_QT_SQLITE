@@ -13,6 +13,7 @@ void MainWindow::populateSession(const Session &s) {
     }
 
     QPushButton *button = new QPushButton(this);
+    sessionsButtons.push_back(button);
 
     // Set the button text with specificId() + 1
     QString buttonText = QString("(%1) - Vs %2 || Score(win: %3 ,ties: %4, loss: %5) || Date: %6")
@@ -58,12 +59,24 @@ void MainWindow::populateSession(const Session &s) {
     layout->insertWidget(0, button);
 }
 
+void MainWindow::updatePopulateSession(const Session &s){
+    QPushButton *button = sessionsButtons[s.getSpecificId()];
+    QString buttonText = QString("(%1) - Vs %2 || Score(win: %3 ,ties: %4, loss: %5) || Date: %6")
+                             .arg(s.getSpecificId() + 1)  // Increment specificId() by 1
+                             .arg(s.getOpponentName())
+                             .arg(s.getScore().wins)
+                             .arg(s.getScore().ties)
+                             .arg(s.getScore().losses)
+                             .arg(s.getTimestamp().date().toString("MM-dd") + " " + s.getTimestamp().time().toString("HH:mm"));
+    button->setText(buttonText);
+}
+
 void MainWindow::loadSessionGames(int sessionId) {
     // Implementation of loading session games using sessionId
 
 
     CurrentSession = player.getSessions()[sessionId];
-    qDebug()<<CurrentSession.getId();
+
     // Get the container widget for the scroll area
 
     QFrame *container = ui->frame;

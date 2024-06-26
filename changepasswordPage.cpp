@@ -1,11 +1,13 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-void MainWindow::on_pushButton_not_change_pass_clicked()
-{
-    ui->stackedWidget->setCurrentIndex(PROFILE_WINDOW);
-}
+// ----------------------------------------------------------------------------
+// Checkbox State Change Handlers
+// ----------------------------------------------------------------------------
 
+/**
+ * @brief Handles the state change of the show password checkbox for changing password.
+ */
 void MainWindow::on_checkBox_oldpass_stateChanged()
 {
     if (ui->checkBox_oldpass->isChecked()){
@@ -15,6 +17,9 @@ void MainWindow::on_checkBox_oldpass_stateChanged()
     }
 }
 
+/**
+ * @brief Handles the state change of the show password checkbox for new password.
+ */
 void MainWindow::on_checkBox_newpass_stateChanged()
 {
     if (ui->checkBox_newpass->isChecked()){
@@ -24,6 +29,9 @@ void MainWindow::on_checkBox_newpass_stateChanged()
     }
 }
 
+/**
+ * @brief Handles the state change of the show password checkbox for confirming new password.
+ */
 void MainWindow::on_checkBox_confirm_newpass_stateChanged()
 {
     if (ui->checkBox_confirm_newpass->isChecked()){
@@ -33,6 +41,21 @@ void MainWindow::on_checkBox_confirm_newpass_stateChanged()
     }
 }
 
+// ----------------------------------------------------------------------------
+// Button Click Handlers
+// ----------------------------------------------------------------------------
+
+/**
+ * @brief Handles the back button click event from change password to profile window.
+ */
+void MainWindow::on_pushButton_not_change_pass_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(PROFILE_WINDOW);
+}
+
+/**
+ * @brief Handles the change password button click event.
+ */
 void MainWindow::on_pushButton_change_pass_clicked() {
     // Retrieve old password, new password, and confirm password from input fields
     QString oldPassword = ui->lineEdit_old_pass->text();

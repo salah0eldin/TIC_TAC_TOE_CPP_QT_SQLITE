@@ -7,7 +7,6 @@ release/game.o
 release/gamesPage.o
 release/main.o
 release/mainwindow.o
-release/mainwindowFunctions.o
 release/player.o
 release/profilePage.o
 release/session.o

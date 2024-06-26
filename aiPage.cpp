@@ -3,7 +3,6 @@
 
 void MainWindow::on_pushButton_14_clicked()
 {
-
     ui->stackedWidget->setCurrentIndex(MAIN_WINDOW);
 }
 
@@ -33,6 +32,7 @@ void MainWindow::ai_to_board(QString opponame){
     Session s;
 
     ui->label->setText(opponame);
+    ui->label_40->setText(player.getUsername());
 
     s.setOpponentName(opponame);
     s.setSpecificId(player.getSessionsCount());

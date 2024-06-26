@@ -28,6 +28,10 @@ void Player::removeSessionAt(int index){
     sessions.removeAt(index);
 }
 
+void Player::updateSessionAt(int index,Session session){
+    sessions[index] = session;
+}
+
 QImage Player::getImage(){
     return image;
 }

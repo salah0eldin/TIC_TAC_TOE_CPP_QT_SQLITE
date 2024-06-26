@@ -19,7 +19,6 @@ SOURCES += \
     gamesPage.cpp \
     main.cpp \
     mainwindow.cpp \
-    mainwindowFunctions.cpp \
     player.cpp \
     profilePage.cpp \
     session.cpp \

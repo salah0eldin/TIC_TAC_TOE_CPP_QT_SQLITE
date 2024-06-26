@@ -51,7 +51,7 @@
        <string notr="true">background-color: rgb(85, 85, 127);</string>
       </property>
       <property name="currentIndex">
-       <number>7</number>
+       <number>4</number>
       </property>
       <widget class="QWidget" name="main">
        <property name="sizePolicy">
@@ -2950,6 +2950,70 @@ font: 28pt &quot;Segoe UI&quot;;</string>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
+ <tabstops>
+  <tabstop>lineEdit_old_pass</tabstop>
+  <tabstop>checkBox_oldpass</tabstop>
+  <tabstop>lineEdit_new_pass</tabstop>
+  <tabstop>checkBox_newpass</tabstop>
+  <tabstop>lineEdit_change_pass</tabstop>
+  <tabstop>checkBox_confirm_newpass</tabstop>
+  <tabstop>pushButton_change_pass</tabstop>
+  <tabstop>pushButton_not_change_pass</tabstop>
+  <tabstop>lineEdit_user_signup</tabstop>
+  <tabstop>pushButton_enter_player2name</tabstop>
+  <tabstop>pushButton_play_withAI</tabstop>
+  <tabstop>pushButton_load_session</tabstop>
+  <tabstop>pushButton_login_from_main</tabstop>
+  <tabstop>pushButton_close_main</tabstop>
+  <tabstop>lineEdit_player2</tabstop>
+  <tabstop>pushButton_confirm_player2</tabstop>
+  <tabstop>pushButton_back_from_player2_to_main</tabstop>
+  <tabstop>lineEdit_user</tabstop>
+  <tabstop>lineEdit_pass</tabstop>
+  <tabstop>showPasswordCheckbox</tabstop>
+  <tabstop>pushButton_signup_from_login</tabstop>
+  <tabstop>pushButton_login_to_main</tabstop>
+  <tabstop>back_from_login_to_main</tabstop>
+  <tabstop>pushButton_12</tabstop>
+  <tabstop>pushButton_15</tabstop>
+  <tabstop>pushButton_13</tabstop>
+  <tabstop>pushButton_14</tabstop>
+  <tabstop>checkBox_changeuser</tabstop>
+  <tabstop>pushButton_change_username</tabstop>
+  <tabstop>pushButton_not_change_username</tabstop>
+  <tabstop>lineEdit_pass_signup</tabstop>
+  <tabstop>Change_photo</tabstop>
+  <tabstop>pushButton_change_username_from_profile</tabstop>
+  <tabstop>pushButton_change_password_from_profile</tabstop>
+  <tabstop>pushButton_back_from_profile_to_main</tabstop>
+  <tabstop>checkBox_pass_signup</tabstop>
+  <tabstop>lineEdit_pass2_signup</tabstop>
+  <tabstop>checkBox_confirm_pass_signup</tabstop>
+  <tabstop>pushButton_signup_to_main</tabstop>
+  <tabstop>pushButton_back_from_signup_to_login</tabstop>
+  <tabstop>lineEdit_change_username</tabstop>
+  <tabstop>lineEdit_pass_to_change_user</tabstop>
+  <tabstop>pushButton_back_from_board_to_main</tabstop>
+  <tabstop>pushButton_16</tabstop>
+  <tabstop>b3</tabstop>
+  <tabstop>b1</tabstop>
+  <tabstop>b6</tabstop>
+  <tabstop>b2</tabstop>
+  <tabstop>b7</tabstop>
+  <tabstop>b4</tabstop>
+  <tabstop>b0</tabstop>
+  <tabstop>b8</tabstop>
+  <tabstop>b5</tabstop>
+  <tabstop>scrollArea</tabstop>
+  <tabstop>pushButton_session1</tabstop>
+  <tabstop>pushButton_back_from_session_to_main</tabstop>
+  <tabstop>scrollArea_2</tabstop>
+  <tabstop>pushButton_2</tabstop>
+  <tabstop>pushButton_back_from_history_to_session</tabstop>
+  <tabstop>pushButton_replay</tabstop>
+  <tabstop>pushButton_30</tabstop>
+  <tabstop>pushButton_31</tabstop>
+ </tabstops>
  <resources/>
  <connections>
   <connection>
@@ -2959,12 +3023,12 @@ font: 28pt &quot;Segoe UI&quot;;</string>
    <slot>hide()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>156</x>
-     <y>482</y>
+     <x>147</x>
+     <y>603</y>
     </hint>
     <hint type="destinationlabel">
-     <x>171</x>
-     <y>487</y>
+     <x>147</x>
+     <y>603</y>
     </hint>
    </hints>
   </connection>

@@ -1,16 +1,29 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+// ----------------------------------------------------------------------------
+// Button Click Handlers
+// ----------------------------------------------------------------------------
+
+/**
+ * @brief Handles the back button click event from login to main window.
+ */
 void MainWindow::on_back_from_login_to_main_clicked()
 {
     ui->stackedWidget->setCurrentIndex(MAIN_WINDOW);
 }
 
+/**
+ * @brief Handles the signup button click event from login to signup window.
+ */
 void MainWindow::on_pushButton_signup_from_login_clicked()
 {
     ui->stackedWidget->setCurrentIndex(SIGNUP_WINDOW);
 }
 
+/**
+ * @brief Handles the login button click event.
+ */
 void MainWindow::on_pushButton_login_to_main_clicked() {
     // Retrieve username and password from input fields
     QString username = ui->lineEdit_user->text();
@@ -48,7 +61,7 @@ void MainWindow::on_pushButton_login_to_main_clicked() {
         break;
     case SIGNED_IN:
         // Display success message for successful sign-in
-        QMessageBox::information(this, "Success", "You have successfully signed In!");
+        QMessageBox::information(this, "Success", "You have successfully signed in!");
         // Clear input fields
         ui->lineEdit_user->setText("");
         ui->lineEdit_pass->setText("");
@@ -59,15 +72,16 @@ void MainWindow::on_pushButton_login_to_main_clicked() {
         tempPlayer->setSessions(s);
         int ssize = s.size();
         player = *tempPlayer;
-        player.setSessoinsCount(ssize);
+        player.setSessionsCount(ssize);
 
+        // Clear existing buttons if any
         QLayoutItem *item;
         QWidget *container = ui->scrollAreaWidgetContents_4;
-
         while ((item = container->layout()->takeAt(0)) != nullptr) {
             delete item->widget(); // Delete the widget
             delete item;           // Delete the layout item
         }
+        sessionsButtons.clear();
 
         for (Session s : player.getSessions()) {
             populateSession(s);
@@ -101,6 +115,9 @@ void MainWindow::on_pushButton_login_to_main_clicked() {
     }
 }
 
+/**
+ * @brief Handles the show password checkbox state change event.
+ */
 void MainWindow::on_showPasswordCheckbox_stateChanged()
 {
     if (ui->showPasswordCheckbox->isChecked()){
