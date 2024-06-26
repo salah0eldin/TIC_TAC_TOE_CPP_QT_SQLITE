@@ -26,6 +26,7 @@ public:
     int getSessionsCount() const;
     void addSession(Session session);
     void removeSessionAt(int index);
+    void updateSessionAt(int index,Session session);
     QVector<Session> getSessions();
     QImage getImage();
     void setSessoinsCount(int count);

@@ -1,11 +1,21 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+// ----------------------------------------------------------------------------
+// Button Click Handlers
+// ----------------------------------------------------------------------------
+
+/**
+ * @brief Handles the back button click event from signup to login window.
+ */
 void MainWindow::on_pushButton_back_from_signup_to_login_clicked()
 {
     ui->stackedWidget->setCurrentIndex(LOGIN_WINDOW);
 }
 
+/**
+ * @brief Handles the signup button click event.
+ */
 void MainWindow::on_pushButton_signup_to_main_clicked() {
     // Retrieve username, password, and confirm password from input fields
     QString username = ui->lineEdit_user_signup->text();
@@ -60,6 +70,9 @@ void MainWindow::on_pushButton_signup_to_main_clicked() {
     }
 }
 
+/**
+ * @brief Handles the state change of the show password checkbox for signup password.
+ */
 void MainWindow::on_checkBox_pass_signup_stateChanged()
 {
     if (ui->checkBox_pass_signup->isChecked()){
@@ -69,6 +82,9 @@ void MainWindow::on_checkBox_pass_signup_stateChanged()
     }
 }
 
+/**
+ * @brief Handles the state change of the show password checkbox for confirm password during signup.
+ */
 void MainWindow::on_checkBox_confirm_pass_signup_stateChanged()
 {
     if (ui->checkBox_confirm_pass_signup->isChecked()){

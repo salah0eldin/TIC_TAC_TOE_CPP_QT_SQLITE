@@ -7,7 +7,6 @@ debug/game.o
 debug/gamesPage.o
 debug/main.o
 debug/mainwindow.o
-debug/mainwindowFunctions.o
 debug/player.o
 debug/profilePage.o
 debug/session.o

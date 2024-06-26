@@ -1,6 +1,13 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+// ----------------------------------------------------------------------------
+// Checkbox State Change Handlers
+// ----------------------------------------------------------------------------
+
+/**
+ * @brief Handles the state change of the show password checkbox for changing username.
+ */
 void MainWindow::on_checkBox_changeuser_stateChanged()
 {
     if (ui->checkBox_changeuser->isChecked()){
@@ -10,16 +17,29 @@ void MainWindow::on_checkBox_changeuser_stateChanged()
     }
 }
 
+/**
+ * @brief Placeholder function for handling the state change of the checkbox with an integer parameter.
+ * Currently not implemented.
+ */
 void MainWindow::on_checkBox_changeuser_stateChanged(int state) {
     // Implementation code here
 }
 
+// ----------------------------------------------------------------------------
+// Button Click Handlers
+// ----------------------------------------------------------------------------
+
+/**
+ * @brief Handles the back button click event from change username to profile window.
+ */
 void MainWindow::on_pushButton_not_change_username_clicked()
 {
     ui->stackedWidget->setCurrentIndex(PROFILE_WINDOW);
 }
 
-
+/**
+ * @brief Handles the change username button click event.
+ */
 void MainWindow::on_pushButton_change_username_clicked() {
     // Retrieve new username and password from input fields
     QString newUsername = ui->lineEdit_change_username->text();
