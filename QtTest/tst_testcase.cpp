@@ -48,21 +48,27 @@ void TestPlayer::testGetImage() {
     QCOMPARE(player.getImage(), testImage);
 }
 void TestPlayer::testAddSession() {
-    // Create a Player instance
+    // Create a Player object
+    Player player(1, "JohnDoe", "hashedpassword", QImage());
 
-    Player player(1, "test_user", "hashed_pass", testImage);
-
-    // Create a Session instance
+    // Create some Session objects
     QVector<Game> games;
-    Session testSession(1, games);
+    Session session1(1, games);
+    Session session2(2, games);
 
-    // Add the session to the player
-    player.addSession(testSession);
+    // Add sessions to the player
+    player.addSession(session1);
+    player.addSession(session2);
 
-    // Check if the session was added
+    // Verify the number of sessions added
+    QCOMPARE(player.getSessionsCount(), 2);
+
+    // Optionally, you can verify session details or perform additional checks
+    // For example:
     QVector<Session> sessions = player.getSessions();
-    QCOMPARE(sessions.size(), 1);
-    QCOMPARE(sessions[0].getId(), testSession.getId());
+    QCOMPARE(sessions.size(), 2);
+    QCOMPARE(sessions[0].getId(), 1);
+    QCOMPARE(sessions[1].getId(), 2);
 }
 void TestPlayer::testRemoveSessionAt() {
     // Create a Player instance

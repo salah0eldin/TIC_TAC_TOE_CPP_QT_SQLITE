@@ -19,7 +19,9 @@ private slots:
     void testGetOpponentName();
     void testGetTimestamp();
     void testAddGame();
-   void testAddGameUpdatesScore();
+    void testAddGameUpdatesScore();
+    void testGetGamesCount();
+    void testGetGamesPointer();
 };
 void TestSession::testSetId() {
     // Create a Session instance
@@ -216,6 +218,57 @@ void TestSession::testAddGameUpdatesScore() {
     QCOMPARE(session.getScore().ties, 1);
     QCOMPARE(session.getScore().losses, 1);
 }
+
+void TestSession::testGetGamesCount() {
+    // Create a Session object
+    Session session(1, QVector<Game>());
+
+    // Initially, games count should be 0
+    QCOMPARE(session.getGamesCout(), 0);
+
+    // Add a few games to the session
+    Game game1;
+    Game game2;
+    session.addGame(game1);
+    session.addGame(game2);
+
+    // Verify that the games count updates correctly
+    QCOMPARE(session.getGamesCout(), 2);
+
+    // Add more games to further test
+    Game game3;
+    session.addGame(game3);
+
+    // Verify again
+    QCOMPARE(session.getGamesCout(), 3);
+}
+void TestSession::testGetGamesPointer() {
+    // Create a Session object
+    Session session;
+
+    // Add a few games to the session
+    Game game1;
+    Game game2;
+    session.addGame(game1);
+    session.addGame(game2);
+
+    // Obtain a pointer to the games vector
+    QVector<Game> *gamesPtr = session.getGamesPointer();
+
+    // Modify the games through the pointer
+    Game game3;
+    gamesPtr->push_back(game3);
+
+    // Verify that the games vector in session reflects the modification
+    QCOMPARE(session.getGames().size(), 3); // Check size after adding via pointer
+
+    // Further modification example: remove a game via pointer
+    gamesPtr->removeAt(0);
+
+    // Verify size after removal
+    QCOMPARE(session.getGames().size(), 2);
+}
+
  QTEST_APPLESS_MAIN(TestSession)
 
 #include "tst_sessionstest.moc"
