@@ -1,46 +1,52 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+// Slot for back button to return to main menu
 void MainWindow::on_pushButton_14_clicked()
 {
     ui->stackedWidget->setCurrentIndex(MAIN_WINDOW);
 }
 
+// Slot for selecting easy AI difficulty
 void MainWindow::on_pushButton_12_clicked()
 {
-    //easy
     diff = EASY;
     ai_to_board("AI_Easy");
 }
 
+// Slot for selecting medium AI difficulty
 void MainWindow::on_pushButton_15_clicked()
 {
-    //medium
     diff = MED;
     ai_to_board("AI_Med");
 }
 
+// Slot for selecting hard AI difficulty
 void MainWindow::on_pushButton_13_clicked()
 {
-    //hard
     diff = HARD;
     ai_to_board("AI_Hard");
 }
 
-void MainWindow::ai_to_board(QString opponame){
-
+// Function to initialize AI opponent and start game session
+void MainWindow::ai_to_board(QString opponame) {
+    // Create a new session
     Session s;
 
+    // Update UI with opponent's name and player's username
     ui->label->setText(opponame);
     ui->label_40->setText(player.getUsername());
 
+    // Set session details
     s.setOpponentName(opponame);
     s.setSpecificId(player.getSessionsCount());
     s.setUserId(player.getId());
 
+    // Assign current session
     CurrentSession = s;
 
-    switch(diff){
+    // Set AI type based on selected difficulty
+    switch (diff) {
     case EASY:
         CurrentSession.type = AI_EASY;
         break;
@@ -52,21 +58,26 @@ void MainWindow::ai_to_board(QString opponame){
         break;
     }
 
+    // Initialize a new game
     Game g;
     g.setSpecifiedId(0);
     g.playerturn = true;
 
+    // Assign current game
     CurrentGame = g;
 
+    // Reset UI labels
     ui->label_54->setText("0");
     ui->label_55->setText("0");
     ui->label_53->setText("0");
 
+    // Switch to game board view
     ui->stackedWidget->setCurrentIndex(BOARD_WINDOW);
 }
 
-// TreeNode class constructor and destructor
+// TreeNode constructor
 TreeNode::TreeNode(QChar b[3][3], QPair<int, int> m, char p) : move(m), player(p) {
+    // Initialize board state
     for (int i = 0; i < 3; ++i) {
         for (int j = 0; j < 3; ++j) {
             board[i][j] = b[i][j];
@@ -74,16 +85,20 @@ TreeNode::TreeNode(QChar b[3][3], QPair<int, int> m, char p) : move(m), player(p
     }
 }
 
+// TreeNode destructor
 TreeNode::~TreeNode() {
+    // Delete all child nodes
     qDeleteAll(children);
 }
 
 // Minimax algorithm with alpha-beta pruning
-QPair<int, QPair<int, int>> minimax(TreeNode* node, int depth, int alpha, int beta, bool maximizingPlayer,int diff) {
+QPair<int, QPair<int, int>> minimax(TreeNode* node, int depth, int alpha, int beta, bool maximizingPlayer, int diff) {
+    // Check terminal states
     if (is_winner(node->board, 'X')) return QPair<int, QPair<int, int>>(-diff + depth, node->move);
     if (is_winner(node->board, 'O')) return QPair<int, QPair<int, int>>(diff - depth, node->move);
     if (is_draw(node->board)) return QPair<int, QPair<int, int>>(0, node->move);
 
+    // Maximize or minimize based on player turn
     if (maximizingPlayer) {
         int maxEval = std::numeric_limits<int>::min();
         QPair<int, int> bestMove;
@@ -113,11 +128,12 @@ QPair<int, QPair<int, int>> minimax(TreeNode* node, int depth, int alpha, int be
     }
 }
 
-// Generate children nodes
+// Generate child nodes for the current board state
 void generate_children(TreeNode* node, char player) {
     for (int i = 0; i < 3; ++i) {
         for (int j = 0; j < 3; ++j) {
             if (node->board[i][j] == ' ') {
+                // Create a new board configuration
                 QChar newBoard[3][3];
                 for (int x = 0; x < 3; ++x) {
                     for (int y = 0; y < 3; ++y) {
@@ -125,40 +141,56 @@ void generate_children(TreeNode* node, char player) {
                     }
                 }
                 newBoard[i][j] = player;
+
+                // Create a child node and add to parent
                 TreeNode* child = new TreeNode(newBoard, QPair<int, int>(i, j), player);
                 node->children.push_back(child);
+
+                // Recursively generate children nodes
                 generate_children(child, (player == 'X') ? 'O' : 'X');
             }
         }
     }
 }
 
-// Determine the best move
-QPair<int, int> best_move(QChar board[3][3], char player,int diff) {
+// Determine the best move using minimax algorithm
+QPair<int, int> best_move(QChar board[3][3], char player, int diff) {
+    // Create root node
     TreeNode* root = new TreeNode(board);
+
+    // Generate child nodes for possible moves
     generate_children(root, player);
-    auto result = minimax(root, 0, std::numeric_limits<int>::min(), std::numeric_limits<int>::max(), player == 'O',diff);
+
+    // Apply minimax algorithm with alpha-beta pruning
+    auto result = minimax(root, 0, std::numeric_limits<int>::min(), std::numeric_limits<int>::max(), player == 'O', diff);
+
+    // Clean up memory
     delete root;
+
+    // Return best move coordinates
     return result.second;
 }
 
-// Check for winner
+// Check if there is a winner
 bool is_winner(const QChar board[3][3], char player) {
+    // Check rows and columns for three in a row
     for (int i = 0; i < 3; ++i) {
         if (board[i][0] == player && board[i][1] == player && board[i][2] == player) return true;
         if (board[0][i] == player && board[1][i] == player && board[2][i] == player) return true;
     }
+    // Check diagonals for three in a row
     if (board[0][0] == player && board[1][1] == player && board[2][2] == player) return true;
     if (board[0][2] == player && board[1][1] == player && board[2][0] == player) return true;
     return false;
 }
 
-// Check for draw
+// Check if the game is a draw
 bool is_draw(const QChar board[3][3]) {
+    // Check if any cell is empty
     for (int i = 0; i < 3; ++i) {
         for (int j = 0; j < 3; ++j) {
             if (board[i][j] == ' ') return false;
         }
     }
-    return true;
+    return true; // All cells are filled, game is a draw
 }

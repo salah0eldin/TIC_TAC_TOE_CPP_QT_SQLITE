@@ -49,8 +49,7 @@ DatabaseManager::DatabaseManager() {
     sqlQuery.prepare(query);
     if (!sqlQuery.exec()) {
         // Print error message if query execution fails
-        qDebug() << "Error creating sessions table: "
-                 << sqlQuery.lastError().text();
+        qDebug() << "Error creating sessions table: " << sqlQuery.lastError().text();
     }
 
     // SQL query to create the games table if it doesn't exist
@@ -96,8 +95,7 @@ int DatabaseManager::signUp(const QString &username, const QString &password) {
     insertQuery.addBindValue(password);
 
     if (!insertQuery.exec()) {
-        qDebug() << "Error executing insertQuery:"
-                 << insertQuery.lastError().text();
+        qDebug() << "Error executing insertQuery:" << insertQuery.lastError().text();
         return DATABASE_ERROR;
     }
 
@@ -115,8 +113,7 @@ int DatabaseManager::signIn(const QString &username, const QString &password,
     // Execute the query
     if (!selectQuery.exec()) {
         // Print error message if query execution fails
-        qDebug() << "Error executing select user in query:"
-                 << selectQuery.lastError().text();
+        qDebug() << "Error executing select user in query:" << selectQuery.lastError().text();
         return DATABASE_ERROR; // Return error code
     }
 
@@ -176,8 +173,7 @@ int DatabaseManager::changeUsername(const int &id, const QString &newUsername,
     updateQuery.addBindValue(id);
 
     if (!updateQuery.exec()) {
-        qDebug() << "Error executing updateQuery:"
-                 << updateQuery.lastError().text();
+        qDebug() << "Error executing updateQuery:" << updateQuery.lastError().text();
         return DATABASE_ERROR;
     }
 
@@ -208,8 +204,7 @@ int DatabaseManager::changePassword(const int &id, const QString &oldPassword,
     updateQuery.addBindValue(id);
 
     if (!updateQuery.exec()) {
-        qDebug() << "Error executing updateQuery:"
-                 << updateQuery.lastError().text();
+        qDebug() << "Error executing updateQuery:" << updateQuery.lastError().text();
         return DATABASE_ERROR;
     }
 
@@ -218,7 +213,6 @@ int DatabaseManager::changePassword(const int &id, const QString &oldPassword,
 }
 
 int DatabaseManager::changeImage(const int &id, const QByteArray &imageData) {
-
     // Update the image data in the database
     QSqlQuery query;
     query.prepare("UPDATE users SET image = :imageData WHERE id = :id");
@@ -226,8 +220,7 @@ int DatabaseManager::changeImage(const int &id, const QByteArray &imageData) {
     query.bindValue(":id", id);
 
     if (!query.exec()) {
-        qDebug() << "Failed to update image in database:"
-                 << query.lastError().text();
+        qDebug() << "Failed to update image in database:" << query.lastError().text();
         return DATABASE_ERROR;
     }
 
@@ -236,9 +229,8 @@ int DatabaseManager::changeImage(const int &id, const QByteArray &imageData) {
 }
 
 bool DatabaseManager::saveSession(Session &session) {
-
     QSqlQuery insertQuery;
-    qDebug()<<session.type;
+
     if (session.getId() == -1) {
         // Prepare SQL query to insert new session
         insertQuery.prepare("INSERT INTO sessions (specificId, userid, type, against, "
@@ -265,41 +257,38 @@ bool DatabaseManager::saveSession(Session &session) {
     // Execute the query
     if (!insertQuery.exec()) {
         // Print error message if query execution fails
-        qDebug() << "Error executing insert session query:"
-                 << insertQuery.lastError().text();
-        return DATABASE_ERROR; // Return false to indicate failure
+        qDebug() << "Error executing insert session query:" << insertQuery.lastError().text();
+        return false; // Return false to indicate failure
     }
-    // If a new session was inserted, update the session ID
 
+    // If a new session was inserted, update the session ID
     int sessionId = session.getId();
     if (sessionId == -1) {
         sessionId = insertQuery.lastInsertId().toLongLong();
         session.setId(sessionId);
     }
+
     QVector<Game> *games = session.getGamesPointer();
 
     for (Game &game : *games) {
-        qDebug()<<"game"<<game.getId();
         if (game.getId() == -1) {
             game.setSessionId(sessionId);
             saveGame(game);
-            qDebug()<<game.getId();
         }
     }
 
-    return DATABASE_SUCCESS; // Return true to indicate successful insertion
+    return true; // Return true to indicate successful insertion
 }
 
 bool DatabaseManager::saveGame(Game &game) {
     // Prepare SQL query to insert a new game
     QSqlQuery insertQuery;
-
     insertQuery.prepare("INSERT INTO games (session_id, specific_id, "
                         "playerCharacter, playerIsFirst, moves, state) "
                         "VALUES (?, ?, ?, ?, ?, ?)");
     insertQuery.addBindValue(game.getSessionId());
     insertQuery.addBindValue(game.getSpeceifiedId());
-    insertQuery.addBindValue("X");
+    insertQuery.addBindValue("X"); // Placeholder for player character
     insertQuery.addBindValue(game.getPlayerIsFirst());
     insertQuery.addBindValue(game.getMoves());
     insertQuery.addBindValue(game.getState());
@@ -307,15 +296,14 @@ bool DatabaseManager::saveGame(Game &game) {
     // Execute the query
     if (!insertQuery.exec()) {
         // Print error message if query execution fails
-        qDebug() << "Error executing insert game query:"
-                 << insertQuery.lastError().text();
-        return DATABASE_ERROR; // Return false to indicate failure
+        qDebug() << "Error executing insert game query:" << insertQuery.lastError().text();
+        return false; // Return false to indicate failure
     }
 
     int gameId = insertQuery.lastInsertId().toLongLong();
     game.setId(gameId);
 
-    return DATABASE_SUCCESS; // Return true to indicate successful insertion
+    return true; // Return true to indicate successful insertion
 }
 
 QVector<Game> DatabaseManager::loadGames(const int &session_id) {
@@ -329,8 +317,7 @@ QVector<Game> DatabaseManager::loadGames(const int &session_id) {
     // Execute the query
     if (!selectQuery.exec()) {
         // Print error message if query execution fails
-        qDebug() << "Error executing select games query:"
-                 << selectQuery.lastError().text();
+        qDebug() << "Error executing select games query:" << selectQuery.lastError().text();
         return games; // Return an empty vector to indicate failure
     }
 
@@ -361,8 +348,7 @@ QVector<Session> DatabaseManager::loadHistory(const int &id) {
     // Execute the query
     if (!selectQuery.exec()) {
         // Print error message if query execution fails
-        qDebug() << "Error executing select sessions query:"
-                 << selectQuery.lastError().text();
+        qDebug() << "Error executing select sessions query:" << selectQuery.lastError().text();
         return sessions; // Return an empty vector to indicate failure
     }
 

@@ -230,7 +230,7 @@ void MainWindow::loadUserSession() {
         QVector<Session> s = db.loadHistory(id);
         player.setSessions(s);
         int ssize = s.size();
-        player.setSessoinsCount(ssize);
+        player.setSessionsCount(ssize);
 
         // Clear existing buttons if any
         QLayoutItem *item;

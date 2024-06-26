@@ -1,21 +1,28 @@
 #include "game.h"
 
-void Game:: makeMove(int row, int col) {
+void Game::makeMove(int row, int col) {
+    // Ensure the cell is empty before making a move
     if (board[row][col] != 'X' && board[row][col] != 'O') {
+        // Determine which player's turn it is and place their symbol
         if (playerturn) {
             board[row][col] = playerChar;
         } else {
             board[row][col] = oppoChar;
         }
+        // Toggle player turn
         playerturn = !playerturn;
-        int index = row*3+col;
+
+        // Record the move in the moves history
+        int index = row * 3 + col;
         moves += QString::number(index);
+
+        // Check game state after the move
         state = checkWinDraw();
     }
 }
 
 QChar Game::checkWinDraw() {
-    // Check rows
+    // Check rows for a win
     for (int i = 0; i < 3; ++i) {
         if (board[i][0] == board[i][1] && board[i][1] == board[i][2]) {
             if (board[i][0] == playerChar)
@@ -25,7 +32,7 @@ QChar Game::checkWinDraw() {
         }
     }
 
-    // Check columns
+    // Check columns for a win
     for (int j = 0; j < 3; ++j) {
         if (board[0][j] == board[1][j] && board[1][j] == board[2][j]) {
             if (board[0][j] == playerChar)
@@ -35,7 +42,7 @@ QChar Game::checkWinDraw() {
         }
     }
 
-    // Check diagonals
+    // Check diagonals for a win
     if ((board[0][0] == board[1][1] && board[1][1] == board[2][2]) ||
         (board[0][2] == board[1][1] && board[1][1] == board[2][0])) {
         if (board[1][1] == playerChar)
@@ -44,7 +51,7 @@ QChar Game::checkWinDraw() {
             return 'l'; // Player loses
     }
 
-    // Check for draw
+    // Check for a draw
     bool draw = true;
     for (int i = 0; i < 3; ++i) {
         for (int j = 0; j < 3; ++j) {
@@ -59,10 +66,9 @@ QChar Game::checkWinDraw() {
     if (draw)
         return 't'; // Tie
 
-    // Game not finished
+    // No winner yet, game continues
     return 'n';
 }
-
 
 void Game::resetGame() {
     // Clear the board
@@ -71,6 +77,7 @@ void Game::resetGame() {
             board[i][j] = ' ';
         }
     }
+    // Reset game state and other variables
     state = 'n';
     specifiedId++;
     playerIsFirst = !playerIsFirst;
@@ -78,7 +85,8 @@ void Game::resetGame() {
     moves = "";
 }
 
-void Game::loadGame(const int id, const std::string& gameMoves){
+void Game::loadGame(const int id, const std::string& gameMoves) {
+    // Load game state from provided data
     this->id = id;
     for (int i = 0; i < 3; ++i) {
         for (int j = 0; j < 3; ++j) {
@@ -87,17 +95,19 @@ void Game::loadGame(const int id, const std::string& gameMoves){
     }
 }
 
-QChar Game::getState(){
+QChar Game::getState() {
     return state;
 }
-void Game::setSessionId(const int&id){
+
+void Game::setSessionId(const int &id) {
     sessionId = id;
 }
+
 void Game::setId(int gameId) {
     id = gameId;
 }
 
-void Game::setPlayerIsFirst(bool Turn){
+void Game::setPlayerIsFirst(bool Turn) {
     playerIsFirst = Turn;
 }
 
@@ -109,31 +119,31 @@ void Game::setState(QChar gameState) {
     state = gameState;
 }
 
-void Game::setSpecifiedId(const int &id){
+void Game::setSpecifiedId(const int &id) {
     specifiedId = id;
 }
 
-void Game::setPlayerCharacter(const QChar&c){
+void Game::setPlayerCharacter(const QChar &c) {
     playerChar = c;
-    oppoChar = (c=='X'?'O':'X');
+    oppoChar = (c == 'X' ? 'O' : 'X'); // Set opponent's character
 }
 
-int Game::getSpeceifiedId() const{
+int Game::getSpeceifiedId() const {
     return specifiedId;
 }
 
-int Game::getSessionId() const{
+int Game::getSessionId() const {
     return sessionId;
 }
 
-int Game::getId() const{
+int Game::getId() const {
     return id;
 }
 
-QString Game::getPlayerIsFirst() const{
-    return (playerIsFirst?"T":"F");
+QString Game::getPlayerIsFirst() const {
+    return (playerIsFirst ? "T" : "F");
 }
 
-QString Game::getMoves(){
+QString Game::getMoves() {
     return moves;
 }

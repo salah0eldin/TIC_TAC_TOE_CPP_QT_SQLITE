@@ -38,16 +38,19 @@ void MainWindow::on_Change_photo_clicked() {
     }
 }
 
+// Back button from profile to main window
 void MainWindow::on_pushButton_back_from_profile_to_main_clicked()
 {
     ui->stackedWidget->setCurrentIndex(MAIN_WINDOW);
 }
 
+// Change username button from profile
 void MainWindow::on_pushButton_change_username_from_profile_clicked()
 {
     ui->stackedWidget->setCurrentIndex(CHANGE_USERNAME_WINDOW);
 }
 
+// Change password button from profile
 void MainWindow::on_pushButton_change_password_from_profile_clicked()
 {
     ui->stackedWidget->setCurrentIndex(CHANGE_PASSWORD_WINDOW);

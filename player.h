@@ -16,26 +16,31 @@ private:
 
     QVector<Session> sessions;
 
-
 public:
-    Player():sessionsCount(0){};
-    Player(const int id, QString username, QString hashedPassword, QImage imagee);
+    // Constructors
+    Player(): sessionsCount(0) {}
+    Player(const int id, QString username, QString hashedPassword, QImage image);
+
+    // Getters
     QString getUsername() const;
     QString getHashedPassword() const;
     int getId() const;
     int getSessionsCount() const;
-    void addSession(Session session);
-    void removeSessionAt(int index);
-    void updateSessionAt(int index,Session session);
     QVector<Session> getSessions();
     QImage getImage();
-    void setSessoinsCount(int count);
+
+    // Setters
+    void setSessionsCount(int count);
     void setId(int &id);
-    void setImage(QImage & image);
+    void setImage(QImage &image);
     void setUsername(QString &username);
     void setHashedPassword(QString &password);
     void setSessions(QVector<Session> &sessions);
+
+    // Session management
+    void addSession(Session session);
+    void removeSessionAt(int index);
+    void updateSessionAt(int index, Session session);
 };
+
 #endif // PLAYER_H
-
-

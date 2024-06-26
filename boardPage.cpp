@@ -33,7 +33,7 @@ void MainWindow::on_pushButton_confirm_player2_clicked()
     s.setOpponentName(oppoName);
     s.setSpecificId(player.getSessionsCount());
     s.setUserId(player.getId());
-    s.setType(HUMAN);
+    s.type = HUMAN;
     Ai = false;
     CurrentSession = s;
 
@@ -58,7 +58,7 @@ void MainWindow::on_pushButton_confirm_player2_clicked()
  */
 void MainWindow::on_pushButton_back_from_board_to_main_clicked()
 {
-    if (CurrentGame.getMoves() != "" || CurrentSession.getGamesCout() != 0) {
+    if (CurrentGame.getMoves() != "" || CurrentSession.getGamesCount() != 0) {
         QMessageBox msgBox;
         msgBox.setText("Do you want to save the session?");
         msgBox.setWindowTitle("Confirmation");

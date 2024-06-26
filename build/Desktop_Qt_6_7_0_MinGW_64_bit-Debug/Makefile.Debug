@@ -525,11 +525,11 @@ debug/moc_mainwindow.cpp: ../../mainwindow.h \
 		C:/Qt/6.7.0/mingw_64/include/QtSql/qtsqlversion.h \
 		C:/Qt/6.7.0/mingw_64/include/QtCore/QVector \
 		../../session.h \
-		C:/Qt/6.7.0/mingw_64/include/QtCore/QPair \
 		C:/Qt/6.7.0/mingw_64/include/QtCore/QDateTime \
 		../../game.h \
 		../../aiAlgorithm.h \
 		C:/Qt/6.7.0/mingw_64/include/QtCore/QChar \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/QPair \
 		../../player.h \
 		debug/moc_predefs.h \
 		C:/Qt/6.7.0/mingw_64/bin/moc.exe
@@ -930,11 +930,11 @@ debug/aiPage.o: ../../aiPage.cpp ../../mainwindow.h \
 		C:/Qt/6.7.0/mingw_64/include/QtSql/qtsqlversion.h \
 		C:/Qt/6.7.0/mingw_64/include/QtCore/QVector \
 		../../session.h \
-		C:/Qt/6.7.0/mingw_64/include/QtCore/QPair \
 		C:/Qt/6.7.0/mingw_64/include/QtCore/QDateTime \
 		../../game.h \
 		../../aiAlgorithm.h \
 		C:/Qt/6.7.0/mingw_64/include/QtCore/QChar \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/QPair \
 		../../player.h \
 		ui_mainwindow.h \
 		C:/Qt/6.7.0/mingw_64/include/QtWidgets/QApplication \
@@ -1344,11 +1344,11 @@ debug/boardPage.o: ../../boardPage.cpp ../../mainwindow.h \
 		C:/Qt/6.7.0/mingw_64/include/QtSql/qtsqlversion.h \
 		C:/Qt/6.7.0/mingw_64/include/QtCore/QVector \
 		../../session.h \
-		C:/Qt/6.7.0/mingw_64/include/QtCore/QPair \
 		C:/Qt/6.7.0/mingw_64/include/QtCore/QDateTime \
 		../../game.h \
 		../../aiAlgorithm.h \
 		C:/Qt/6.7.0/mingw_64/include/QtCore/QChar \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/QPair \
 		../../player.h \
 		ui_mainwindow.h \
 		C:/Qt/6.7.0/mingw_64/include/QtWidgets/QApplication \
@@ -1758,11 +1758,11 @@ debug/changepasswordPage.o: ../../changepasswordPage.cpp ../../mainwindow.h \
 		C:/Qt/6.7.0/mingw_64/include/QtSql/qtsqlversion.h \
 		C:/Qt/6.7.0/mingw_64/include/QtCore/QVector \
 		../../session.h \
-		C:/Qt/6.7.0/mingw_64/include/QtCore/QPair \
 		C:/Qt/6.7.0/mingw_64/include/QtCore/QDateTime \
 		../../game.h \
 		../../aiAlgorithm.h \
 		C:/Qt/6.7.0/mingw_64/include/QtCore/QChar \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/QPair \
 		../../player.h \
 		ui_mainwindow.h \
 		C:/Qt/6.7.0/mingw_64/include/QtWidgets/QApplication \
@@ -2172,11 +2172,11 @@ debug/changeusernamePage.o: ../../changeusernamePage.cpp ../../mainwindow.h \
 		C:/Qt/6.7.0/mingw_64/include/QtSql/qtsqlversion.h \
 		C:/Qt/6.7.0/mingw_64/include/QtCore/QVector \
 		../../session.h \
-		C:/Qt/6.7.0/mingw_64/include/QtCore/QPair \
 		C:/Qt/6.7.0/mingw_64/include/QtCore/QDateTime \
 		../../game.h \
 		../../aiAlgorithm.h \
 		C:/Qt/6.7.0/mingw_64/include/QtCore/QChar \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/QPair \
 		../../player.h \
 		ui_mainwindow.h \
 		C:/Qt/6.7.0/mingw_64/include/QtWidgets/QApplication \
@@ -2569,7 +2569,6 @@ debug/databasemanager.o: ../../databasemanager.cpp ../../databasemanager.h \
 		C:/Qt/6.7.0/mingw_64/include/QtCore/QDebug \
 		C:/Qt/6.7.0/mingw_64/include/QtCore/QVector \
 		../../session.h \
-		C:/Qt/6.7.0/mingw_64/include/QtCore/QPair \
 		C:/Qt/6.7.0/mingw_64/include/QtCore/QDateTime \
 		../../game.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/databasemanager.o ../../databasemanager.cpp
@@ -3022,11 +3021,11 @@ debug/gamesPage.o: ../../gamesPage.cpp ../../mainwindow.h \
 		C:/Qt/6.7.0/mingw_64/include/QtSql/qtsqlversion.h \
 		C:/Qt/6.7.0/mingw_64/include/QtCore/QVector \
 		../../session.h \
-		C:/Qt/6.7.0/mingw_64/include/QtCore/QPair \
 		C:/Qt/6.7.0/mingw_64/include/QtCore/QDateTime \
 		../../game.h \
 		../../aiAlgorithm.h \
 		C:/Qt/6.7.0/mingw_64/include/QtCore/QChar \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/QPair \
 		../../player.h \
 		ui_mainwindow.h \
 		C:/Qt/6.7.0/mingw_64/include/QtWidgets/QApplication \
@@ -3436,11 +3435,11 @@ debug/main.o: ../../main.cpp ../../mainwindow.h \
 		C:/Qt/6.7.0/mingw_64/include/QtSql/qtsqlversion.h \
 		C:/Qt/6.7.0/mingw_64/include/QtCore/QVector \
 		../../session.h \
-		C:/Qt/6.7.0/mingw_64/include/QtCore/QPair \
 		C:/Qt/6.7.0/mingw_64/include/QtCore/QDateTime \
 		../../game.h \
 		../../aiAlgorithm.h \
 		C:/Qt/6.7.0/mingw_64/include/QtCore/QChar \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/QPair \
 		../../player.h \
 		C:/Qt/6.7.0/mingw_64/include/QtWidgets/QApplication \
 		C:/Qt/6.7.0/mingw_64/include/QtWidgets/qapplication.h
@@ -3818,11 +3817,11 @@ debug/mainwindow.o: ../../mainwindow.cpp ../../mainwindow.h \
 		C:/Qt/6.7.0/mingw_64/include/QtSql/qtsqlversion.h \
 		C:/Qt/6.7.0/mingw_64/include/QtCore/QVector \
 		../../session.h \
-		C:/Qt/6.7.0/mingw_64/include/QtCore/QPair \
 		C:/Qt/6.7.0/mingw_64/include/QtCore/QDateTime \
 		../../game.h \
 		../../aiAlgorithm.h \
 		C:/Qt/6.7.0/mingw_64/include/QtCore/QChar \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/QPair \
 		../../player.h \
 		ui_mainwindow.h \
 		C:/Qt/6.7.0/mingw_64/include/QtWidgets/QApplication \
@@ -3943,7 +3942,6 @@ debug/player.o: ../../player.cpp ../../player.h \
 		C:/Qt/6.7.0/mingw_64/include/QtCore/qstringlist.h \
 		C:/Qt/6.7.0/mingw_64/include/QtCore/qalgorithms.h \
 		C:/Qt/6.7.0/mingw_64/include/QtCore/qstringmatcher.h \
-		C:/Qt/6.7.0/mingw_64/include/QtCore/QPair \
 		C:/Qt/6.7.0/mingw_64/include/QtCore/QDateTime \
 		C:/Qt/6.7.0/mingw_64/include/QtCore/qdatetime.h \
 		C:/Qt/6.7.0/mingw_64/include/QtCore/qcalendar.h \
@@ -4377,11 +4375,11 @@ debug/profilePage.o: ../../profilePage.cpp ../../mainwindow.h \
 		C:/Qt/6.7.0/mingw_64/include/QtSql/qtsqlversion.h \
 		C:/Qt/6.7.0/mingw_64/include/QtCore/QVector \
 		../../session.h \
-		C:/Qt/6.7.0/mingw_64/include/QtCore/QPair \
 		C:/Qt/6.7.0/mingw_64/include/QtCore/QDateTime \
 		../../game.h \
 		../../aiAlgorithm.h \
 		C:/Qt/6.7.0/mingw_64/include/QtCore/QChar \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/QPair \
 		../../player.h \
 		ui_mainwindow.h \
 		C:/Qt/6.7.0/mingw_64/include/QtWidgets/QApplication \
@@ -4501,7 +4499,6 @@ debug/session.o: ../../session.cpp ../../session.h \
 		C:/Qt/6.7.0/mingw_64/include/QtCore/qstringlist.h \
 		C:/Qt/6.7.0/mingw_64/include/QtCore/qalgorithms.h \
 		C:/Qt/6.7.0/mingw_64/include/QtCore/qstringmatcher.h \
-		C:/Qt/6.7.0/mingw_64/include/QtCore/QPair \
 		C:/Qt/6.7.0/mingw_64/include/QtCore/QDateTime \
 		C:/Qt/6.7.0/mingw_64/include/QtCore/qdatetime.h \
 		C:/Qt/6.7.0/mingw_64/include/QtCore/qcalendar.h \
@@ -4915,11 +4912,11 @@ debug/sessionsPage.o: ../../sessionsPage.cpp ../../mainwindow.h \
 		C:/Qt/6.7.0/mingw_64/include/QtSql/qtsqlversion.h \
 		C:/Qt/6.7.0/mingw_64/include/QtCore/QVector \
 		../../session.h \
-		C:/Qt/6.7.0/mingw_64/include/QtCore/QPair \
 		C:/Qt/6.7.0/mingw_64/include/QtCore/QDateTime \
 		../../game.h \
 		../../aiAlgorithm.h \
 		C:/Qt/6.7.0/mingw_64/include/QtCore/QChar \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/QPair \
 		../../player.h \
 		ui_mainwindow.h \
 		C:/Qt/6.7.0/mingw_64/include/QtWidgets/QApplication \
@@ -5329,11 +5326,11 @@ debug/signinPage.o: ../../signinPage.cpp ../../mainwindow.h \
 		C:/Qt/6.7.0/mingw_64/include/QtSql/qtsqlversion.h \
 		C:/Qt/6.7.0/mingw_64/include/QtCore/QVector \
 		../../session.h \
-		C:/Qt/6.7.0/mingw_64/include/QtCore/QPair \
 		C:/Qt/6.7.0/mingw_64/include/QtCore/QDateTime \
 		../../game.h \
 		../../aiAlgorithm.h \
 		C:/Qt/6.7.0/mingw_64/include/QtCore/QChar \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/QPair \
 		../../player.h \
 		ui_mainwindow.h \
 		C:/Qt/6.7.0/mingw_64/include/QtWidgets/QApplication \
@@ -5743,11 +5740,11 @@ debug/signupPage.o: ../../signupPage.cpp ../../mainwindow.h \
 		C:/Qt/6.7.0/mingw_64/include/QtSql/qtsqlversion.h \
 		C:/Qt/6.7.0/mingw_64/include/QtCore/QVector \
 		../../session.h \
-		C:/Qt/6.7.0/mingw_64/include/QtCore/QPair \
 		C:/Qt/6.7.0/mingw_64/include/QtCore/QDateTime \
 		../../game.h \
 		../../aiAlgorithm.h \
 		C:/Qt/6.7.0/mingw_64/include/QtCore/QChar \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/QPair \
 		../../player.h \
 		ui_mainwindow.h \
 		C:/Qt/6.7.0/mingw_64/include/QtWidgets/QApplication \

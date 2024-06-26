@@ -5,7 +5,6 @@
 // Checkbox State Change Handlers
 // ----------------------------------------------------------------------------
 
-
 /**
  * @brief Handles the state change of the show password checkbox for changing password.
  */

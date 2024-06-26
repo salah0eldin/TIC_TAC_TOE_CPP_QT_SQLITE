@@ -6,6 +6,7 @@
 #include <QDebug>           // Include qDebug for debugging output
 #include <QVector>
 #include "session.h"
+#include "game.h"           // Include Game class header
 
 #define DATABASE_ERROR   0     ///< Error code indicating a database operation failure.
 #define DATABASE_SUCCESS 1     ///< Success code indicating a successful database operation.
@@ -45,6 +46,8 @@ public:
      * @brief Authenticates a user by checking if their username and password match records in the database.
      * @param username The username of the user to authenticate.
      * @param password The password of the user to authenticate.
+     * @param id Output parameter to store the ID of the authenticated user.
+     * @param image Output parameter to store the user's profile image.
      * @return SIGNED_IN if authentication succeeds, WRONG_USERNAME if the username is not found,
      *         WRONG_PASSWORD if the provided password is incorrect, DATABASE_ERROR if there is an error
      *         in database operation.
@@ -73,31 +76,41 @@ public:
      */
     int changePassword(const int &id, const QString &oldPassword, const QString &newPassword);
 
-    int changeImage(const int &id,const QByteArray &imageData);
+    /**
+     * @brief Changes the profile image of a user in the database.
+     * @param id The ID of the user whose profile image is to be changed.
+     * @param imageData The byte array containing the new image data.
+     * @return DATABASE_SUCCESS if the image is successfully changed,
+     *         DATABASE_ERROR if there is an error in the database operation.
+     */
+    int changeImage(const int &id, const QByteArray &imageData);
 
     /**
      * @brief Saves a session record into the database.
-     * @param userid The ID of the user associated with the session.
-     * @param against The name of the opponent.
-     * @param wins The number of wins in the session.
-     * @param loss The number of losses in the session.
-     * @param ties The number of ties in the session.
+     * @param session The Session object containing session details to be saved.
      * @return True if insertion succeeds, false if there is an error in database operation.
      */
     bool saveSession(Session &session);
 
     /**
      * @brief Saves a game record into the database.
-     * @param session_id The ID of the session associated with the game.
-     * @param playerCharacter The character representing the player.
-     * @param moves The sequence of moves made in the game.
-     * @param state The state of the game.
+     * @param game The Game object containing game details to be saved.
      * @return True if insertion succeeds, false if there is an error in database operation.
      */
     bool saveGame(Game &game);
 
+    /**
+     * @brief Loads all games associated with a session from the database.
+     * @param session_id The ID of the session for which games are to be loaded.
+     * @return A QVector containing all Game objects loaded from the database.
+     */
     QVector<Game> loadGames(const int &session_id);
 
+    /**
+     * @brief Loads all historical sessions of a user from the database.
+     * @param id The ID of the user for which session history is to be loaded.
+     * @return A QVector containing all Session objects loaded from the database.
+     */
     QVector<Session> loadHistory(const int &id);
 };
 
