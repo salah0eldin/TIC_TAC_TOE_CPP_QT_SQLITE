@@ -224,7 +224,7 @@ void TestSession::testGetGamesCount() {
     Session session(1, QVector<Game>());
 
     // Initially, games count should be 0
-    QCOMPARE(session.getGamesCout(), 0);
+    QCOMPARE(session.getGamesCount(), 0);
 
     // Add a few games to the session
     Game game1;
@@ -233,15 +233,16 @@ void TestSession::testGetGamesCount() {
     session.addGame(game2);
 
     // Verify that the games count updates correctly
-    QCOMPARE(session.getGamesCout(), 2);
+    QCOMPARE(session.getGamesCount(), 2);
 
     // Add more games to further test
     Game game3;
     session.addGame(game3);
 
     // Verify again
-    QCOMPARE(session.getGamesCout(), 3);
+    QCOMPARE(session.getGamesCount(), 3);
 }
+
 void TestSession::testGetGamesPointer() {
     // Create a Session object
     Session session;

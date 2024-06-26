@@ -28,7 +28,7 @@ public:
     int getSessionsCount() const;
     QVector<Session> getSessions();
     QImage getImage();
-
+    QString getName() const;
     // Setters
     void setSessionsCount(int count);
     void setId(int &id);
@@ -36,6 +36,7 @@ public:
     void setUsername(QString &username);
     void setHashedPassword(QString &password);
     void setSessions(QVector<Session> &sessions);
+    void setName(const QString &name);
 
     // Session management
     void addSession(Session session);

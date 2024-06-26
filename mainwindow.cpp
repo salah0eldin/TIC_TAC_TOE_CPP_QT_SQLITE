@@ -229,6 +229,10 @@ void MainWindow::on_pushButton_login_from_main_clicked()
             QImage image("../../pictures/user.jpg");
             changePictures(image);
 
+            QString username = "Guest";
+            player.setUsername(username);
+            player.setHashedPassword(username);
+
             // Update login status
             loggedIN = false;
             ui->pushButton_login_from_main->setText("Sign In");
@@ -335,6 +339,8 @@ void MainWindow::loadUserSession() {
         loggedIN = true;
         ui->pushButton_login_from_main->setText("Log Out");
     } else {
+        QString username = "Guest";
+        player.setUsername(username);
         loggedIN = false;
     }
 }

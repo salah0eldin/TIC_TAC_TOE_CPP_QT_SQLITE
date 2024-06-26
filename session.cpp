@@ -1,9 +1,11 @@
 #include "session.h"
 
+
 // Constructor with initialization of id and games
 Session::Session(const int id, const QVector<Game> &games) {
     this->id = id;
     this->games = games;
+    this->gamesCount = games.size();
 }
 
 // Sets the id of the session
