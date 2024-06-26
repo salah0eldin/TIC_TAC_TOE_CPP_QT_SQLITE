@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test-runner:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y qtbase5-dev qt5-qmake xvfb
+
+      - name: Build and test 'MyQtTest'
+        run: |
+          cd QtTest
+          qmake QtTest.pro
+          make
+          xvfb-run --auto-servernum --server-args='-screen 0 1024x768x24' ./MyQtTest
+
+      - name: Build and test 'Mydatabase_test'
+        run: |
+          cd database_test
+          qmake database_test.pro
+          make
+          xvfb-run --auto-servernum --server-args='-screen 0 1024x768x24' ./Mydatabase_test
+
+     
+
+      - name: Build and test 'Mygametest'
+        run: |
+          cd gametest
+          qmake gametest.pro
+          make
+          xvfb-run --auto-servernum --server-args='-screen 0 1024x768x24' ./Mygametest
+
+      - name: Build and test 'Myaitest'
+        run: |
+          cd aitest
+          qmake aitest.pro
+          make
+          xvfb-run --auto-servernum --server-args='-screen 0 1024x768x24' ./Myaitest
