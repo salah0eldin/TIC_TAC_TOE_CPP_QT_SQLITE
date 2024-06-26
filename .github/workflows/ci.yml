@@ -31,23 +31,23 @@ jobs:
           make
           xvfb-run --auto-servernum --server-args='-screen 0 1024x768x24' ./Mydatabase_test
 
-        - name: Build and test 'MyQtTest2'
-             run: |
-                cd QtTest2
-                qmake QtTest2t.pro
-                make
-                xvfb-run --auto-servernum --server-args='-screen 0 1024x768x24' ./Mydatabase_test
+      - name: Build and test 'MyQtTest2'
+        run: |
+          cd QtTest2
+          qmake QtTest2.pro
+          make
+          xvfb-run --auto-servernum --server-args='-screen 0 1024x768x24' ./MyQtTest2
 
-        - name: Build and test 'Mygametest'
-             run: |
-                 cd gametest
-                 qmake gametest.pro
-                 make
-                xvfb-run --auto-servernum --server-args='-screen 0 1024x768x24' ./Mydatabase_test
+      - name: Build and test 'Mygametest'
+        run: |
+          cd gametest
+          qmake gametest.pro
+          make
+          xvfb-run --auto-servernum --server-args='-screen 0 1024x768x24' ./Mygametest
 
-            - name: Build and test 'Myaitest'
-             run: |
-                 cd aitest
-                  qmake aitest.pro
-                  make
-                    xvfb-run --auto-servernum --server-args='-screen 0 1024x768x24' ./Mydatabase_test
+      - name: Build and test 'Myaitest'
+        run: |
+          cd aitest
+          qmake aitest.pro
+          make
+          xvfb-run --auto-servernum --server-args='-screen 0 1024x768x24' ./Myaitest
