@@ -82,3 +82,11 @@ void Player::setHashedPassword(QString &password) {
 void Player::setSessions(QVector<Session> &sessions) {
     this->sessions = sessions;
 }
+QString Player::getName() const {
+    return username;  // Assuming 'username' is where the player's name is stored
+}
+
+void Player::setName(const QString &name) {
+    username = name;  // Update the player's name
+}
+
