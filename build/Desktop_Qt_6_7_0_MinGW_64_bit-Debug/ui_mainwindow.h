@@ -791,7 +791,7 @@ public:
         horizontalLayout_5->setObjectName("horizontalLayout_5");
         gridLayout_7 = new QGridLayout();
         gridLayout_7->setObjectName("gridLayout_7");
-        gridLayout_7->setContentsMargins(25, 50, 25, 20);
+        gridLayout_7->setContentsMargins(10, 50, 40, 20);
         checkBox_newpass = new QCheckBox(change_password);
         checkBox_newpass->setObjectName("checkBox_newpass");
         sizePolicy5.setHeightForWidth(checkBox_newpass->sizePolicy().hasHeightForWidth());
@@ -948,7 +948,7 @@ public:
         horizontalLayout->setObjectName("horizontalLayout");
         gridLayout_3 = new QGridLayout();
         gridLayout_3->setObjectName("gridLayout_3");
-        gridLayout_3->setContentsMargins(50, 50, 50, 20);
+        gridLayout_3->setContentsMargins(25, 50, 75, 20);
         label_7 = new QLabel(login);
         label_7->setObjectName("label_7");
         sizePolicy3.setHeightForWidth(label_7->sizePolicy().hasHeightForWidth());
@@ -1097,7 +1097,7 @@ public:
         horizontalLayout_2->setObjectName("horizontalLayout_2");
         gridLayout_4 = new QGridLayout();
         gridLayout_4->setObjectName("gridLayout_4");
-        gridLayout_4->setContentsMargins(25, 30, 25, 20);
+        gridLayout_4->setContentsMargins(5, 30, 50, 20);
         verticalSpacer_44 = new QSpacerItem(20, 40, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Expanding);
 
         gridLayout_4->addItem(verticalSpacer_44, 4, 2, 1, 1);
@@ -2346,7 +2346,7 @@ public:
         retranslateUi(MainWindow);
         QObject::connect(pushButton_close_main, &QPushButton::clicked, pushButton_close_main, qOverload<>(&QPushButton::hide));
 
-        stackedWidget->setCurrentIndex(10);
+        stackedWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
