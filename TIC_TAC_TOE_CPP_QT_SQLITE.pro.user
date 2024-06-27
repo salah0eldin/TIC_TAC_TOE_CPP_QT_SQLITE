@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 13.0.0, 2024-06-27T12:53:07. -->
+<!-- Written by QtCreator 13.0.0, 2024-06-27T16:22:03. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -420,7 +420,6 @@
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
     <value type="bool" key="RunConfiguration.UseLibrarySearchPath">true</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">C:/Users/dell/Documents/TIC_TAC_TOE_CPP_QT_SQLITE/build/Desktop_Qt_6_7_0_MSVC2019_64bit-Release</value>
    </valuemap>
    <value type="qlonglong" key="ProjectExplorer.Target.RunConfigurationCount">1</value>
   </valuemap>
