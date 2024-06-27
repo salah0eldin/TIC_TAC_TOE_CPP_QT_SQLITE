@@ -177,20 +177,20 @@ public:
     QWidget *ai_transition;
     QHBoxLayout *horizontalLayout_12;
     QGridLayout *gridLayout_12;
+    QSpacerItem *horizontalSpacer_11;
+    QSpacerItem *horizontalSpacer_9;
+    QSpacerItem *horizontalSpacer_12;
+    QSpacerItem *verticalSpacer_18;
     QVBoxLayout *verticalLayout;
     QPushButton *pushButton_12;
     QPushButton *pushButton_15;
     QPushButton *pushButton_13;
-    QSpacerItem *horizontalSpacer_12;
-    QLabel *label_13;
-    QSpacerItem *verticalSpacer_17;
-    QSpacerItem *horizontalSpacer_11;
-    QSpacerItem *horizontalSpacer_10;
-    QSpacerItem *horizontalSpacer_9;
-    QSpacerItem *verticalSpacer_18;
-    QSpacerItem *verticalSpacer_16;
     QSpacerItem *verticalSpacer_15;
+    QSpacerItem *verticalSpacer_16;
     QPushButton *pushButton_14;
+    QSpacerItem *verticalSpacer_17;
+    QSpacerItem *horizontalSpacer_10;
+    QLabel *label_13;
     QWidget *board;
     QHBoxLayout *horizontalLayout_7;
     QGridLayout *gridLayout_10;
@@ -326,9 +326,9 @@ public:
         sizePolicy.setHeightForWidth(MainWindow->sizePolicy().hasHeightForWidth());
         MainWindow->setSizePolicy(sizePolicy);
         MainWindow->setMinimumSize(QSize(900, 700));
-        MainWindow->setAutoFillBackground(true);
+        MainWindow->setAutoFillBackground(false);
         MainWindow->setStyleSheet(QString::fromUtf8("QMainWindow {\n"
-"    background-image: url(../../pictures/bg3.png);\n"
+"    background-image: url(:/pictures/pictures/bg3.png);\n"
 "    background-repeat: no-repeat;\n"
 "    background-position: center;\n"
 "}\n"
@@ -358,8 +358,8 @@ public:
 "QLineEdit {\n"
 "    padding: 8px; /* Padding inside the QLineEdit */\n"
 "    border: 1px solid #CCCCCC; /* Border and color */\n"
-"    border-radius: 5px; /"
-                        "* Rounded corners */\n"
+"    border-radius: 5"
+                        "px; /* Rounded corners */\n"
 "    font-size: 18px; /* Font size */\n"
 "	font-weight:bold;\n"
 "}\n"
@@ -382,9 +382,9 @@ public:
 "}\n"
 "\n"
 "\n"
-"QMessageBox { background-image: url(../../pictures/mesbg.png); background-repeat: no-repeat; background-position: center; font-family:  sans-serif;font-size:12px;font-Weight:bold;color:white;} \n"
-" QMessageBox QPushButton { background-color: rgb(92, 142, 146); color: white; padding: 5px 10px; border-radius: 3"
-                        "px; font-size: 14px; font-weight: bold; min-width: 30px; min-height: 10px; border: none; } \n"
+"QMessageBox { background-image: url(:/pictures/pictures/mesbg.png); background-repeat: no-repeat; background-position: center; font-family:  sans-serif;font-size:12px;font-Weight:bold;color:white;} \n"
+" QMessageBox QPushButton { background-color: rgb(92, 142, 146); color: white; padding: 5px 10px; border"
+                        "-radius: 3px; font-size: 14px; font-weight: bold; min-width: 30px; min-height: 10px; border: none; } \n"
 "QMessageBox QPushButton:hover { background-color: rgb(204, 177, 161); } \n"
 "QMessageBox QPushButton:disabled { background-color: #cccccc; color: #666666;}"));
         centralwidget = new QWidget(MainWindow);
@@ -1327,6 +1327,22 @@ public:
         horizontalLayout_12->setObjectName("horizontalLayout_12");
         gridLayout_12 = new QGridLayout();
         gridLayout_12->setObjectName("gridLayout_12");
+        horizontalSpacer_11 = new QSpacerItem(200, 20, QSizePolicy::Policy::Maximum, QSizePolicy::Policy::Minimum);
+
+        gridLayout_12->addItem(horizontalSpacer_11, 2, 1, 1, 1);
+
+        horizontalSpacer_9 = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
+
+        gridLayout_12->addItem(horizontalSpacer_9, 5, 0, 1, 1);
+
+        horizontalSpacer_12 = new QSpacerItem(200, 20, QSizePolicy::Policy::Maximum, QSizePolicy::Policy::Minimum);
+
+        gridLayout_12->addItem(horizontalSpacer_12, 2, 3, 1, 1);
+
+        verticalSpacer_18 = new QSpacerItem(20, 40, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Maximum);
+
+        gridLayout_12->addItem(verticalSpacer_18, 4, 2, 1, 1);
+
         verticalLayout = new QVBoxLayout();
         verticalLayout->setSpacing(26);
         verticalLayout->setObjectName("verticalLayout");
@@ -1364,51 +1380,13 @@ public:
 
         gridLayout_12->addLayout(verticalLayout, 3, 2, 1, 1);
 
-        horizontalSpacer_12 = new QSpacerItem(200, 20, QSizePolicy::Policy::Maximum, QSizePolicy::Policy::Minimum);
+        verticalSpacer_15 = new QSpacerItem(20, 60, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Maximum);
 
-        gridLayout_12->addItem(horizontalSpacer_12, 2, 3, 1, 1);
-
-        label_13 = new QLabel(ai_transition);
-        label_13->setObjectName("label_13");
-        QFont font2;
-        font2.setFamilies({QString::fromUtf8("Segoe UI Black")});
-        font2.setPointSize(24);
-        font2.setWeight(QFont::Black);
-        font2.setItalic(false);
-        label_13->setFont(font2);
-        label_13->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);\n"
-"font: 900 24pt \"Segoe UI Black\";"));
-        label_13->setAlignment(Qt::AlignCenter);
-
-        gridLayout_12->addWidget(label_13, 1, 2, 1, 1);
-
-        verticalSpacer_17 = new QSpacerItem(20, 40, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Maximum);
-
-        gridLayout_12->addItem(verticalSpacer_17, 2, 2, 1, 1);
-
-        horizontalSpacer_11 = new QSpacerItem(200, 20, QSizePolicy::Policy::Maximum, QSizePolicy::Policy::Minimum);
-
-        gridLayout_12->addItem(horizontalSpacer_11, 2, 1, 1, 1);
-
-        horizontalSpacer_10 = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
-
-        gridLayout_12->addItem(horizontalSpacer_10, 2, 4, 1, 1);
-
-        horizontalSpacer_9 = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
-
-        gridLayout_12->addItem(horizontalSpacer_9, 5, 0, 1, 1);
-
-        verticalSpacer_18 = new QSpacerItem(20, 40, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Maximum);
-
-        gridLayout_12->addItem(verticalSpacer_18, 4, 2, 1, 1);
+        gridLayout_12->addItem(verticalSpacer_15, 7, 2, 1, 1);
 
         verticalSpacer_16 = new QSpacerItem(20, 40, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Expanding);
 
         gridLayout_12->addItem(verticalSpacer_16, 0, 2, 1, 1);
-
-        verticalSpacer_15 = new QSpacerItem(20, 60, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Maximum);
-
-        gridLayout_12->addItem(verticalSpacer_15, 7, 2, 1, 1);
 
         pushButton_14 = new QPushButton(ai_transition);
         pushButton_14->setObjectName("pushButton_14");
@@ -1417,6 +1395,21 @@ public:
         pushButton_14->setMinimumSize(QSize(120, 50));
 
         gridLayout_12->addWidget(pushButton_14, 5, 1, 1, 1, Qt::AlignHCenter);
+
+        verticalSpacer_17 = new QSpacerItem(20, 40, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Maximum);
+
+        gridLayout_12->addItem(verticalSpacer_17, 2, 2, 1, 1);
+
+        horizontalSpacer_10 = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
+
+        gridLayout_12->addItem(horizontalSpacer_10, 2, 4, 1, 1);
+
+        label_13 = new QLabel(ai_transition);
+        label_13->setObjectName("label_13");
+        label_13->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);\n"
+"font: 900 24pt \"Segoe UI Black\";"));
+
+        gridLayout_12->addWidget(label_13, 1, 2, 1, 1, Qt::AlignHCenter);
 
 
         horizontalLayout_12->addLayout(gridLayout_12);
@@ -1443,9 +1436,9 @@ public:
         sizePolicy9.setHeightForWidth(label_40->sizePolicy().hasHeightForWidth());
         label_40->setSizePolicy(sizePolicy9);
         label_40->setMinimumSize(QSize(0, 50));
-        QFont font3;
-        font3.setBold(true);
-        label_40->setFont(font3);
+        QFont font2;
+        font2.setBold(true);
+        label_40->setFont(font2);
         label_40->setStyleSheet(QString::fromUtf8("color:white;\n"
 "font-weight:bold;\n"
 "font-size:24px;\n"
@@ -1458,10 +1451,10 @@ public:
         label_55->setObjectName("label_55");
         sizePolicy9.setHeightForWidth(label_55->sizePolicy().hasHeightForWidth());
         label_55->setSizePolicy(sizePolicy9);
-        QFont font4;
-        font4.setPointSize(26);
-        font4.setBold(true);
-        label_55->setFont(font4);
+        QFont font3;
+        font3.setPointSize(26);
+        font3.setBold(true);
+        label_55->setFont(font3);
         label_55->setStyleSheet(QString::fromUtf8("color:white;"));
         label_55->setAlignment(Qt::AlignCenter);
 
@@ -1485,10 +1478,10 @@ public:
         horizontalLayout_11->setObjectName("horizontalLayout_11");
         label_14 = new QLabel(board);
         label_14->setObjectName("label_14");
-        QFont font5;
-        font5.setPointSize(20);
-        font5.setBold(true);
-        label_14->setFont(font5);
+        QFont font4;
+        font4.setPointSize(20);
+        font4.setBold(true);
+        label_14->setFont(font4);
         label_14->setStyleSheet(QString::fromUtf8("color:white;"));
         label_14->setAlignment(Qt::AlignCenter);
 
@@ -1496,7 +1489,7 @@ public:
 
         label_53 = new QLabel(board);
         label_53->setObjectName("label_53");
-        label_53->setFont(font5);
+        label_53->setFont(font4);
         label_53->setStyleSheet(QString::fromUtf8("color:white;"));
         label_53->setAlignment(Qt::AlignCenter);
 
@@ -1539,11 +1532,11 @@ public:
         sizePolicy9.setHeightForWidth(label->sizePolicy().hasHeightForWidth());
         label->setSizePolicy(sizePolicy9);
         label->setMinimumSize(QSize(0, 50));
-        QFont font6;
-        font6.setFamilies({QString::fromUtf8("Segoe UI")});
-        font6.setBold(true);
-        font6.setItalic(false);
-        label->setFont(font6);
+        QFont font5;
+        font5.setFamilies({QString::fromUtf8("Segoe UI")});
+        font5.setBold(true);
+        font5.setItalic(false);
+        label->setFont(font5);
         label->setStyleSheet(QString::fromUtf8("color:rgb(113, 113, 113);\n"
 "font-weight:bold;\n"
 "font-size:18px;\n"
@@ -1556,7 +1549,7 @@ public:
         label_54->setObjectName("label_54");
         sizePolicy9.setHeightForWidth(label_54->sizePolicy().hasHeightForWidth());
         label_54->setSizePolicy(sizePolicy9);
-        label_54->setFont(font4);
+        label_54->setFont(font3);
         label_54->setStyleSheet(QString::fromUtf8("color:white;"));
         label_54->setAlignment(Qt::AlignCenter);
 
@@ -1761,12 +1754,12 @@ public:
         sizePolicy4.setHeightForWidth(pushButton_session1->sizePolicy().hasHeightForWidth());
         pushButton_session1->setSizePolicy(sizePolicy4);
         pushButton_session1->setMinimumSize(QSize(120, 50));
-        QFont font7;
-        font7.setFamilies({QString::fromUtf8("Segoe UI")});
-        font7.setPointSize(22);
-        font7.setBold(true);
-        font7.setItalic(false);
-        pushButton_session1->setFont(font7);
+        QFont font6;
+        font6.setFamilies({QString::fromUtf8("Segoe UI")});
+        font6.setPointSize(22);
+        font6.setBold(true);
+        font6.setItalic(false);
+        pushButton_session1->setFont(font6);
         pushButton_session1->setStyleSheet(QString::fromUtf8("font: 700 22pt \"Segoe UI\";\n"
 "text-align:left;"));
 
@@ -1956,10 +1949,10 @@ public:
         sizePolicy2.setHeightForWidth(label_34->sizePolicy().hasHeightForWidth());
         label_34->setSizePolicy(sizePolicy2);
         label_34->setMinimumSize(QSize(120, 120));
-        QFont font8;
-        font8.setPointSize(35);
-        font8.setBold(true);
-        label_34->setFont(font8);
+        QFont font7;
+        font7.setPointSize(35);
+        font7.setBold(true);
+        label_34->setFont(font7);
         label_34->setStyleSheet(QString::fromUtf8(""));
         label_34->setAlignment(Qt::AlignCenter);
 
@@ -1970,7 +1963,7 @@ public:
         sizePolicy2.setHeightForWidth(label_30->sizePolicy().hasHeightForWidth());
         label_30->setSizePolicy(sizePolicy2);
         label_30->setMinimumSize(QSize(120, 120));
-        label_30->setFont(font8);
+        label_30->setFont(font7);
         label_30->setStyleSheet(QString::fromUtf8(""));
         label_30->setAlignment(Qt::AlignCenter);
 
@@ -1981,7 +1974,7 @@ public:
         sizePolicy2.setHeightForWidth(label_33->sizePolicy().hasHeightForWidth());
         label_33->setSizePolicy(sizePolicy2);
         label_33->setMinimumSize(QSize(120, 120));
-        label_33->setFont(font8);
+        label_33->setFont(font7);
         label_33->setStyleSheet(QString::fromUtf8(""));
         label_33->setAlignment(Qt::AlignCenter);
 
@@ -1992,7 +1985,7 @@ public:
         sizePolicy2.setHeightForWidth(label_35->sizePolicy().hasHeightForWidth());
         label_35->setSizePolicy(sizePolicy2);
         label_35->setMinimumSize(QSize(120, 120));
-        label_35->setFont(font8);
+        label_35->setFont(font7);
         label_35->setStyleSheet(QString::fromUtf8(""));
         label_35->setAlignment(Qt::AlignCenter);
 
@@ -2017,7 +2010,7 @@ public:
         sizePolicy2.setHeightForWidth(label_29->sizePolicy().hasHeightForWidth());
         label_29->setSizePolicy(sizePolicy2);
         label_29->setMinimumSize(QSize(120, 120));
-        label_29->setFont(font8);
+        label_29->setFont(font7);
         label_29->setStyleSheet(QString::fromUtf8(""));
         label_29->setAlignment(Qt::AlignCenter);
 
@@ -2035,7 +2028,7 @@ public:
         sizePolicy2.setHeightForWidth(label_31->sizePolicy().hasHeightForWidth());
         label_31->setSizePolicy(sizePolicy2);
         label_31->setMinimumSize(QSize(120, 120));
-        label_31->setFont(font8);
+        label_31->setFont(font7);
         label_31->setStyleSheet(QString::fromUtf8(""));
         label_31->setAlignment(Qt::AlignCenter);
 
@@ -2060,7 +2053,7 @@ public:
         sizePolicy2.setHeightForWidth(label_6->sizePolicy().hasHeightForWidth());
         label_6->setSizePolicy(sizePolicy2);
         label_6->setMinimumSize(QSize(120, 120));
-        label_6->setFont(font8);
+        label_6->setFont(font7);
         label_6->setStyleSheet(QString::fromUtf8(""));
         label_6->setAlignment(Qt::AlignCenter);
 
@@ -2078,7 +2071,7 @@ public:
         sizePolicy2.setHeightForWidth(label_28->sizePolicy().hasHeightForWidth());
         label_28->setSizePolicy(sizePolicy2);
         label_28->setMinimumSize(QSize(120, 120));
-        label_28->setFont(font8);
+        label_28->setFont(font7);
         label_28->setStyleSheet(QString::fromUtf8(""));
         label_28->setAlignment(Qt::AlignCenter);
 
@@ -2089,7 +2082,7 @@ public:
         sizePolicy2.setHeightForWidth(label_32->sizePolicy().hasHeightForWidth());
         label_32->setSizePolicy(sizePolicy2);
         label_32->setMinimumSize(QSize(120, 120));
-        label_32->setFont(font8);
+        label_32->setFont(font7);
         label_32->setStyleSheet(QString::fromUtf8(""));
         label_32->setAlignment(Qt::AlignCenter);
 
@@ -2107,7 +2100,7 @@ public:
 
         label_45 = new QLabel(games);
         label_45->setObjectName("label_45");
-        label_45->setFont(font5);
+        label_45->setFont(font4);
         label_45->setStyleSheet(QString::fromUtf8("color:white;\n"
 ""));
         label_45->setAlignment(Qt::AlignCenter);
@@ -2168,7 +2161,7 @@ public:
 
         label_12 = new QLabel(games);
         label_12->setObjectName("label_12");
-        label_12->setFont(font5);
+        label_12->setFont(font4);
         label_12->setStyleSheet(QString::fromUtf8("color:white;"));
         label_12->setAlignment(Qt::AlignCenter);
 
@@ -2217,7 +2210,7 @@ public:
         scrollArea_2->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName("scrollAreaWidgetContents");
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 174, 342));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 160, 88));
         verticalLayout_5 = new QVBoxLayout(scrollAreaWidgetContents);
         verticalLayout_5->setObjectName("verticalLayout_5");
         frame = new QFrame(scrollAreaWidgetContents);
@@ -2345,7 +2338,7 @@ public:
         retranslateUi(MainWindow);
         QObject::connect(pushButton_close_main, &QPushButton::clicked, pushButton_close_main, qOverload<>(&QPushButton::hide));
 
-        stackedWidget->setCurrentIndex(8);
+        stackedWidget->setCurrentIndex(7);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -2353,7 +2346,7 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
+        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "TIC TAC TOE", nullptr));
 #if QT_CONFIG(whatsthis)
         pushButton_login_from_main->setWhatsThis(QCoreApplication::translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-weight:700;\">fff</span></p></body></html>", nullptr));
 #endif // QT_CONFIG(whatsthis)
@@ -2435,8 +2428,8 @@ public:
         pushButton_12->setText(QCoreApplication::translate("MainWindow", "Easy", nullptr));
         pushButton_15->setText(QCoreApplication::translate("MainWindow", "Medium", nullptr));
         pushButton_13->setText(QCoreApplication::translate("MainWindow", "Hard", nullptr));
-        label_13->setText(QCoreApplication::translate("MainWindow", "Choose AI difficulty", nullptr));
         pushButton_14->setText(QCoreApplication::translate("MainWindow", "Back", nullptr));
+        label_13->setText(QCoreApplication::translate("MainWindow", "Choose AI difficulty", nullptr));
         label_40->setText(QCoreApplication::translate("MainWindow", "Guest", nullptr));
         label_55->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
         label_14->setText(QCoreApplication::translate("MainWindow", "Ties :", nullptr));

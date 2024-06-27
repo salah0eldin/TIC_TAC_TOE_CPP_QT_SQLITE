@@ -23,14 +23,14 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>TIC TAC TOE</string>
   </property>
   <property name="autoFillBackground">
-   <bool>true</bool>
+   <bool>false</bool>
   </property>
   <property name="styleSheet">
    <string notr="true">QMainWindow {
-    background-image: url(../../pictures/bg3.png);
+    background-image: url(:/pictures/pictures/bg3.png);
     background-repeat: no-repeat;
     background-position: center;
 }
@@ -83,7 +83,7 @@ QLineEdit::disabled {
 }
 
 
-QMessageBox { background-image: url(../../pictures/mesbg.png); background-repeat: no-repeat; background-position: center; font-family:  sans-serif;font-size:12px;font-Weight:bold;color:white;} 
+QMessageBox { background-image: url(:/pictures/pictures/mesbg.png); background-repeat: no-repeat; background-position: center; font-family:  sans-serif;font-size:12px;font-Weight:bold;color:white;} 
  QMessageBox QPushButton { background-color: rgb(92, 142, 146); color: white; padding: 5px 10px; border-radius: 3px; font-size: 14px; font-weight: bold; min-width: 30px; min-height: 10px; border: none; } 
 QMessageBox QPushButton:hover { background-color: rgb(204, 177, 161); } 
 QMessageBox QPushButton:disabled { background-color: #cccccc; color: #666666;}</string>

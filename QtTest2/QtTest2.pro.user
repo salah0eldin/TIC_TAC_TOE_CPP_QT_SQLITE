@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 13.0.0, 2024-06-27T16:22:03. -->
+<!-- Written by QtCreator 13.0.0, 2024-06-27T20:42:17. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -242,11 +242,13 @@
     <value type="bool" key="PE.EnvironmentAspect.PrintOnRun">false</value>
     <value type="QString" key="PerfRecordArgsId">-e cpu-cycles --call-graph &quot;dwarf,4096&quot; -F 250</value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.CustomExecutableRunConfiguration</value>
-    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey"></value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:D:/assiments and projects/year2/term2/embedded2/TIC_TAC_TOE_CPP_QT_SQLITE/QtTest2/QtTest2.pro</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">D:/assiments and projects/year2/term2/embedded2/TIC_TAC_TOE_CPP_QT_SQLITE/QtTest2/QtTest2.pro</value>
     <value type="bool" key="ProjectExplorer.RunConfiguration.Customized">false</value>
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
+    <value type="bool" key="RunConfiguration.UseLibrarySearchPath">true</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">D:/assiments and projects/year2/term2/embedded2/TIC_TAC_TOE_CPP_QT_SQLITE/QtTest2/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug</value>
    </valuemap>
    <value type="qlonglong" key="ProjectExplorer.Target.RunConfigurationCount">1</value>
   </valuemap>

@@ -65,7 +65,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     // MESSAGE_BOX
     styles.push_back(R"(
-                        QMessageBox { background-image: url(../../pictures/mesbg.png); background-repeat: no-repeat; background-position: center; font-family:  sans-serif;font-size:12px;font-Weight:bold;color:white;}
+                        QMessageBox { background-image: url(:/pictures/pictures/mesbg.png); background-repeat: no-repeat; background-position: center; font-family:  sans-serif;font-size:12px;font-Weight:bold;color:white;}
                         QMessageBox QPushButton { background-color: rgb(92, 142, 146); color: white; padding: 5px 10px; border-radius: 3px; font-size: 14px; font-weight: bold; min-width: 30px; min-height: 10px; border: none; }
                         QMessageBox QPushButton:hover { background-color: rgb(204, 177, 161); }
                         QMessageBox QPushButton:disabled { background-color: #cccccc; color: #666666;}
@@ -131,21 +131,21 @@ MainWindow::MainWindow(QWidget *parent)
     ui->label_guest->installEventFilter(this);
 
     // Set default picture for label_picture
-    QPixmap pix1("../../pictures/user.jpg");
+    QPixmap pix1(":/pictures/pictures/user.jpg");
     int w1 = ui->label_picture->width();
     int h1 = ui->label_picture->height();
     ui->label_picture->setPixmap(pix1.scaled(w1, h1, Qt::KeepAspectRatio));
 
     // Set default picture for label_pic
-    QPixmap pix("../../pictures/aaa.jpg");
+    QPixmap pix(":/pictures/pictures/aaa.jpg");
     int w = ui->label_pic->width();
     int h = ui->label_pic->height();
     ui->label_pic->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
 
     // Set placeholders and icons for line edits
-    QIcon user("../../pictures/user.jpg");
+    QIcon user(":/pictures/pictures/user.jpg");
     ui->lineEdit_user->addAction(user, QLineEdit::LeadingPosition);
-    QIcon pass("../../pictures/password.png");
+    QIcon pass(":/pictures/pictures/password.png");
     ui->lineEdit_pass->addAction(pass, QLineEdit::LeadingPosition);
 
     // Initialize signal mapper for sessions
@@ -226,7 +226,7 @@ void MainWindow::on_pushButton_login_from_main_clicked()
             ui->label_40->setText("Guest");
 
             // Change profile picture to default
-            QImage image("../../pictures/user.jpg");
+            QImage image(":/pictures/pictures/user.jpg");
             changePictures(image);
 
             QString username = "Guest";
@@ -370,7 +370,7 @@ QString MainWindow::hashing(const QString& str) {
  */
 void MainWindow::changePictures(QImage &originalImage) {
     if (originalImage.isNull())
-        originalImage = QImage("../../pictures/user.jpg");
+        originalImage = QImage(":/pictures/pictures/user.jpg");
 
     // Resize the image if it's larger than 300x300 pixels
     if (originalImage.width() > 300 || originalImage.height() > 300) {

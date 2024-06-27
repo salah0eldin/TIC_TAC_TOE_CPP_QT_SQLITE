@@ -52,3 +52,6 @@ DISTFILES += \
     pictures/user.jpg
 
 TARGET = MyTIC_TAC_TOE_CPP_QT_SQLITE
+
+RESOURCES += \
+    resources.qrc
