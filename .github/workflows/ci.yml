@@ -21,7 +21,7 @@ jobs:
         run: |
           mkdir build2
           cd build2
-          qmake TIC_TAC_TOE_CPP_QT_SQLITE.pro
+          qmake ../TIC_TAC_TOE_CPP_QT_SQLITE.pro
           make
 
       - name: Run executable
