@@ -50,3 +50,5 @@ DISTFILES += \
     pictures/bg.png \
     pictures/password.png \
     pictures/user.jpg
+
+TARGET = MyTIC_TAC_TOE_CPP_QT_SQLITE
