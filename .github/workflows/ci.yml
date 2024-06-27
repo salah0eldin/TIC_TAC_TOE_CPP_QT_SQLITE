@@ -26,8 +26,8 @@ jobs:
 
       - name: Run executable
         run: |
-          cd tictactoegui/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/debug
-          ./ttt.exe
+          cd build2
+          xvfb-run --auto-servernum --server-args='-screen 0 1024x768x24' ./ttt
 
       - name: Build and test 'MyQtTest'
         run: |
