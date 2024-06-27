@@ -5,7 +5,7 @@ on:
   pull_request:
 
 jobs:
-  test-runner:
+  test-runner-linux:
     runs-on: ubuntu-latest
 
     steps:
@@ -31,7 +31,6 @@ jobs:
           make
           xvfb-run --auto-servernum --server-args='-screen 0 1024x768x24' ./Mydatabase_test
 
-
       - name: Build and test 'Mygametest'
         run: |
           cd gametest
@@ -45,6 +44,7 @@ jobs:
           qmake aitest.pro
           make
           xvfb-run --auto-servernum --server-args='-screen 0 1024x768x24' ./Myaitest
+
       - name: Build and test 'MyQtTest2'
         run: |
           cd QtTest2
@@ -52,8 +52,18 @@ jobs:
           make
           xvfb-run --auto-servernum --server-args='-screen 0 1024x768x24' ./MyQtTest2
 
-      - name: Run executable
-        shell: powershell
+  test-runner-windows:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: |
+          choco install qt5-default
+
+      - name: Build and test 'TIC_TAC_TOE_CPP_QT_SQLITE'
         run: |
           cd TIC_TAC_TOE_CPP_QT_SQLITE/build/Executable/release
           ./TIC_TAC_TOE_CPP_QT_SQLITE.exe
