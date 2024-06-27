@@ -111,7 +111,7 @@ QMessageBox QPushButton:disabled { background-color: #cccccc; color: #666666;}</
        <string notr="true"/>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>8</number>
       </property>
       <widget class="QWidget" name="main">
        <property name="sizePolicy">
@@ -4049,8 +4049,8 @@ color:white;</string>
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>160</width>
-                  <height>88</height>
+                  <width>174</width>
+                  <height>342</height>
                  </rect>
                 </property>
                 <layout class="QVBoxLayout" name="verticalLayout_5">

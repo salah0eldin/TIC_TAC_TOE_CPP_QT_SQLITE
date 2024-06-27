@@ -2217,7 +2217,7 @@ public:
         scrollArea_2->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName("scrollAreaWidgetContents");
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 160, 88));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 174, 342));
         verticalLayout_5 = new QVBoxLayout(scrollAreaWidgetContents);
         verticalLayout_5->setObjectName("verticalLayout_5");
         frame = new QFrame(scrollAreaWidgetContents);
@@ -2345,7 +2345,7 @@ public:
         retranslateUi(MainWindow);
         QObject::connect(pushButton_close_main, &QPushButton::clicked, pushButton_close_main, qOverload<>(&QPushButton::hide));
 
-        stackedWidget->setCurrentIndex(0);
+        stackedWidget->setCurrentIndex(8);
 
 
         QMetaObject::connectSlotsByName(MainWindow);

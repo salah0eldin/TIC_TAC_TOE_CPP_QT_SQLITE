@@ -3370,10 +3370,7 @@ release/main.o: ../../main.cpp ../../mainwindow.h \
 		C:/Qt/6.7.0/mingw_64/include/QtCore/QPair \
 		../../player.h \
 		C:/Qt/6.7.0/mingw_64/include/QtWidgets/QApplication \
-		C:/Qt/6.7.0/mingw_64/include/QtWidgets/qapplication.h \
-		C:/Qt/6.7.0/mingw_64/include/QtWidgets/QPushButton \
-		C:/Qt/6.7.0/mingw_64/include/QtWidgets/qpushbutton.h \
-		C:/Qt/6.7.0/mingw_64/include/QtGui/QCursor
+		C:/Qt/6.7.0/mingw_64/include/QtWidgets/qapplication.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/main.o ../../main.cpp
 
 release/mainwindow.o: ../../mainwindow.cpp ../../mainwindow.h \

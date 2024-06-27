@@ -328,7 +328,7 @@ public:
         MainWindow->setMinimumSize(QSize(900, 700));
         MainWindow->setAutoFillBackground(true);
         MainWindow->setStyleSheet(QString::fromUtf8("QMainWindow {\n"
-"    background-image: url(../../pictures/bg3.png);\n"
+"    background-image: url(/pictures/bg3.png);\n"
 "    background-repeat: no-repeat;\n"
 "    background-position: center;\n"
 "}\n"
@@ -358,8 +358,8 @@ public:
 "QLineEdit {\n"
 "    padding: 8px; /* Padding inside the QLineEdit */\n"
 "    border: 1px solid #CCCCCC; /* Border and color */\n"
-"    border-radius: 5px; /"
-                        "* Rounded corners */\n"
+"    border-radius: 5px; /* Rou"
+                        "nded corners */\n"
 "    font-size: 18px; /* Font size */\n"
 "	font-weight:bold;\n"
 "}\n"
@@ -382,9 +382,9 @@ public:
 "}\n"
 "\n"
 "\n"
-"QMessageBox { background-image: url(../../pictures/mesbg.png); background-repeat: no-repeat; background-position: center; font-family:  sans-serif;font-size:12px;font-Weight:bold;color:white;} \n"
-" QMessageBox QPushButton { background-color: rgb(92, 142, 146); color: white; padding: 5px 10px; border-radius: 3"
-                        "px; font-size: 14px; font-weight: bold; min-width: 30px; min-height: 10px; border: none; } \n"
+"QMessageBox { background-image: url(/pictures/mesbg.png); background-repeat: no-repeat; background-position: center; font-family:  sans-serif;font-size:12px;font-Weight:bold;color:white;} \n"
+" QMessageBox QPushButton { background-color: rgb(92, 142, 146); color: white; padding: 5px 10px; border-radius: 3px; font-s"
+                        "ize: 14px; font-weight: bold; min-width: 30px; min-height: 10px; border: none; } \n"
 "QMessageBox QPushButton:hover { background-color: rgb(204, 177, 161); } \n"
 "QMessageBox QPushButton:disabled { background-color: #cccccc; color: #666666;}"));
         centralwidget = new QWidget(MainWindow);
@@ -2217,7 +2217,7 @@ public:
         scrollArea_2->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName("scrollAreaWidgetContents");
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 160, 88));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 174, 342));
         verticalLayout_5 = new QVBoxLayout(scrollAreaWidgetContents);
         verticalLayout_5->setObjectName("verticalLayout_5");
         frame = new QFrame(scrollAreaWidgetContents);
