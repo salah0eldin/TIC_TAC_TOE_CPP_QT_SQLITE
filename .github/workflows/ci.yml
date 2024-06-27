@@ -5,7 +5,7 @@ on:
   pull_request:
 
 jobs:
-  test-runner-linux:
+  continous-integration:
     runs-on: ubuntu-latest
 
     steps:
@@ -52,7 +52,7 @@ jobs:
           make
           xvfb-run --auto-servernum --server-args='-screen 0 1024x768x24' ./MyQtTest2
 
-  test-runner-windows:
+  continous-deployment:
     runs-on: windows-latest
 
     steps:
