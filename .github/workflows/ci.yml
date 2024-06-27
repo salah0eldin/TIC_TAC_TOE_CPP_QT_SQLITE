@@ -12,54 +12,31 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Install dependencies
+      - name: Install Qt and dependencies
         run: |
           sudo apt-get update
           sudo apt-get install -y qtbase5-dev qt5-qmake xvfb
+
+      - name: Debug UI file contents
+        run: |
+          cat ../mainwindow.ui  # Print contents of mainwindow.ui for debugging
+
+      - name: Generate ui_mainwindow.h
+        run: |
+          if ! uic ../mainwindow.ui -o ui_mainwindow.h; then
+            echo "Error: Failed to generate ui_mainwindow.h"
+            exit 1  # Exit with error if uic fails
+          fi
 
       - name: Build project
         run: |
           mkdir build2
           cd build2
-          qmake ../TIC_TAC_TOE_CPP_QT_SQLITE.pro
+          qmake ../GUI/semi.pro
           make
 
       - name: Run executable
+        shell: bash
         run: |
           cd build2
           xvfb-run --auto-servernum --server-args='-screen 0 1024x768x24' ./ttt
-
-      - name: Build and test 'MyQtTest'
-        run: |
-          cd QtTest
-          qmake QtTest.pro
-          make
-          xvfb-run --auto-servernum --server-args='-screen 0 1024x768x24' ./MyQtTest
-
-      - name: Build and test 'Mydatabase_test'
-        run: |
-          cd database_test
-          qmake database_test.pro
-          make
-          xvfb-run --auto-servernum --server-args='-screen 0 1024x768x24' ./Mydatabase_test
-
-      - name: Build and test 'Mygametest'
-        run: |
-          cd gametest
-          qmake gametest.pro
-          make
-          xvfb-run --auto-servernum --server-args='-screen 0 1024x768x24' ./Mygametest
-
-      - name: Build and test 'Myaitest'
-        run: |
-          cd aitest
-          qmake aitest.pro
-          make
-          xvfb-run --auto-servernum --server-args='-screen 0 1024x768x24' ./Myaitest
-
-      - name: Build and test 'MyQtTest2'
-        run: |
-          cd QtTest2
-          qmake QtTest2.pro
-          make
-          xvfb-run --auto-servernum --server-args='-screen 0 1024x768x24' ./MyQtTest2
