@@ -19,7 +19,7 @@ jobs:
 
       - name: Debug UI file contents
         run: |
-          cat ../mainwindow.ui  # Print contents of mainwindow.ui for debugging
+          cat mainwindow.ui  # Print contents of mainwindow.ui for debugging
 
       - name: Generate ui_mainwindow.h
         run: |
