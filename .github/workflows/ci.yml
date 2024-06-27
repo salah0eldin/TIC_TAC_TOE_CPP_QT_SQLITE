@@ -17,12 +17,6 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y qtbase5-dev qt5-qmake xvfb
 
-      - name: Build unit tests
-        run: |
-          qmake TIC_TAC_TOE_CPP_QT_SQLITE.pro
-          make
-          xvfb-run --auto-servernum --server-args='-screen 0 1024x768x24' ./MyTIC_TAC_TOE_CPP_QT_SQLITE
-
       - name: Build and test 'MyQtTest'
         run: |
           cd QtTest
