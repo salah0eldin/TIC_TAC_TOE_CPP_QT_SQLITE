@@ -17,6 +17,18 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y qtbase5-dev qt5-qmake xvfb
 
+      - name: Build project
+        run: |
+          mkdir build2
+          cd build2
+          qmake ../GUI/semi.pro
+          make
+
+      - name: Run executable
+        run: |
+          cd tictactoegui/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/debug
+          ./ttt.exe
+
       - name: Build and test 'MyQtTest'
         run: |
           cd QtTest
@@ -31,7 +43,6 @@ jobs:
           make
           xvfb-run --auto-servernum --server-args='-screen 0 1024x768x24' ./Mydatabase_test
 
-
       - name: Build and test 'Mygametest'
         run: |
           cd gametest
@@ -45,6 +56,7 @@ jobs:
           qmake aitest.pro
           make
           xvfb-run --auto-servernum --server-args='-screen 0 1024x768x24' ./Myaitest
+
       - name: Build and test 'MyQtTest2'
         run: |
           cd QtTest2
