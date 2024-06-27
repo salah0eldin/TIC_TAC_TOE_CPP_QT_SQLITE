@@ -23,7 +23,7 @@ jobs:
 
       - name: Generate ui_mainwindow.h
         run: |
-          if ! uic ../mainwindow.ui -o ui_mainwindow.h; then
+          if ! uic mainwindow.ui -o ui_mainwindow.h; then
             echo "Error: Failed to generate ui_mainwindow.h"
             exit 1  # Exit with error if uic fails
           fi
