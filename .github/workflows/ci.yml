@@ -65,5 +65,5 @@ jobs:
 
       - name: Build and test 'TIC_TAC_TOE_CPP_QT_SQLITE'
         run: |
-          cd TIC_TAC_TOE_CPP_QT_SQLITE/build/Executable/release
+          cd build/Executable/release
           ./TIC_TAC_TOE_CPP_QT_SQLITE.exe
