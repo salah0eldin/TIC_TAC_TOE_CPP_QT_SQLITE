@@ -51,3 +51,9 @@ jobs:
           qmake QtTest2.pro
           make
           xvfb-run --auto-servernum --server-args='-screen 0 1024x768x24' ./MyQtTest2
+
+      - name: Run executable
+        shell: powershell
+        run: |
+          cd TIC_TAC_TOE_CPP_QT_SQLITE/build/Executable/release
+          ./TIC_TAC_TOE_CPP_QT_SQLITE.exe
