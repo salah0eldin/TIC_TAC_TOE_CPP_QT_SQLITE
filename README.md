@@ -17,6 +17,8 @@ This repository contains a Tic Tac Toe game developed using C++, Qt, and SQLite.
 ## Getting Started
  
  1 - Clone the repository: git clone https://github.com/salah0eldin/TIC_TAC_TOE_CPP_QT_SQLITE.git
+ 
  2 - Build the project using Qt Creator or your preferred C++ IDE.
+ 
  3 - Run the application and enjoy playing Tic Tac Toe! 
  
